@@ -1,0 +1,55 @@
+.addModal {
+  .modal-header {
+    background: #00BFFE;
+
+    h4 {
+      color: #fff !important
+    }
+  }
+
+  .form-select {
+    background: #ffffff !important;
+  }
+}
+
+.addBtnModal {
+  background: #00BFFE !important;
+
+  &:hover {
+    background: #000 !important;
+    color: #fff !important;
+    border: 1px solid #fff !important;
+  }
+}
+
+.service_input {
+  border: 2px solid #dedede;
+  padding: 10px 14px 10px;
+  margin: 1px;
+  transition: 0.4s;
+  width: 91%;
+  font-size: 15px;
+}
+
+.add_select {
+  width: 91%;
+  height: 42px;
+  line-height: 27px;
+  font-size: 15px;
+}
+
+.edit_errmsg {
+  font-size: 15px;
+  text-align: left;
+  font-weight: 400;
+  color: #000 !important;
+  margin: 0;
+}
+
+.edit_errordiv {
+  margin: 10px 0px 0px 0px;
+  height: 27px;
+  display: flex;
+  align-items: center;
+  padding: 0px 3px;
+}

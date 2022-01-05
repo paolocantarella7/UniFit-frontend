@@ -1,0 +1,28 @@
+.registerWrap {
+    @media screen and (max-width: 568px) and (min-width: 320px) {
+       display: block!important;
+       padding: 15px;
+     }
+}
+.register_comp{
+    background-color: #00BFFE;
+}
+
+.register_btn{
+    background-color:#FFFFFF;
+    border-color: #00BFFE;
+    border-radius: 35px;
+    color:#00BFFE;
+    padding:13px 23px;
+    &:hover {
+        background: #000508;
+    } 
+    &:hover .register{
+        color: white !important;
+    }
+}
+
+.register{
+    color: #00BFFE !important;
+  
+}
