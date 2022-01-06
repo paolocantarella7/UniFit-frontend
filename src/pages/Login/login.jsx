@@ -17,8 +17,7 @@ class Login extends React.Component {
       username: "",
       pass: "",
       errors: {},
-      loading:false,
-      pippo: false
+      loading:false
     }
   }
   handleChange = (event) => {
@@ -105,33 +104,11 @@ class Login extends React.Component {
       }
     } else {
       return (
-        <div>
+        <div className="pb-4">
           <ConnectedHeader {...this.props} />
-          <div className="doctorSearch loginSignupTop">
-            <h3 className="text-center text-white">Login</h3>
-          </div>
-          <div className="signup_main row">
-            <div className="left_section col-md-6 col-lg-6 col-sm-12 col-12">
-              <span className="img_span">
-                <img src='/img/scope1.png' alt="stethoscope" />
-              </span>
-              <div>
-                <h1 className="p-2 m-0">
-                  <span className="welcome_to">Welcome to <span className="medical"> Medical Tourism</span></span>
-                </h1>
-                <p className="p-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                      do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <div className="p-2 outer_div">
-                  <Link
-                    to={`/signup`}
-                    className="left_signup_btn nav-link login d-flex justify-content-center">Signup</Link>
-                </div>
-              </div>
-            </div>
-            <div className="signup_right col-md-6 col-lg-6 col-sm-12 col-12">
+            <div className="signup_right mx-auto pb-5 my-5 rounded">
               <div className="right_top">
-                <h1 className="heading">Login Account</h1>
-                <p className="text-justify m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+                <h1 className="heading">Login</h1>
               </div>
               <div className="right_bottom">
                 <form method="post" onSubmit={this.formSubmit}>
@@ -183,7 +160,7 @@ class Login extends React.Component {
                   <div className="pb-2">
                   <Link
                     to={`/recover`}
-                    className="nav-link login d-flex justify-content-start forget_pass_btn">Forgot password</Link>
+                    className="nav-link login d-flex justify-content-start forget_pass_btn">Password dimenticata?</Link>
                     </div>
                   <button className="login_btn">LOGIN</button>
                 </form>
@@ -195,11 +172,10 @@ class Login extends React.Component {
                 </div>
               </div>
             </div>
-          </div>
           {
             this.state.loading ? <Loading />:''
           }
-          <Footer />
+          <Footer/>
         </div>
       )
     }
