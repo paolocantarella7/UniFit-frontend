@@ -4,7 +4,7 @@ import AccountProvider from './providers/accountProvider'
 
 import InformazioniPersonaliUtente from './pages/informazioniPersonaliUtente/informazioniPersonaliUtente'
 import AreaPersonaleUtente from './pages/areaPersonaleUtente/areaPersonaleUtente'
-import HomePage from './pages/HomePage/homepage'
+import HomePage from './pages/homePage/homepage'
 import SignUp from './pages/signUp/signUp'
 import ConnectedLogin from './pages/login/login'
 import ConnectedDoctorList from './pages/doctorList/doctorList'
