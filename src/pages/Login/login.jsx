@@ -17,7 +17,8 @@ class Login extends React.Component {
       username: "",
       pass: "",
       errors: {},
-      loading:false
+      loading:false,
+      pippo: false
     }
   }
   handleChange = (event) => {
