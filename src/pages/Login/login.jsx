@@ -182,6 +182,7 @@ class Login extends React.Component {
 
   }
 }
+
 const ConnectedLogin = props => (
   <AccountConsumer>
     {({ currentUser, updateAccount }) => (<Login {...props} currentUser={currentUser} updateAccount={updateAccount} />)}

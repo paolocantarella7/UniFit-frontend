@@ -40,7 +40,7 @@ class Header extends React.Component {
     return (
       <div className="container-fluid header">
         <nav className="navbar navbar-expand-md navbar-light headerMenus">
-          <Link to="/" className="navbar-brand">
+          <Link to="/home" className="navbar-brand">
             <img src="/img/logo.png" width={"60 px"} alt="" />
           </Link>
           <button
@@ -110,7 +110,7 @@ class Header extends React.Component {
               this.props.currentUser.role === "user" ? (
                 <li className="nav-item">
                   <Link
-                    to={`/areaPersonaleUtente`}
+                    to={`/userArea`}
                     className={`${this.checkActive("/areaUtente")} nav-link`}
                   >
                     Area utente

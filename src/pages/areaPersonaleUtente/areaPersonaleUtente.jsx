@@ -19,7 +19,7 @@ class AreaPersonaleUtente extends React.Component {
               Le mie prenotazioni
             </button>
           </div>
-          <Link to={"/modificaPassword"} className={`nav-link`}>
+          <Link to={"/editPassword"} className={`nav-link`}>
             <div className="row py-3 px-3">
               <button
                 type="button"
@@ -29,7 +29,7 @@ class AreaPersonaleUtente extends React.Component {
               </button>
             </div>
           </Link>
-          <Link to={"/informazioniPersonaliUtente"} className={`nav-link`}>
+          <Link to={"/userDetails"} className={`nav-link`}>
             <div className="row py-3 px-3">
               <button
                 type="button"
@@ -39,7 +39,7 @@ class AreaPersonaleUtente extends React.Component {
               </button>
             </div>
           </Link>
-          <Link to={"/cancellaAccount"} className={`nav-link`}>
+          <Link to={"/deleteAccount"} className={`nav-link`}>
             <div className="row py-3 px-3">
               <button
                 type="button"
