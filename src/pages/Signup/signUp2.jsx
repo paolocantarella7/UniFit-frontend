@@ -9,7 +9,7 @@ import {toast} from 'react-toastify';
 import Loading from '../../components/loading/loading';
 
 // Signup page for doctors
-class SignUp extends React.Component {
+class SignUp2 extends React.Component {
   constructor(props) {
     super();
     this.state = {
@@ -125,18 +125,18 @@ class SignUp extends React.Component {
           <div className="signup_main">
             <div className="signup_right mx-auto">
               <div className="right_top">
-                <h1 className="heading">Registrati</h1>
+                <h1 className="heading">Dicci qualcosa in più su di te</h1>
               </div>
               <div className="right_bottom">
                 <form method="post" onSubmit={this.formSubmit}>
-                <div className="change">
+                  <div className="change">
                     <div className="input_icons">
-                      <i className="fa fa-envelope" aria-hidden="true"></i>
+                      <i className="fa fa-user-o" aria-hidden="true"></i>
                     </div>
                     <input
-                      type="email"
-                      name="email"
-                      placeholder="Email"
+                      type="text"
+                      name="cf"
+                      placeholder="Codice fiscale"
                       className="effect-8"
                       onBlur={this.validate}
                       required
@@ -151,29 +151,7 @@ class SignUp extends React.Component {
                     {this.state.errors.username
                       ? <p className="errmsg">{this.state.errors.username}</p>
                       : ''
-}
-                  </div>
-                  <div className="change">
-                    <div className="input_icons">
-                      <i className="fa fa-lock" aria-hidden="true"></i>
-                    </div>
-                    <input
-                      type="password"
-                      name="pass"
-                      placeholder="Password"
-                      onBlur={this.validate}
-                      value={this.state.pass}
-                      onChange={this.handleChange}
-                      className="effect-8"/>
-                    <span className="focus-border">
-                      <i></i>
-                    </span>
-                  </div>
-                  <div className="error_div">
-                    {this.state.errors.pass
-                      ? <p className="errmsg">{this.state.errors.pass}</p>
-                      : ''
-}
+                    }
                   </div>
                   <div className="change">
                     <div className="input_icons">
@@ -182,7 +160,7 @@ class SignUp extends React.Component {
                     <input
                       type="text"
                       name="name"
-                      placeholder="Nome"
+                      placeholder="Indirizzo"
                       className="effect-8"
                       maxLength="15"
                       value={this.state.username}
@@ -205,7 +183,7 @@ class SignUp extends React.Component {
                     <input
                       type="text"
                       name="surname"
-                      placeholder="Cognome"
+                      placeholder="Telefono"
                       className="effect-8"
                       maxLength="15"
                       value={this.state.username}
@@ -221,12 +199,56 @@ class SignUp extends React.Component {
                       : ''
 }
                   </div>
-                  
-                  <Link to={"/secondRegister"} className={`nav-link row mx-auto`}>
-                    <div className="row py-3 px-3">
-                      <button className="btn" class="btn bg-white text-cyan border col-12 rounded">Avanti</button>
+
+                  <div className="change">
+                    <div className="input_icons">
+                      <i className="fa fa-user-o" aria-hidden="true"></i>
                     </div>
-                  </Link>
+                    <input
+                      type="text"
+                      name="surname"
+                      placeholder="Data di nascita"
+                      className="effect-8"
+                      maxLength="15"
+                      value={this.state.username}
+                      onChange={this.handleChange}
+                      onBlur={this.validate}></input>
+                    <span className="focus-border">
+                      <i></i>
+                    </span>
+                  </div>
+                  <div className="error_div">
+                    {this.state.errors.email
+                      ? <p className="errmsg">{this.state.errors.email}</p>
+                      : ''
+}
+                  </div>
+                  <div className="change">
+                    <div className="input_icons">
+                      <i className="fa fa-user-o" aria-hidden="true"></i>
+                    </div>
+                    <input
+                      type="text"
+                      name="surname"
+                      placeholder="Nazionalità"
+                      className="effect-8"
+                      maxLength="15"
+                      value={this.state.username}
+                      onChange={this.handleChange}
+                      onBlur={this.validate}></input>
+                    <span className="focus-border">
+                      <i></i>
+                    </span>
+                  </div>
+                  
+                  <div className="error_div">
+                    {this.state.errors.email
+                      ? <p className="errmsg">{this.state.errors.email}</p>
+                      : ''
+}
+                  </div>
+                  <button className="signup_btn">Registrati</button>
+                  
                 </form>
                 <div className="final_error">
                   {this.state.errors.invalid
@@ -234,6 +256,7 @@ class SignUp extends React.Component {
                     : ''
 }
                 </div>
+                
               </div>
             </div>
           </div>
@@ -248,12 +271,4 @@ class SignUp extends React.Component {
 
   }
 }
-const ConnectedSignUpDoctor = props => (
-  <AccountConsumer>
-    {({currentUser, updateAccount}) => (<SignUp
-      {...props}
-      currentUser={currentUser}
-      updateAccount={updateAccount}/>)}
-  </AccountConsumer>
-)
-export default ConnectedSignUpDoctor;
+export default SignUp2;
