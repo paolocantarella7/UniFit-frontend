@@ -4,9 +4,9 @@ import AccountProvider from './providers/accountProvider'
 
 import InformazioniPersonaliUtente from './pages/informazioniPersonaliUtente/informazioniPersonaliUtente'
 import AreaPersonaleUtente from './pages/areaPersonaleUtente/areaPersonaleUtente'
-import HomePage from './pages/homePage/homepage'
-import SignUp from './pages/signUp/signUp'
-import ConnectedLogin from './pages/login/login'
+import HomePage from './pages/HomePage/homepage'
+import SignUp from './pages/Signup/signup'
+import ConnectedLogin from './pages/Login/login'
 import ConnectedDoctorList from './pages/doctorList/doctorList'
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -16,8 +16,9 @@ import SocialLink from './components/social_link/Sociallink';
 
 import './App.css';
 import ModificaPassword from './pages/modificaPassword/modificaPassword';
-import SignUp2 from './pages/signUp/signUp2';
+import SignUp2 from './pages/Signup/signUp2';
 import CancellaAccount from './pages/cancellaAccount/cancellaAccount';
+
 require('dotenv').config({ path: '../.env' })
 
 toast.configure()
