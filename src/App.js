@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import InformazioniPersonaliUtente from './pages/informazioniPersonaliUtente/informazioniPersonaliUtente'
 import AreaPersonaleUtente from './pages/areaPersonaleUtente/areaPersonaleUtente'
 import HomePage from './pages/HomePage/homepage'
-import SignUp from './pages/SignUp/signup'
+import SignUp from './pages/SignUp/signUp'
 import ConnectedLogin from './pages/Login/login'
 import ConnectedDoctorList from './pages/doctorList/doctorList'
 import Recovery from './components/recovery/Recovery';
