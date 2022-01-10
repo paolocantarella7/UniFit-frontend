@@ -30,7 +30,7 @@ function App() {
 
       <AccountProvider>
         <Switch>
-          <Route exact path="/areaAmministratore" component={AreaAmministratore}/>
+          <Route exact path="/adminArea" component={AreaAmministratore}/>
           <Route exact path="/deleteAccount" component={CancellaAccount}/>
           <Route exact path="/secondRegister" component={SignUp2}/>
           <Route exact path="/home" component={HomePage}/>
