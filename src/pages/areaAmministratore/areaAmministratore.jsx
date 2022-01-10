@@ -2,12 +2,17 @@ import React from "react";
 import Footer from "../../components/footer/footer";
 import ConnectedHeader from "../../components/header/header";
 import { Link } from "react-router-dom";
+import { User } from "../../models/User";
 
 class AreaAmministratore extends React.Component {
   render() {
     return (
       <div>
-        <ConnectedHeader {...this.props} />
+        <ConnectedHeader
+          {...this.props}
+          currentUser={new User("admin", "Luigi")}
+          type= "admin"
+        />
         <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
           <h1 className="pt-4">Area Amministratore</h1>
           <Link to={"/addStructure"} className={`nav-link`}>
@@ -40,7 +45,7 @@ class AreaAmministratore extends React.Component {
               </button>
             </div>
           </Link>
-          <Link to={"/showMembershipwRequests"} className={`nav-link`}>
+          <Link to={"/showMembershipRequests"} className={`nav-link`}>
             <div className="row py-3 px-3">
               <button
                 type="button"

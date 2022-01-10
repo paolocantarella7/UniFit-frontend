@@ -16,9 +16,13 @@ import SocialLink from './components/social_link/Sociallink';
 import ModificaPassword from './pages/modificaPassword/modificaPassword';
 import SignUp2 from './pages/SignUp/signUp2';
 import CancellaAccount from './pages/cancellaAccount/cancellaAccount';
+import AreaAmministratore from './pages/areaAmministratore/areaAmministratore';
+import AggiungiStruttura from './pages/aggiungiStruttura/aggiungiStruttura';
+import VisualizzaStrutture from './pages/visualizzaStrutture/visualizzaStrutture';
+import VisualizzaUtentiRegistrati from './pages/visualizzaUtentiRegistrati/visualizzaUtentiRegistrati';
+import VisualizzaRichiesteDiTesseramento from './pages/visualizzaRichiesteDiTesseramento/visualizzaRichiesteDiTesseramento';
 
 import './App.css';
-import AreaAmministratore from './pages/areaAmministratore/areaAmministratore';
 
 
 require('dotenv').config({ path: '../.env' })
@@ -31,6 +35,10 @@ function App() {
       <AccountProvider>
         <Switch>
           <Route exact path="/adminArea" component={AreaAmministratore}/>
+          <Route exact path="/addStructure" component={AggiungiStruttura}/>
+          <Route exact path="/showStructures" component={VisualizzaStrutture}/>
+          <Route exact path="/showUsers" component={VisualizzaUtentiRegistrati}/>
+          <Route exact path="/showMembershipRequests" component={VisualizzaRichiesteDiTesseramento}/>
           <Route exact path="/deleteAccount" component={CancellaAccount}/>
           <Route exact path="/secondRegister" component={SignUp2}/>
           <Route exact path="/home" component={HomePage}/>
