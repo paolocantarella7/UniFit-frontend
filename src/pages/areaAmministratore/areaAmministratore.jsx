@@ -2,7 +2,6 @@ import React from "react";
 import Footer from "../../components/footer/footer";
 import ConnectedHeader from "../../components/header/header";
 import { Link } from "react-router-dom";
-import "./areaPersonaleUtente.scss";
 
 class AreaAmministratore extends React.Component {
   render() {

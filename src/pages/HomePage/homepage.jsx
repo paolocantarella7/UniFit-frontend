@@ -17,8 +17,8 @@ class HomePage extends React.Component {
       <div>
         <ConnectedHeader
           {...this.props}
-          currentUser={new User("user", "Luigi")}
-          type="login"
+          currentUser={new User("admin", "Luigi")}
+          type= "admin"
         />
         <div className="container-fluid text-dark rounded col-sm-10 col-10 text-center bg-white my-4">
           <h3 className="py-4 text-cyan">Bentornato su UniFit!</h3>

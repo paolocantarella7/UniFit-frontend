@@ -18,6 +18,7 @@ import SignUp2 from './pages/SignUp/signUp2';
 import CancellaAccount from './pages/cancellaAccount/cancellaAccount';
 
 import './App.css';
+import AreaAmministratore from './pages/areaAmministratore/areaAmministratore';
 
 
 require('dotenv').config({ path: '../.env' })
@@ -29,6 +30,7 @@ function App() {
 
       <AccountProvider>
         <Switch>
+          <Route exact path="/areaAmministratore" component={AreaAmministratore}/>
           <Route exact path="/deleteAccount" component={CancellaAccount}/>
           <Route exact path="/secondRegister" component={SignUp2}/>
           <Route exact path="/home" component={HomePage}/>

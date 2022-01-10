@@ -59,8 +59,8 @@ class Header extends React.Component {
               this.props.currentUser.role === "admin" ? (
                 <li className="nav-item">
                   <Link
-                    to={`/prenota`}
-                    className={`${this.checkActive("/prenota")} nav-link`}
+                    to={`/areaAmministratore`}
+                    className={`nav-link`}
                   >
                     Area amministratore
                   </Link>
