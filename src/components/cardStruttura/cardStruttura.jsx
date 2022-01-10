@@ -16,8 +16,8 @@ class CardStruttura extends React.Component {
                 <Link to="/" className="navbar-brand">
                     <img className="img-responsive" src="assets/images/info.png" alt="info" style={{height: "50px" ,width: "50px"}}/>
                 </Link>
-                <Link to="/" className="navbar-brand">
-                    <img className="img-responsive" src="assets/images/delete.png" alt="delete"  style={{height: "50px" ,width: "50px"}}/>
+                <Link to="/showStructures" className="navbar-brand">
+                    <img className="img-responsive" src="assets/images/delete.png" onClick={() => this.props.onDelete(this.props.struttura.id)} alt="info" style={{height: "50px" ,width: "50px"}}/>
                 </Link>
                 <Link to="/" className="navbar-brand">
                 <img className="img-responsive" src="assets/images/edit.png" alt="modify"  style={{height: "50px" ,width: "50px"}}/>

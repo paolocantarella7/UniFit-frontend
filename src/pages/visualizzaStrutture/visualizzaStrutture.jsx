@@ -14,6 +14,12 @@ class VisualizzaStrutture extends React.Component {
       { id: 4, idStruttura: 5,nomeStruttura: "Campo da basket" },
     ]
   }
+
+  handleDelete = strutturaId => {
+    const structures = this.state.structures.filter(struttura => struttura.id !== strutturaId);
+    //fai cose con il back
+    this.setState({structures});
+  }
     render() {
         return (
           <>
@@ -29,9 +35,9 @@ class VisualizzaStrutture extends React.Component {
                   <p>Non ci sono strutture!</p>
                 ):(
                   this.state.structures.map(struttura =>(
-                    console.log("safafsa"),
                   <CardStruttura
                     key = {struttura.id}
+                    onDelete = {this.handleDelete}
                     struttura = {struttura} />   
               )))}
               </div>
