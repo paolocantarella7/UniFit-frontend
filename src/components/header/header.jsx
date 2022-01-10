@@ -1,14 +1,17 @@
-import React from 'react';
-import './header.scss'
-import { Link } from 'react-router-dom'
-import { AccountConsumer } from '../../providers/accountProvider'
+import React from "react";
+
+import "./header.scss";
+
+import { Link } from "react-router-dom";
+import { AccountConsumer } from "../../providers/accountProvider";
+
 class Header extends React.Component {
   constructor() {
     super();
     this.state = {
       country: [],
-      departments: []
-    }
+      departments: [],
+    };
   }
   /*componentDidMount() {
     window.scrollTo(0, 0);
@@ -22,125 +25,147 @@ class Header extends React.Component {
       .then(data => {
         this.setState({ departments: data.departments, deptCount: data.count })
       });
-
   }*/
   logout = (e) => {
     e.preventDefault();
-    localStorage.removeItem('currentUser')
+    localStorage.removeItem("currentUser");
     let { history } = this.props;
-    history.push({ pathname: '/' });
-    this
-      .props
-      .updateAccount(false)
-
-  }
+    history.push({ pathname: "/" });
+    this.props.updateAccount(false);
+  };
   checkActive(route) {
-    if (this.props.match.path === route)
-      return 'active';
+    if (this.props.match.path === route) return "active";
   }
   render() {
-    return (<div className="container-fluid header">
-      <nav className="navbar navbar-expand-md navbar-light headerMenus">
-        <Link to="/" className="navbar-brand"><img src="/img/logo.png" alt="" /></Link>
-        <button
-          type="button"
-          className="navbar-toggler"
-          data-toggle="collapse"
-          data-target="#navbarCollapse">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div id="navbarCollapse" className="collapse navbar-collapse">
-          <ul className="nav navbar-nav ml-auto navItems">
+    return (
+      <div className="container-fluid header">
+        <nav className="navbar navbar-expand-md navbar-light headerMenus">
+          <Link to="/" className="navbar-brand">
+            <img src="/img/logo.png" width={"60 px"} alt="" />
+          </Link>
+          <button
+            type="button"
+            className="navbar-toggler"
+            data-toggle="collapse"
+            data-target="#navbarCollapse"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
 
-            <li className="nav-item">
-              <Link to={`/`} className={`${this.checkActive('/')} nav-link`}>Home</Link>
-            </li>
-            <li className="nav-item">
-              <Link to={`/aboutus`} className={`${this.checkActive('/aboutus')} nav-link`}>About Us</Link>
-            </li>
-            <li className="nav-item dropdown">
-              <span className="nav-link dropdown-toggle" data-toggle="dropdown">Departments</span>
-              <div className="dropdown-menu deptSubMenu">
-
-                {this
-                  .state
-                  .departments
-                  .map((data, index) => (
-                    <p
-                      value={data.Name}
-                      key={index}
-                      className="dropdown-item dept"
-                      onClick={() => {
-                        this
-                          .props
-                          .history
-                          .push(`/search/all/${data.Name}`)
-                      }}>{data.Name}</p>
-                  ))
-                    }
-              </div>
-            </li>
-            <li className="nav-item dropdown">
-              <span className="nav-link dropdown-toggle" data-toggle="dropdown">Locations</span>
-              <div className="dropdown-menu locationSubMenu">
-                {this
-                  .state
-                  .country
-                  .map((data) => (
-                    <p
-                      value={data.Name}
-                      key={data.id}
-                      className="dropdown-item loc"
-                      onClick={() => {
-                        this
-                          .props
-                          .history
-                          .push(`/search/${data.Name}/all`)
-                      }}>{data.Name}</p>
-                  ))
-                }
-              </div>
-            </li>
-            {this.props.currentUser && this.props.currentUser.role === 'doctor'
-              ? <li className="nav-item">
+          {this.props.type === 'admin'
+            ? <div id="navbarCollapse" className="collapse navbar-collapse">
+            <ul className="nav navbar-nav ml-auto navItems">
+              {this.props.currentUser &&
+              this.props.currentUser.role === "admin" ? (
+                <li className="nav-item">
+                  <Link
+                    to={`/prenota`}
+                    className={`${this.checkActive("/prenota")} nav-link`}
+                  >
+                    Area amministratore
+                  </Link>
+                </li>
+              ) : (
+                ""
+              )}
+              {this.props.currentUser ? (
+                <button className="btn nav-link logout" onClick={this.logout}>
+                  Logout
+                </button>
+              ) : (
+                ""
+              )}
+            </ul>
+          </div>
+          : this.props.type === 'user'
+            ? <div id="navbarCollapse" className="collapse navbar-collapse">
+            <ul className="nav navbar-nav ml-auto navItems">
+              {this.props.currentUser &&
+              this.props.currentUser.role === "user" ? (
+                <li className="nav-item">
+                  <Link
+                    to={`/prenota`}
+                    className={`${this.checkActive("/prenota")} nav-link`}
+                  >
+                    Prenota
+                  </Link>
+                </li>
+              ) : (
+                ""
+              )}
+              {this.props.currentUser &&
+              this.props.currentUser.role === "user" ? (
+                <li className="nav-item">
+                  <Link
+                    to={`/tesseramento`}
+                    className={`${this.checkActive("/tesseramento")} nav-link`}
+                  >
+                    Tesseramento
+                  </Link>
+                </li>
+              ) : (
+                ""
+              )}
+              {this.props.currentUser &&
+              this.props.currentUser.role === "user" ? (
+                <li className="nav-item">
+                  <Link
+                    to={`/areaPersonaleUtente`}
+                    className={`${this.checkActive("/areaUtente")} nav-link`}
+                  >
+                    Area utente
+                  </Link>
+                </li>
+              ) : (
+                ""
+              )}
+              {this.props.currentUser ? (
+                <button className="btn nav-link logout" onClick={this.logout}>
+                  Logout
+                </button>
+              ) : (
+                ""
+              )}
+            </ul>
+          </div>
+          : this.props.type === 'login'
+            ? <div id="navbarCollapse" className="collapse navbar-collapse">
+            <ul className="nav navbar-nav ml-auto navItems">
+              
+                <li className="nav-item">
                 <Link
-                  to={`/doctordetail/${this.props.currentUser.id}`}
-                  className={`${this.checkActive('/doctordetail/:userid')} nav-link`}>Profile</Link>
+                  to={`/signUp`}
+                  className={`${this.checkActive("/signup")} nav-link signup`}
+                >
+                  Register
+                </Link>
               </li>
-              : ''
-            }
-            {this.props.currentUser && this.props.currentUser.role === 'doctor'
-              ?
-              <button className="btn nav-link logout" onClick={this.logout}>Logout</button>
-
-              : ''}
-            {!this.props.currentUser
-              ? <li className="nav-item">
-
-                <Link to={`/login`} className={`${this.checkActive('/login')} nav-link login`}>Login</Link>
-              </li>
-              : ''
-            }
-            {!this.props.currentUser
-              ? <li className="nav-item">
-                <Link
-                  to={`/signup`}
-                  className={`${this.checkActive('/signup')} nav-link signup`}>Signup</Link>
-              </li>
-              : ''
-            }
-          </ul>
-        </div>
-      </nav>
-    </div>
-    )
+            </ul>
+          </div>
+          : this.props.type === 'register'
+            ? <div id="navbarCollapse" className="collapse navbar-collapse">
+            <ul className="nav navbar-nav ml-auto navItems">
+            <li className="nav-item">
+                  <Link
+                    to={`/login`}
+                    className={`${this.checkActive("/login")} nav-link login`}
+                  >
+                    Login
+                  </Link>
+                </li>
+            </ul>
+          </div>
+          : ""}
+        </nav>
+      </div>
+    );
   }
 }
 
 // AccountConsumer is a provider that helps to manage state
-const ConnectedHeader = props => (
+const ConnectedHeader = (props) => (
   <AccountConsumer>
-    {({ currentUser, updateAccount }) => (<Header {...props} currentUser={currentUser} updateAccount={updateAccount} />)}
+    {({ updateAccount }) => <Header {...props} updateAccount={updateAccount} />}
   </AccountConsumer>
-)
+);
 export default ConnectedHeader;
