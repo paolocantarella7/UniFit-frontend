@@ -1,13 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 import ConnectedHeader from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import { User } from "../../models/User";
+import MultipleDatePicker from "../../components/datePicker/datePicker";
+
 
 class AggiungiStruttura extends React.Component {
 
   
-    render() {
 
+    render() {
         return (
           <div>
             <ConnectedHeader
@@ -130,16 +132,18 @@ class AggiungiStruttura extends React.Component {
             <button
               type="button"
               class="btn btn-secondary  border col-6 rounded"
+              data-toggle="modal"
+            data-target="#modalDatePicker"
             >
               Inserisci i giorni di chiusura
             </button>
             </div>
+            
+          
 
           <button
             type="button"
             class="btn btn-primary bg-cyan border col-6 rounded"
-            data-toggle="modal"
-            data-target="#exampleModal"
           >
             Aggiungi
           </button>
@@ -149,6 +153,20 @@ class AggiungiStruttura extends React.Component {
 
 
             <Footer {...this.props} />
+
+            <div className="modal" id="modalDatePicker" tabIndex="-1" role="dialog">
+                <div className="modal-dialog" role="document">
+                  <div className="modal-content">
+                    <div className="modal-body mx-auto">
+                    <MultipleDatePicker/>
+                    </div>
+                    <div className="modal-footer">
+                      <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={() => this.props.onDelete(this.props.struttura.id)}>Salva</button>
+                      <button type="button" className="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
           </div>
         );
       }
