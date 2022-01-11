@@ -2,8 +2,6 @@ import React from "react";
 import ConnectedHeader from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import { User } from "../../models/User";
-import DatePicker from "react-datepicker";
-import Reac, { useState } from "react";
 
 class AggiungiStruttura extends React.Component {
 
