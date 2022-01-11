@@ -9,18 +9,18 @@ class CardStruttura extends React.Component {
               <Card className="h-100 w-100 d-inline-block " style={{margin: "10px 0px"}}>
                 <Card.Body>
                     <div className="row justify-content-between">
-                      <div className="d-flex align-items-start">
+                      <div className="d-flex align-items-start  mx-auto">
                         <Card.Title className="text-dark align-self-center">{this.props.struttura.nomeStruttura}</Card.Title>
                       </div>
                       <div className="col-md-4 ">
                         <Link to="/" className="navbar-brand">
-                          <img className="img-responsive" src="assets/images/info.png" alt="info" style={{height: "50px" ,width: "50px"}}/>
+                          <img className="img-responsive" src="assets/images/info.png" alt="info" style={{height: "25px" ,width: "25px"}}/>
                         </Link>
                         <Link to="/showStructures" className="navbar-brand">
-                          <img className="img-responsive" src="assets/images/delete.png" alt="delete"  data-toggle="modal" data-target="#modalElimina"  style={{height: "50px" ,width: "50px"}}/>
+                          <img className="img-responsive" src="assets/images/delete.png" alt="delete"  data-toggle="modal" data-target="#modalElimina"  style={{height: "25px" ,width: "25px"}}/>
                         </Link>
                         <Link to="/editStructure" className="navbar-brand">
-                          <img className="img-responsive" src="assets/images/edit.png" alt="modify"  style={{height: "50px" ,width: "50px"}}/>
+                          <img className="img-responsive" src="assets/images/edit.png" alt="modify"  style={{height: "25px" ,width: "25px"}}/>
                         </Link>
                       </div>
                   </div>

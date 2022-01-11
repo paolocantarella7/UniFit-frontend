@@ -8,15 +8,15 @@ class RichiestaDiTesseramento extends React.Component{
             <Card className="h-100 w-100 d-inline-block" style={{margin: "10px 0px"}}> 
                 <Card.Body>
                     <div className="row justify-content-between">
-                        <div className="d-flex align-items-start">
+                        <div className="d-flex align-items-start mx-auto">
                             <Card.Title className="text-dark align-self-center">
                                     {this.props.user.nomeUtente} {this.props.user.cognomeUtente}
                             </Card.Title>
                         </div>
-                        <div className="col-8">
-                            <button type="button" className="col-12 btn btn-primary mx-1">Visualizza documenti</button>
-                            <button type="button" className= "col-12 btn btn-success mx-1" data-toggle="modal" data-target="#modalValida" >Valida</button>
-                            <button type="button" className="col-12 btn btn-danger mx-1" data-toggle="modal" data-target="#modalDeclina" >Declina</button>
+                        <div className="col-8 mx-auto">
+                            <button type="button" className="col-12 col-lg-3 btn btn-primary mx-1 my-2">Documenti</button>
+                            <button type="button" className= "col-12 col-lg-3 btn btn-success mx-1 my-2" data-toggle="modal" data-target="#modalValida" >Valida</button>
+                            <button type="button" className="col-12 col-lg-3 btn btn-danger mx-1 my-2" data-toggle="modal" data-target="#modalDeclina" >Declina</button>
                         </div>
                     </div>
                 </Card.Body>

@@ -40,9 +40,16 @@ class Header extends React.Component {
     return (
       <div className="container-fluid header">
         <nav className="navbar navbar-expand-md navbar-light headerMenus">
+         
+        {this.props.type == 'admin'
+          ?  
+          <img src="/img/logo.png" width={"60 px"} alt="" />
+         :
           <Link to="/" className="navbar-brand">
-            <img src="/img/logo.png" width={"60 px"} alt="" />
-          </Link>
+          <img src="/img/logo.png" width={"60 px"} alt="" />
+        </Link>
+        }
+
           <button
             type="button"
             className="navbar-toggler"
