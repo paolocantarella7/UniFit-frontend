@@ -15,6 +15,17 @@ class VisualizzaStrutture extends React.Component {
     ]
   }
 
+  /*
+  const fetchStructures = async () => {
+    const data = await fetch(
+      'htts://.......'
+    );
+    
+    const structures = await data.json();
+    console.log(structures.)
+  }
+  */
+
   handleDelete = strutturaId => {
     const structures = this.state.structures.filter(struttura => struttura.id !== strutturaId);
     //fai cose con il back
