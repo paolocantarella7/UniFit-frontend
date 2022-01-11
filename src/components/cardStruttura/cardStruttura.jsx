@@ -19,7 +19,7 @@ class CardStruttura extends React.Component {
                         <Link to="/showStructures" className="navbar-brand">
                           <img className="img-responsive" src="assets/images/delete.png" alt="delete"  data-toggle="modal" data-target="#modalElimina"  style={{height: "50px" ,width: "50px"}}/>
                         </Link>
-                        <Link to="/" className="navbar-brand">
+                        <Link to="/editStructure" className="navbar-brand">
                           <img className="img-responsive" src="assets/images/edit.png" alt="modify"  style={{height: "50px" ,width: "50px"}}/>
                         </Link>
                       </div>
