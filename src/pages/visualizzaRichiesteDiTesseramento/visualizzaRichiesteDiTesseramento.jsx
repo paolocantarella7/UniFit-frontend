@@ -6,21 +6,28 @@ import { User } from "../../models/User";
 
 class VisualizzaRichiesteDiTesseramento extends React.Component {
   state = {
-    users: [
-      {
-        id: 0,
-        nomeUtente: "Luigi",
-        cognomeUtente: "Allocca",
-      },
-      {
-        id: 1,
-        nomeUtente: "ada",
-        cognomeUtente: "Alloadaacca",
-      }
-    ]
+    loading: true,
+    requests: []
+  }
+  componentDidMount() {
+    this.getReq()
+  }
+
+  getReq() {
+    var url = "admin/reqtess/visualizzareqtess"
+    fetch(url)
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({ requests: responseJson.richiesteTess }, () => {
+          this.setState({ loading: false })
+          console.log(this.state.requests)
+        })
+      })
+      .catch(error => console.log(error))
   }
   render() {
     return (
+      this.state.loading ? <div>Loading</div> :
       <div>
         <ConnectedHeader
           {...this.props}
@@ -32,11 +39,11 @@ class VisualizzaRichiesteDiTesseramento extends React.Component {
             <h1 className="pt-4">Richieste di tessseramento</h1>
             
             <div className='col'>
-              {(this.state.users.length == 0) ? (
+              {(this.state.requests.length == 0) ? (
                 <p>Non ci sono richieste!</p>
               ):(
-                this.state.users.map(user => (
-                  <RichiestaDiTesseramento key={user.id} user= {user} />
+                this.state.requests.map(request => (
+                  <RichiestaDiTesseramento key={request.id} request= {request} />
                 )))
               }
             </div>
