@@ -6,19 +6,32 @@ import CardUtente from "../../components/cardUtente/cardUtente";
 
 class VisualizzaUtentiRegistrati extends React.Component {
   state = {
-    users:[
-      {id: 0, nome: "Paolo", cognome: "Cantarella"},
-      {id: 1, nome: "Davide", cognome: "Bottiglieri"},
-      {id: 2, nome: "Matteo", cognome: "Della Rocca"},
-      {id: 3, nome: "Luca", cognome: "Boffa"},
-      {id: 4, nome: "Luigi", cognome: "Allocca"},
-      {id: 5, nome: "Francesco", cognome: "Paciello"},
-      {id: 6, nome: "Giuseppe", cognome: "Scafa"},
-    ]
+    users:[],
+    loading : true,
+  }
+  componentDidMount() {
+    this.utentiGet()
+  }
+
+  utentiGet() {
+    var url = "admin/utenti/visualizzautenti"
+    fetch(url)
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({ users: responseJson.utentiRegistrati }, () => {
+          this.setState({ loading: false })
+        })
+      })
+      .catch(error => console.log(error))
   }
 
     render() {
         return (
+          this.state.loading ?
+          <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
+            <h1 className="pt-4">Non ci sono utenti</h1>
+          </div>
+          :
           <>
             <ConnectedHeader
               {...this.props}
