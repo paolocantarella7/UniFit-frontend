@@ -37,7 +37,7 @@ function App() {
           <Route exact path="/adminArea" component={AreaAmministratore}/>
           <Route exact path="/addStructure" component={AggiungiStruttura}/>
           <Route exact path="/showStructures" component={VisualizzaStrutture}/>
-          <Route exact path="/editStructure" component={ModificaStruttura}/>
+          <Route exact path="/editStructure/:id" component={ModificaStruttura}/>
           <Route exact path="/showUsers" component={VisualizzaUtentiRegistrati}/>
           <Route exact path="/showMembershipRequests" component={VisualizzaRichiesteDiTesseramento}/>
           <Route exact path="/deleteAccount" component={CancellaAccount}/>

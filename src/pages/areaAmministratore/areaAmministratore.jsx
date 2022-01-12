@@ -19,7 +19,7 @@ class AreaAmministratore extends React.Component {
             <div className="row py-3 px-3">
               <button
                 type="button"
-                class="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
+                className="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
               >
                 Aggiungi Struttura
               </button>
@@ -29,7 +29,7 @@ class AreaAmministratore extends React.Component {
             <div className="row py-3 px-3">
               <button
                 type="button"
-                class="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
+                className="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
               >
                 Visualizza strutture
               </button>
@@ -39,7 +39,7 @@ class AreaAmministratore extends React.Component {
             <div className="row py-3 px-3">
               <button
                 type="button"
-                class="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
+                className="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
               >
                 Visualizza utenti registrati
               </button>
@@ -49,7 +49,7 @@ class AreaAmministratore extends React.Component {
             <div className="row py-3 px-3">
               <button
                 type="button"
-                class="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
+                className="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
               >
                 Visualizza richieste di tesseramento 
               </button>
@@ -59,7 +59,7 @@ class AreaAmministratore extends React.Component {
             <div className="row py-3 px-3">
               <button
                 type="button"
-                class="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
+                className="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
               >
                 Modifica password
               </button>
