@@ -6,31 +6,33 @@ import CardStruttura from "../../components/cardStruttura/cardStruttura";
 
 class VisualizzaStrutture extends React.Component {
   state = {
-    structures:[
-      { id: 0, idStruttura: 1, nomeStruttura: "Campo da calcetto", prezzoFascia: 10, durataFascia: 1, capacitaFascia: 1, dataInizioDisponibilita: "24-01-2022", oraIM: "09:00", oraFM: "13:00", oraIP: "15:00", oraFP: "20:00"},
-      { id: 1, idStruttura: 2, nomeStruttura: "Palestra" , prezzoFascia: 5, durataFascia: 2, capacitaFascia: 20, dataInizioDisponibilita: "24-02-2022", oraIM: "09:00", oraFM: "13:00", oraIP: "16:00", oraFP: "20:00"},
-      { id: 2, idStruttura: 3, nomeStruttura: "Campo da tennis" , prezzoFascia: 10, durataFascia: 1, capacitaFascia: 1, dataInizioDisponibilita: "26-01-2022", oraIM: "09:00", oraFM: "13:00", oraIP: "15:00", oraFP: "20:00"},
-      { id: 3, idStruttura: 4, nomeStruttura: "Piscina" , prezzoFascia: 10, durataFascia: 1, capacitaFascia: 15, dataInizioDisponibilita: "24-01-2022", oraIM: "09:00", oraFM: "13:00", oraIP: "15:00", oraFP: "20:00" },
-      { id: 4, idStruttura: 5, nomeStruttura: "Campo da basket" , prezzoFascia: 10, durataFascia: 1, capacitaFascia: 1, dataInizioDisponibilita: "24-01-2022", oraIM: "09:00", oraFM: "13:00", oraIP: "15:00", oraFP: "20:00"},
-    ]
+    structures:[],
+    loading: true
   }
 
-  /*
-  const fetchStructures = async () => {
-    const data = await fetch(
-      'htts://.......'
-    );
-    
-    const structures = await data.json();
-    console.log(structures.)
+  componentDidMount() {
+    this.struttureGet()
   }
-  */
+
+  struttureGet() {
+    var url = "admin/strutture/visualizzastrutture"
+    fetch(url)
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({ structures: responseJson.strutture }, () => {
+          this.setState({ loading: false })
+        })
+      })
+      .catch(error => console.log(error))
+  }
+
 
   handleDelete = strutturaId => {
     const structures = this.state.structures.filter(struttura => struttura.id !== strutturaId);
     //fai cose con il back
     this.setState({structures});
   }
+
     render() {
         return (
           <>
