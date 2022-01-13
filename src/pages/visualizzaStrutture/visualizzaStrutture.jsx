@@ -47,6 +47,20 @@ class VisualizzaStrutture extends React.Component {
 
     render() {
         return (
+          this.state.loading ?
+          <>
+          <ConnectedHeader
+            {...this.props}
+           currentUser={new User("admin", "Luigi")}
+            type= "admin"/>
+          
+          <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
+            <h1 className="pt-4">Caricamento Strutture</h1>
+          </div>
+          
+          <Footer {...this.props} />
+          </>
+          :
           <>
             <ConnectedHeader
               {...this.props}
@@ -57,7 +71,7 @@ class VisualizzaStrutture extends React.Component {
               <h1 className="pt-4">Visualizza strutture</h1>
 
               <div className='col'>
-                {(this.state.structures.length == 0) ? (
+                {(this.state.structures.length === 0) ? (
                   <p>Non ci sono strutture!</p>
                 ):(
                   this.state.structures.map(struttura =>(

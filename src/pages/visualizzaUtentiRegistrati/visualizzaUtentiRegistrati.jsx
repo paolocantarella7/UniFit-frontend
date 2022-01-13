@@ -30,33 +30,43 @@ class VisualizzaUtentiRegistrati extends React.Component {
     render() {
         return (
           this.state.loading ?
-          <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
-            <h1 className="pt-4">Loading</h1>
-          </div>
-          :
-          <>
-            <ConnectedHeader
-              {...this.props}
-              currentUser={new User("admin", "Luigi")}
-              type= "admin"/>
-            
-            <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
-              <h1 className="pt-4">Utenti Registrati</h1>
-              
-              <div className='col'>
-                {(this.state.users.length == 0) ? (
-                  <p>Non ci sono utenti!</p>
-                ):(
-                  this.state.users.map(utente =>(
-                  <CardUtente
-                    key = {utente.id}
-                    utente = {utente} />   
-                  )))
-                }
-              </div>
 
-            </div>
-            <Footer {...this.props} />
+            <>
+              <ConnectedHeader
+                {...this.props}
+                currentUser={new User("admin", "Luigi")}
+                type= "admin"/>
+          
+              <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
+                <h1 className="pt-4">Caricamento Utenti</h1>
+              </div>
+          
+              <Footer {...this.props} />
+            </>
+          :
+            <>
+              <ConnectedHeader
+                {...this.props}
+                currentUser={new User("admin", "Luigi")}
+                type= "admin"/>
+              
+              <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
+                <h1 className="pt-4">Utenti Registrati</h1>
+                
+                <div className='col'>
+                  {(this.state.users.length == 0) ? (
+                    <p>Non ci sono utenti!</p>
+                  ):(
+                    this.state.users.map(utente =>(
+                    <CardUtente
+                      key = {utente.id}
+                      utente = {utente} />   
+                    )))
+                  }
+                </div>
+
+              </div>
+              <Footer {...this.props} />
             </>
         );
       }

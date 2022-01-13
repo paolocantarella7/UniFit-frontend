@@ -25,34 +25,48 @@ class VisualizzaRichiesteDiTesseramento extends React.Component {
       })
       .catch(error => console.log(error))
   }
-  render() {
-    return (
-      this.state.loading ? <div>Loading</div> :
-      <div>
-        <ConnectedHeader
-          {...this.props}
-          currentUser={new User("admin", "Luigi")}
-          type= "admin"
-        />
-
-        <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
-            <h1 className="pt-4">Richieste di tessseramento</h1>
+      render() {
+          return (
+            this.state.loading ? 
+              <>
+                <ConnectedHeader
+                  {...this.props}
+                  currentUser={new User("admin", "Luigi")}
+                  type= "admin"/>
             
-            <div className='col'>
-              {(this.state.requests.length == 0) ? (
-                <p>Non ci sono richieste!</p>
-              ):(
-                this.state.requests.map(request => (
-                  <RichiestaDiTesseramento key={request.id} request= {request} />
-                )))
-              }
-            </div>
+                <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
+                  <h1 className="pt-4">Caricamento richieste di tessseramento</h1>
+                </div>
+            
+                <Footer {...this.props} />
+              </> 
+            :
+              <>
+                <div>
+                  <ConnectedHeader
+                    {...this.props}
+                    currentUser={new User("admin", "Luigi")}
+                    type= "admin"/>
 
-          </div>
-        <Footer {...this.props} />
-      </div>
-    );
-  }
-}
+                  <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
+                      <h1 className="pt-4">Richieste di tessseramento</h1>
+                      
+                      <div className='col'>
+                        {(this.state.requests.length == 0) ? (
+                          <p>Non ci sono richieste!</p>
+                        ):(
+                          this.state.requests.map(request => (
+                            <RichiestaDiTesseramento key={request.id} request= {request} />
+                          )))
+                        }
+                      </div>
 
-export default VisualizzaRichiesteDiTesseramento;
+                  </div>
+                  <Footer {...this.props} />
+                </div>
+            </>
+          );
+        }
+      }
+
+      export default VisualizzaRichiesteDiTesseramento;
