@@ -16,11 +16,10 @@ class DettagliStruttura extends React.Component {
   
   strutturaGet() {
     var url = `admin/strutture/dettagliStruttura/${this.props.match.params.id}`
-    
+    console.log(url)
     fetch(url)
       .then(response => response.json())
       .then(responseJson => {
-        console.log(responseJson)
         this.setState({ structure: responseJson.struttura }, () => {
           this.setState({ loading: false })
         })

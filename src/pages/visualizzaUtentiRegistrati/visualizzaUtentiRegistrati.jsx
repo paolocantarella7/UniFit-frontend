@@ -29,7 +29,7 @@ class VisualizzaUtentiRegistrati extends React.Component {
         return (
           this.state.loading ?
           <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
-            <h1 className="pt-4">Non ci sono utenti</h1>
+            <h1 className="pt-4">Loading</h1>
           </div>
           :
           <>
