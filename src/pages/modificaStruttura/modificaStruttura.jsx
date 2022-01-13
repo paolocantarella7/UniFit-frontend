@@ -2,10 +2,29 @@ import React from "react";
 import ConnectedHeader from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import { User } from "../../models/User";
-
+import Server from "../../config.json";
 class ModificaStruttura extends React.Component {
+  state = {
+    structure:{},
+    loading: true
+  }
 
+  componentDidMount() {
+    this.strutturaGet()
+  }
   
+  strutturaGet() {
+    var url = Server.API_URL+`admin/strutture/dettagliStruttura/${this.props.match.params.id}`
+    console.log(url)
+    fetch(url)
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({ structure: responseJson.struttura }, () => {
+          this.setState({ loading: false })
+        })
+      })
+      .catch(error => console.log(error))
+  }
     render() {
 
         return (
@@ -26,7 +45,7 @@ class ModificaStruttura extends React.Component {
               class="form-control"
               id="nome"
               aria-describedby="emailHelp"
-              placeholder="Nome..."
+              value={this.state.structure.nome}
             />
           </div>
 

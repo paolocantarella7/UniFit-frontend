@@ -3,6 +3,7 @@ import ConnectedHeader from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import { User } from "../../models/User";
 import CardUtente from "../../components/cardUtente/cardUtente";
+import Server from "../../config.json";
 
 class VisualizzaUtentiRegistrati extends React.Component {
   state = {
@@ -14,7 +15,8 @@ class VisualizzaUtentiRegistrati extends React.Component {
   }
 
   utentiGet() {
-    var url = "admin/utenti/visualizzautenti"
+    var url = Server.API_URL+"admin/utenti/visualizzautenti"
+    console.log(url)
     fetch(url)
       .then(response => response.json())
       .then(responseJson => {

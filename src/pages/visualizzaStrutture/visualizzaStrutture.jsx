@@ -3,6 +3,7 @@ import ConnectedHeader from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import { User } from "../../models/User";
 import CardStruttura from "../../components/cardStruttura/cardStruttura";
+import Server from "../../config.json";
 
 class VisualizzaStrutture extends React.Component {
   state = {
@@ -15,7 +16,7 @@ class VisualizzaStrutture extends React.Component {
   }
 
   struttureGet() {
-    var url = "admin/strutture/visualizzastrutture"
+    var url = Server.API_URL+"admin/strutture/visualizzastrutture"
     fetch(url)
       .then(response => response.json())
       .then(responseJson => {
@@ -28,8 +29,19 @@ class VisualizzaStrutture extends React.Component {
 
 
   handleDelete = strutturaId => {
+      var url = Server.API_URL+`admin/strutture/eliminastruttura?idStrutt=${strutturaId}`
+      console.log(url)
+      fetch(url)
+        .then(response => response.json())
+        .then(responseJson => {
+          this.setState({ structures: responseJson.strutture }, () => {
+            this.setState({ loading: false })
+          })
+        })
+        .catch(error => console.log(error))
+
     const structures = this.state.structures.filter(struttura => struttura.id !== strutturaId);
-    //fai cose con il back
+
     this.setState({structures});
   }
 

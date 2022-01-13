@@ -2,7 +2,7 @@ import React from 'react';
 import Footer from '../../components/footer/footer'
 import ConnectedHeader from '../../components/header/header'
 import { User } from "../../models/User";
-
+import Server from "../../config.json";
 class DettagliStruttura extends React.Component {
 
   state = {
@@ -15,7 +15,7 @@ class DettagliStruttura extends React.Component {
   }
   
   strutturaGet() {
-    var url = `admin/strutture/dettagliStruttura/${this.props.match.params.id}`
+    var url = Server.API_URL+`admin/strutture/dettagliStruttura/${this.props.match.params.id}`
     console.log(url)
     fetch(url)
       .then(response => response.json())
@@ -50,37 +50,43 @@ class DettagliStruttura extends React.Component {
                   <h4 className="mx-auto text-cyan">Data inizio disponibilita</h4>
                 </div>
                 <div className="row">
-                  <p className="mx-auto text-black">10/10/2021</p>
+                  <p className="mx-auto text-black">{this.state.structure.dataInizioDisponibilita}</p>
                 </div>
                 <div className="row">
                   <h4 className="mx-auto text-cyan">Orario Mattina</h4>
                 </div>
                 <div className="row">
-                  <p className="mx-auto text-black">10:00</p>
+                  <p className="mx-auto text-black">{this.state.structure.oraInizioMattina}</p>
+                </div>
+                <div className="row">
+                  <p className="mx-auto text-black">{this.state.structure.oraFineMattina}</p>
                 </div>
                 <div className="row">
                   <h4 className="mx-auto text-cyan">Orario Pomeriggio</h4>
                 </div>
                 <div className="row">
-                  <p className="mx-auto text-black">17:00</p>
+                  <p className="mx-auto text-black">{this.state.structure.oraInizioPomeriggio}</p>
+                </div>
+                <div className="row">
+                  <p className="mx-auto text-black">{this.state.structure.oraFinePomeriggio}</p>
                 </div>
                 <div className="row">
                   <h4 className="mx-auto text-cyan">Durata Fascia</h4>
                 </div>
                 <div className="row">
-                  <p className="mx-auto text-black">2 ore</p>
+                  <p className="mx-auto text-black">{this.state.structure.durataPerFascia}</p>
                 </div>
                 <div className="row">
                   <h4 className="mx-auto text-cyan">Prezzo per fascia</h4>
                 </div>
                 <div className="row">
-                  <p className="mx-auto text-black">6 euro</p>
+                  <p className="mx-auto text-black">{this.state.structure.prezzoPerFascia}</p>
                 </div>
                 <div className="row">
                   <h4 className="mx-auto text-cyan">Capacita per fascia</h4>
                 </div>
                 <div className="row">
-                  <p className="mx-auto text-black">20</p>
+                  <p className="mx-auto text-black">{this.state.structure.capacitaPerFascia}</p>
                 </div>
                
               </div>
