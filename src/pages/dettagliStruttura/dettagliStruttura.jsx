@@ -1,6 +1,7 @@
 import React from 'react';
 import Footer from '../../components/footer/footer'
 import ConnectedHeader from '../../components/header/header'
+import { Link } from "react-router-dom";
 import { User } from "../../models/User";
 import Server from "../../config.json";
 class DettagliStruttura extends React.Component {
@@ -90,6 +91,17 @@ class DettagliStruttura extends React.Component {
                 </div>
                
               </div>
+
+              <Link to={`/showReservation/${this.state.structure.idStruttura}`} className={`nav-link`}>
+                <div className="row py-3 px-3">
+                  <button
+                    type="button"
+                    className="btn btn-primary btn-lg mx-auto bg-cyan border col-10 col-sm-7 col-md-5">
+                    Lista Prenotazioni
+                  </button>
+                </div>
+              </Link>
+
             </div>
           <Footer />
       </div>

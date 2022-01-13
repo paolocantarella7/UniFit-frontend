@@ -20,11 +20,13 @@ import AreaAmministratore from './pages/areaAmministratore/areaAmministratore';
 import AggiungiStruttura from './pages/aggiungiStruttura/aggiungiStruttura';
 import VisualizzaStrutture from './pages/visualizzaStrutture/visualizzaStrutture';
 import DettagliStruttura from './pages/dettagliStruttura/dettagliStruttura';
+import ListaPrenotazioniStruttura from './pages/listaPrenotazioniStruttura/listaPrenotazioniStruttura';
 import ModificaStruttura from './pages/modificaStruttura/modificaStruttura';
 import VisualizzaUtentiRegistrati from './pages/visualizzaUtentiRegistrati/visualizzaUtentiRegistrati';
 import VisualizzaRichiesteDiTesseramento from './pages/visualizzaRichiesteDiTesseramento/visualizzaRichiesteDiTesseramento';
 
 import './App.css';
+
 
 require('dotenv').config({ path: '../.env' })
 
@@ -39,6 +41,7 @@ function App() {
           <Route exact path="/addStructure" component={AggiungiStruttura}/>
           <Route exact path="/showStructures" component={VisualizzaStrutture}/>
           <Route exact path="/structureDetails/:id" component={DettagliStruttura}/>
+          <Route exact path="/showReservation/:id" component={ListaPrenotazioniStruttura}/>
           <Route exact path="/editStructure/:id" component={ModificaStruttura}/>
           <Route exact path="/showUsers" component={VisualizzaUtentiRegistrati}/>
           <Route exact path="/showMembershipRequests" component={VisualizzaRichiesteDiTesseramento}/>
