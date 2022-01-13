@@ -45,6 +45,7 @@ class ModificaStruttura extends React.Component {
               class="form-control"
               id="nome"
               aria-describedby="emailHelp"
+              placeholder="Nome"
               value={this.state.structure.nome}
             />
           </div>
@@ -58,6 +59,7 @@ class ModificaStruttura extends React.Component {
                 id="prezzoPerFascia"
                 aria-describedby="emailHelp"
                 placeholder="Valore"
+                value={this.state.structure.nome}
                 />
             </div>
             
