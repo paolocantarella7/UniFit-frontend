@@ -29,20 +29,19 @@ class VisualizzaStrutture extends React.Component {
 
 
   handleDelete = strutturaId => {
+      this.setState({ loading: true })
       var url = Server.API_URL+`admin/strutture/eliminastruttura?idStrutt=${strutturaId}`
       console.log(url)
       fetch(url)
         .then(response => response.json())
         .then(responseJson => {
-          this.setState({ structures: responseJson.strutture }, () => {
-            this.setState({ loading: false })
-          })
+            if(responseJson.code === '200')
+            {
+              this.struttureGet(); 
+            }
+              window.location.reload(false);
         })
         .catch(error => console.log(error))
-
-    const structures = this.state.structures.filter(struttura => struttura.id !== strutturaId);
-
-    this.setState({structures});
   }
 
     render() {
