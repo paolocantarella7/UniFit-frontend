@@ -5,6 +5,7 @@ import { User } from "../../models/User";
 import MultipleDatePicker from "../../components/datePicker/datePicker";
 import FormStruttura from "../../components/formStruttura/formStruttura";
 import Server from "../../config.json";
+import { toast } from 'react-toastify';
 
 
 
@@ -12,6 +13,8 @@ class AggiungiStruttura extends React.Component {
   state = {
     form: [],
     errors: [],
+
+    showToast: false,
   };
 
   salvaStruttura(form) {
@@ -36,11 +39,16 @@ class AggiungiStruttura extends React.Component {
         body: data
       })
         .then(response => response.json())
-        .then(responseJson =>
-          //qui vado a gestire il JSON che mi restituisce il Server
-          console.log('DATA', responseJson.error),
+        .then(responseJson => {
+          
+              console.log('paciosdev', responseJson)
+              toast.error(responseJson.error[0].msg , {
+              autoClose: 3000,
+              className: "errorToast"
+            })
+          console.log('DATA', responseJson)
            
-        )
+        })
         .catch(error => console.log(error))
 
   }

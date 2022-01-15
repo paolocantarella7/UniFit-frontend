@@ -40,7 +40,6 @@ const FormStruttura = (props) => {
       props.onSubmit(form)
 
       alert('Struttura salvata')
-      //console.log(form)
     }
   }
 
