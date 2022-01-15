@@ -40,12 +40,22 @@ class AggiungiStruttura extends React.Component {
       })
         .then(response => response.json())
         .then(responseJson => {
-          
+              
+            responseJson.error.map( (item) => {
+            toast.error(item.msg , {
+              autoClose: 8000,
+              className: "errorToast"
+            })
+          } )
+              
+            /*
               console.log('paciosdev', responseJson)
+              
               toast.error(responseJson.error[0].msg , {
               autoClose: 3000,
               className: "errorToast"
-            })
+            })*/
+
           console.log('DATA', responseJson)
            
         })

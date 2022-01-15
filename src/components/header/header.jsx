@@ -9,29 +9,25 @@ class Header extends React.Component {
   constructor() {
     super();
     this.state = {
-      country: [],
-      departments: [],
+      user: {},
+      isLogged: false,
     };
   }
-  /*componentDidMount() {
-    window.scrollTo(0, 0);
-    fetch(`${process.env.REACT_APP_SERVER_DOMAIN}/country/`)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ country: data.country, countCountry: data.count })
-      });
-    fetch(`${process.env.REACT_APP_SERVER_DOMAIN}/departments/`)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ departments: data.departments, deptCount: data.count })
-      });
-  }*/
+  
+  componentDidMount() {
+    
+    this.setState({ user: localStorage.getItem('currentUser')})
+    this.setState({ isLogged: localStorage.getItem('isLogged')})
+    
+  }
+  
   logout = (e) => {
     e.preventDefault();
     localStorage.removeItem("currentUser");
-    let { history } = this.props;
-    history.push({ pathname: "/" });
-    this.props.updateAccount(false);
+    localStorage.setItem('isLogged' , false);
+
+    window.location.href = 'http://localhost:3000/'
+
   };
   checkActive(route) {
     if (this.props.match.path === route) return "active";
@@ -41,7 +37,7 @@ class Header extends React.Component {
       <div className="container-fluid header">
         <nav className="navbar navbar-expand-md navbar-light headerMenus">
          
-        {this.props.type == 'admin'
+        {this.state.user.isAdmin === 1
           ?  
           <img src="/img/logo.png" width={"60 px"} alt="" />
          :
@@ -59,11 +55,11 @@ class Header extends React.Component {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          {this.props.type === 'admin'
+          {this.state.user.isAdmin === 1
             ? <div id="navbarCollapse" className="collapse navbar-collapse">
             <ul className="nav navbar-nav ml-auto navItems">
-              {this.props.currentUser &&
-              this.props.currentUser.role === "admin" ? (
+              {this.state.isLogged && this.state.user.isAdmin === 1 ? 
+              (
                 <li className="nav-item">
                   <Link
                     to={`/adminArea`}
@@ -75,7 +71,7 @@ class Header extends React.Component {
               ) : (
                 ""
               )}
-              {this.props.currentUser ? (
+              {this.state.isLogged ? (
                 <button className="btn nav-link logout" onClick={this.logout}>
                   Logout
                 </button>
@@ -84,11 +80,10 @@ class Header extends React.Component {
               )}
             </ul>
           </div>
-          : this.props.type === 'user'
+          : this.state.user.isAdmin === 0
             ? <div id="navbarCollapse" className="collapse navbar-collapse">
             <ul className="nav navbar-nav ml-auto navItems">
-              {this.props.currentUser &&
-              this.props.currentUser.role === "user" ? (
+              {this.state.isLogged && this.state.user.isAdmin === 0 ? (
                 <li className="nav-item">
                   <Link
                     to={`/prenota`}
@@ -100,8 +95,7 @@ class Header extends React.Component {
               ) : (
                 ""
               )}
-              {this.props.currentUser &&
-              this.props.currentUser.role === "user" ? (
+              {this.state.isLogged && this.state.user.isAdmin === 0 ? (
                 <li className="nav-item">
                   <Link
                     to={`/tesseramento`}
@@ -113,8 +107,7 @@ class Header extends React.Component {
               ) : (
                 ""
               )}
-              {this.props.currentUser &&
-              this.props.currentUser.role === "user" ? (
+              {this.state.isLogged && this.state.user.isAdmin === 0 ? (
                 <li className="nav-item">
                   <Link
                     to={`/areaPersonaleUtente`}
@@ -126,7 +119,7 @@ class Header extends React.Component {
               ) : (
                 ""
               )}
-              {this.props.currentUser ? (
+              {this.state.isLogged ? (
                 <button className="btn nav-link logout" onClick={this.logout}>
                   Logout
                 </button>
