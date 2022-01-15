@@ -2,12 +2,13 @@ import React from "react";
 import ConnectedHeader from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import { User } from "../../models/User";
-import CardUtente from "../../components/cardUtente/cardUtente";
+import CardPrenotazione from "../../components/cardPrenotazione/cardPrenotazione";
 import Server from "../../config.json";
 
-class VisualizzaUtentiRegistrati extends React.Component {
+class ListaPrenotazioniStruttura extends React.Component {
   state = {
-    users:[],
+    structure:[],
+    reservation:[],
     loading : true,
   }
   componentDidMount() {
@@ -15,12 +16,11 @@ class VisualizzaUtentiRegistrati extends React.Component {
   }
 
   utentiGet() {
-    var url = Server.API_URL+"admin/utenti/visualizzautenti"
-    console.log(url)
+    var url = Server.API_URL+`admin/strutture/prenotazioniStruttura/${this.props.match.params.id}`
     fetch(url)
       .then(response => response.json())
       .then(responseJson => {
-        this.setState({ users: responseJson.utentiRegistrati }, () => {
+        this.setState({ reservation: responseJson.struttura.listaPrenotazioniStruttura , structure: responseJson.struttura }, () => {
           this.setState({ loading: false })
         })
       })
@@ -38,7 +38,7 @@ class VisualizzaUtentiRegistrati extends React.Component {
                 type= "admin"/>
           
               <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
-                <h1 className="pt-4">Caricamento Utenti</h1>
+                <h1 className="pt-4">Caricamento prenotazioni</h1>
               </div>
           
               <Footer {...this.props} />
@@ -51,16 +51,16 @@ class VisualizzaUtentiRegistrati extends React.Component {
                 type= "admin"/>
               
               <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
-                <h1 className="pt-4">Utenti Registrati</h1>
+                <h1 className="pt-4">{`Prenotazioni di ${this.state.structure.nome}`}</h1>
                 
                 <div className='col'>
-                  {(this.state.users.length == 0) ? (
-                    <p>Non ci sono utenti!</p>
+                  {(this.state.reservation.length == 0) ? (
+                    <p>Non ci sono prenotazioni</p>
                   ):(
-                    this.state.users.map(utente =>(
-                    <CardUtente
-                      key = {utente.id}
-                      utente = {utente} />   
+                    this.state.reservation.map(prenotazione =>(
+                    <CardPrenotazione
+                      key = {prenotazione.id}
+                      prenotazione = {prenotazione} />   
                     )))
                   }
                 </div>
@@ -72,4 +72,4 @@ class VisualizzaUtentiRegistrati extends React.Component {
       }
 }
 
-export default VisualizzaUtentiRegistrati;
+export default ListaPrenotazioniStruttura;
