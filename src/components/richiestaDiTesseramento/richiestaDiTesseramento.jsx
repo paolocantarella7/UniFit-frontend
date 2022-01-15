@@ -1,10 +1,14 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
+import Server from '../../config.json'
 
 class RichiestaDiTesseramento extends React.Component{
 
     approvaRichiesta = () => {
-        fetch('admin/reqtess/validatesseramento', {
+
+        var url = Server.API_URL+"admin/reqtess/validatesseramento"
+
+        fetch(url , {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -19,7 +23,10 @@ class RichiestaDiTesseramento extends React.Component{
     }
 
     declinaRichiesta = () => {
-        fetch('admin/reqtess/validatesseramento', {
+
+        var url = Server.API_URL+"admin/reqtess/validatesseramento"
+
+        fetch(url, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

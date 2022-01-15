@@ -3,6 +3,7 @@ import ConnectedHeader from '../../components/header/header';
 import RichiestaDiTesseramento from "../../components/richiestaDiTesseramento/richiestaDiTesseramento";
 import Footer from "../../components/footer/footer";
 import { User } from "../../models/User";
+import Server from '../../config.json'
 
 class VisualizzaRichiesteDiTesseramento extends React.Component {
   state = {
@@ -14,7 +15,7 @@ class VisualizzaRichiesteDiTesseramento extends React.Component {
   }
 
   getReq() {
-    var url = "admin/reqtess/visualizzareqtess"
+    var url = Server.API_URL+"admin/reqtess/visualizzareqtess"
     fetch(url)
       .then(response => response.json())
       .then(responseJson => {

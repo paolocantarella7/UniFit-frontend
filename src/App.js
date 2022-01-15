@@ -56,7 +56,7 @@ function App() {
           <Route exact path="/userDetails" component={InformazioniPersonaliUtente}/>
           <Route exact path="/userArea" component={AreaPersonaleUtente}/>
           <Route exact path="/signup" component={SignUp}/>
-          <Route exact path="/login" component={ConnectedLogin}/>
+          <Route exact path="/" component={ConnectedLogin}/>
           <Route exact path="/search/:location/:dept" component={ConnectedDoctorList}/>
           <Route exact path="/recovery/:token" component={Recovery}/>
           <Route exact path="/recover" component={ConnectedRecover}/>
