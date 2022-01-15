@@ -2,6 +2,37 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 
 class RichiestaDiTesseramento extends React.Component{
+
+    approvaRichiesta = () => {
+        fetch('admin/reqtess/validatesseramento', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                azione: 'accetta',
+                idReqTess: this.props.request.idRichiesta_tesseramento,
+                idUtente: this.props.request.utenteRichiedente.idUtente,
+            })
+        })
+    }
+
+    declinaRichiesta = () => {
+        fetch('admin/reqtess/validatesseramento', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                azione: 'rifiuta',
+                idReqTess: this.props.request.idRichiesta_tesseramento,
+                idUtente: this.props.request.utenteRichiedente.idUtente,
+            })
+        })
+    }
+
     render(){
         return (
             <>
@@ -15,7 +46,7 @@ class RichiestaDiTesseramento extends React.Component{
                         </div>
                         <div className="col-8 mx-auto">
                             <button type="button" className="col-12 col-lg-3 btn btn-primary mx-1 my-2">Documenti</button>
-                            <button type="button" className= "col-12 col-lg-3 btn btn-success mx-1 my-2" data-toggle="modal" data-target="#modalValida" >Valida</button>
+                            <button type="button" className= "col-12 col-lg-3 btn btn-success mx-1 my-2" data-toggle="modal" data-target="#modalValida">Valida</button>
                             <button type="button" className="col-12 col-lg-3 btn btn-danger mx-1 my-2" data-toggle="modal" data-target="#modalDeclina" >Declina</button>
                         </div>
                     </div>
@@ -29,7 +60,7 @@ class RichiestaDiTesseramento extends React.Component{
                             <p>Sei sicuro di voler approvare questa richiesta di tesseramento?</p>
                         </div>
                         <div className="modal-footer">
-                        <button type="button" className="btn btn-success" data-dismiss="modal" onClick={() => this.props.onDelete(this.props.struttura.id)}>Conferma</button>
+                        <button type="button" className="btn btn-success" data-dismiss="modal" onClick={this.approvaRichiesta}>Conferma</button>
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Annulla</button>
                         </div>
                     </div>
@@ -43,7 +74,7 @@ class RichiestaDiTesseramento extends React.Component{
                             <p>Sei sicuro di voler declinare questa richiesta di tesseramento?</p>
                         </div>
                         <div className="modal-footer">
-                        <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={() => this.props.onDelete(this.props.struttura.id)}>Conferma</button>
+                        <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={this.declinaRichiesta}>Conferma</button>
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Annulla</button>
                         </div>
                     </div>

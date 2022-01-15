@@ -20,7 +20,6 @@ class VisualizzaRichiesteDiTesseramento extends React.Component {
       .then(responseJson => {
         this.setState({ requests: responseJson.richiesteTess }, () => {
           this.setState({ loading: false })
-          console.log(this.state.requests)
         })
       })
       .catch(error => console.log(error))
