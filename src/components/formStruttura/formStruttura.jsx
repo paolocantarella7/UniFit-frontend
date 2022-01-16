@@ -33,10 +33,19 @@ const FormStruttura = (props) => {
     
     values.map((date) =>{
 
-      datesToConvert.push(date)
+      const dateConverted = new Date(date.year, date.month, date.day);
+
+      var d = dateConverted.getFullYear() + "-" + (dateConverted.getMonth() + 1) + "-" + dateConverted.getDay()
+
+   
+
+      datesToConvert.push(d)
+
+
     })
 
-    setField("",datesToConvert);
+    setField('dateChiusura',datesToConvert);
+ 
   }
 
   const [values, setValues] = useState([])
@@ -111,7 +120,7 @@ const FormStruttura = (props) => {
           </Form.Group>
         </Row>
 
-        <Row className="mb-2">
+        <Row className="mb-2 my-3">
           <Form.Group as={Col} md="5" className="mx-auto" >
             <Form.Label>Prezzo per fascia</Form.Label>
             <Form.Control
@@ -140,7 +149,7 @@ const FormStruttura = (props) => {
           </Form.Group>
         </Row>
 
-        <Row className="mb-1">
+        <Row className="mb-1 my-3">
           <Form.Group as={Col} md="6" className="mx-auto" >
             <Form.Label>Data inizio</Form.Label>
             <Form.Control
@@ -153,7 +162,7 @@ const FormStruttura = (props) => {
           </Form.Group>
         </Row>
 
-        <Row className="mb-1">
+        <Row className="mb-1 my-3">
           <Form.Group as={Col} md="6" className="mx-auto" >
             <Form.Label>Capacità per fascia</Form.Label>
             <Form.Control
@@ -166,7 +175,7 @@ const FormStruttura = (props) => {
           </Form.Group>
         </Row>
 
-        <h4>Orario mattina</h4>
+        <h4 className='mt-3'>Orario mattina</h4>
         <Row className="mb-2">
           <Form.Group as={Col} md="5" className="mx-auto" >
             <Form.Label>Dalle</Form.Label>
@@ -191,7 +200,7 @@ const FormStruttura = (props) => {
           </Form.Group>
         </Row>
 
-        <h4>Orario pomeriggio</h4>
+        <h4 className='mt-3'>Orario pomeriggio</h4>
         <Row className="mb-2">
           <Form.Group as={Col} md="5" className="mx-auto" >
             <Form.Label>Dalle</Form.Label>
@@ -214,9 +223,13 @@ const FormStruttura = (props) => {
             />
           </Form.Group>
           <Form.Control.Feedback type='invalid'> {errors.oraFP} </Form.Control.Feedback>
+
+          <Form.Group as={Col} md="5" className="mx-auto my-4 " >
+            <Button className="btn btn-outline-primary" data-toggle="modal" data-target="#modalDatePicker">Seleziona giorni di chiusura</Button>
+          </Form.Group>
         </Row>
 
-        <Button type='submit' data-toggle="modal" data-target="#modalDatePicker" onClick={handleSubmit}>Aggiungi</Button>
+        
 
         <Button type='submit' onClick={handleSubmit}>Aggiungi</Button>
       </Form>
@@ -225,6 +238,9 @@ const FormStruttura = (props) => {
       <div className="modal" id="modalDatePicker" tabIndex="-1" role="dialog">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
+          <h5 class="modal-title my-2" id="exampleModalLabel">
+                    giorni di chiusura
+                  </h5>
             <div className="modal-body mx-auto">
               <DatePicker
                 multiple

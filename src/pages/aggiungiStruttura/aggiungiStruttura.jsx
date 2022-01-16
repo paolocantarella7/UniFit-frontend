@@ -30,7 +30,8 @@ class AggiungiStruttura extends React.Component {
       data.append('oraInizioPomeriggio', form.oraIP )
       data.append('oraFinePomeriggio', form.oraFP )
       data.append('durataPerFascia', form.durataFascia )
-      data.append('dateChiusura', JSON.stringify({dateChiusura: [] }) )
+      console.log("DATE in JSON " + JSON.stringify(form.dateChiusura))
+      data.append('dateChiusura', JSON.stringify({dateChiusura: form.dateChiusura }) )
       
       var url = Server.API_URL + "admin/strutture/aggiungistruttura"
       fetch(url, {
