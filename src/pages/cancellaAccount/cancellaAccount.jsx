@@ -1,6 +1,7 @@
 import React from 'react';
 import ConnectedHeader from '../../components/header/header';
 import Footer from '../../components/footer/footer'
+import Server from "../../config.json";
 
 import { Redirect } from 'react-router-dom';
 
@@ -18,20 +19,26 @@ class CancellaAccount extends React.Component {
       loading: false
     }
   }
+
+  effettuaCancellazione = () => {
+    let user = localStorage.getItem("currentUser");
+    user = JSON.parse(user);
+    var url = Server.API_URL+`user/cancellaAccount?idUtente=${user.id}`
+    fetch(url)
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({ structure: responseJson.struttura }, () => {
+          this.setState({ loading: false })
+        })
+      })
+      .catch(error => console.log(error))
+    localStorage.removeItem("currentUser");
+    localStorage.setItem("isLogged", false);
+
+    window.location.assign(Server.FRONT_URL);
+  }
   render() {
-    if (this.props.currentUser) {
-      const exp_time = this.props.currentUser.password_expiration
-      const current_time = new Date().toISOString()
-      const d1 = new Date(exp_time),
-        d2 = new Date(current_time)
-      if (d1.getTime() > d2.getTime()) {
-        return <Redirect to="/" />
-      } else {
-        localStorage.removeItem('currentUser')
-        return <Redirect to="/login" />
-      }
-    } else {
-      return (
+    return (
         <div>
           <ConnectedHeader {...this.props} />
           <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
@@ -47,7 +54,7 @@ class CancellaAccount extends React.Component {
                   <p>Sicuro di cancellare l'account?</p>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-danger">Cancella</button>
+                  <button type="button" class="btn btn-danger" onClick={this.effettuaCancellazione}>Cancella</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
                 </div>
               </div>
@@ -56,7 +63,6 @@ class CancellaAccount extends React.Component {
           <Footer {...this.props} />
         </div>
       )
-    }
 
   }
 }

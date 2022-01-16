@@ -28,7 +28,6 @@ class VisualizzaPrenotazioni extends React.Component {
   }
 
   render() {
-      console.log(this.state.prenotazioni)
     if (localStorage.getItem("isLogged") === "false") {
       let user = localStorage.getItem("currentUser");
       user = JSON.parse(user);
