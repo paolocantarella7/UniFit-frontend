@@ -13,7 +13,6 @@ class AggiungiStruttura extends React.Component {
   state = {
     form: [],
     errors: [],
-
     showToast: false,
   };
 
@@ -47,14 +46,7 @@ class AggiungiStruttura extends React.Component {
               className: "errorToast"
             })
           } )
-              
-            /*
-              console.log('paciosdev', responseJson)
-              
-              toast.error(responseJson.error[0].msg , {
-              autoClose: 3000,
-              className: "errorToast"
-            })*/
+            
 
           console.log('DATA', responseJson)
            
