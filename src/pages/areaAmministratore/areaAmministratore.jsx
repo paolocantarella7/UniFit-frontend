@@ -2,10 +2,19 @@ import React from "react";
 import Footer from "../../components/footer/footer";
 import ConnectedHeader from "../../components/header/header";
 import { Link } from "react-router-dom";
-import { User } from "../../models/User";
+import { Redirect } from 'react-router-dom';
 
 class AreaAmministratore extends React.Component {
   render() {
+    if (localStorage.getItem('isLogged') === 'true') {
+      
+      let user = localStorage.getItem('currentUser')
+      user = JSON.parse(user);
+
+      if (!user.isAdmin) {
+        return <Redirect to="/home" />
+      }
+    } 
     return (
       <div>
         <ConnectedHeader

@@ -6,7 +6,7 @@ import MultipleDatePicker from "../../components/datePicker/datePicker";
 import FormStruttura from "../../components/formStruttura/formStruttura";
 import Server from "../../config.json";
 import { toast } from 'react-toastify';
-
+import { Redirect } from 'react-router-dom';
 
 
 class AggiungiStruttura extends React.Component {
@@ -64,6 +64,15 @@ class AggiungiStruttura extends React.Component {
   }
 
   render() {
+    if (localStorage.getItem('isLogged') === 'true') {
+      
+      let user = localStorage.getItem('currentUser')
+      user = JSON.parse(user);
+
+      if (!user.isAdmin) {
+        return <Redirect to="/home" />
+      }
+    } 
     return (
       <div>
         <ConnectedHeader

@@ -4,6 +4,7 @@ import Footer from "../../components/footer/footer";
 import { User } from "../../models/User";
 import CardPrenotazione from "../../components/cardPrenotazione/cardPrenotazione";
 import Server from "../../config.json";
+import { Redirect } from 'react-router-dom';
 
 class ListaPrenotazioniStruttura extends React.Component {
   state = {
@@ -28,6 +29,15 @@ class ListaPrenotazioniStruttura extends React.Component {
   }
 
     render() {
+      if (localStorage.getItem('isLogged') === 'true') {
+      
+        let user = localStorage.getItem('currentUser')
+        user = JSON.parse(user);
+  
+        if (!user.isAdmin) {
+          return <Redirect to="/home" />
+        }
+      } 
         return (
           this.state.loading ?
 

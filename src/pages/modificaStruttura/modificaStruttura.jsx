@@ -3,6 +3,7 @@ import ConnectedHeader from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import { User } from "../../models/User";
 import Server from "../../config.json";
+import { Redirect } from 'react-router-dom';
 class ModificaStruttura extends React.Component {
   state = {
     structure:{},
@@ -26,7 +27,15 @@ class ModificaStruttura extends React.Component {
       .catch(error => console.log(error))
   }
     render() {
-
+      if (localStorage.getItem('isLogged') === 'true') {
+      
+        let user = localStorage.getItem('currentUser')
+        user = JSON.parse(user);
+  
+        if (!user.isAdmin) {
+          return <Redirect to="/home" />
+        }
+      } 
         return (
           <>
             <div>

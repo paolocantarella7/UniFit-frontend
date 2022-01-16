@@ -4,6 +4,7 @@ import Footer from "../../components/footer/footer";
 import { User } from "../../models/User";
 import CardStruttura from "../../components/cardStruttura/cardStruttura";
 import Server from "../../config.json";
+import { Redirect } from 'react-router-dom';
 
 class VisualizzaStrutture extends React.Component {
   state = {
@@ -45,6 +46,15 @@ class VisualizzaStrutture extends React.Component {
   }
 
   render() {
+    if (localStorage.getItem('isLogged') === 'true') {
+      
+      let user = localStorage.getItem('currentUser')
+      user = JSON.parse(user);
+
+      if (!user.isAdmin) {
+        return <Redirect to="/home" />
+      }
+    } 
     return (
       this.state.loading ?
         <>

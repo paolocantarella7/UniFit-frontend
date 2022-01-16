@@ -4,7 +4,7 @@ import RichiestaDiTesseramento from "../../components/richiestaDiTesseramento/ri
 import Footer from "../../components/footer/footer";
 import { User } from "../../models/User";
 import Server from '../../config.json'
-
+import { Redirect } from 'react-router-dom';
 class VisualizzaRichiesteDiTesseramento extends React.Component {
   state = {
     loading: true,
@@ -26,6 +26,15 @@ class VisualizzaRichiesteDiTesseramento extends React.Component {
       .catch(error => console.log(error))
   }
       render() {
+        if (localStorage.getItem('isLogged') === 'true') {
+      
+          let user = localStorage.getItem('currentUser')
+          user = JSON.parse(user);
+    
+          if (!user.isAdmin) {
+            return <Redirect to="/home" />
+          }
+        } 
           return (
             this.state.loading ? 
               <>

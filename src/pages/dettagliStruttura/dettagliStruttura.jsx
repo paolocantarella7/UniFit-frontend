@@ -4,6 +4,7 @@ import ConnectedHeader from '../../components/header/header'
 import { Link } from "react-router-dom";
 import { User } from "../../models/User";
 import Server from "../../config.json";
+import { Redirect } from 'react-router-dom';
 class DettagliStruttura extends React.Component {
 
   state = {
@@ -29,6 +30,15 @@ class DettagliStruttura extends React.Component {
   }
 
   render() {
+    if (localStorage.getItem('isLogged') === 'true') {
+      
+      let user = localStorage.getItem('currentUser')
+      user = JSON.parse(user);
+
+      if (!user.isAdmin) {
+        return <Redirect to="/home" />
+      }
+    } 
     return (
       <div>
           <ConnectedHeader

@@ -4,6 +4,7 @@ import Footer from "../../components/footer/footer";
 import { User } from "../../models/User";
 import CardUtente from "../../components/cardUtente/cardUtente";
 import Server from "../../config.json";
+import { Redirect } from 'react-router-dom';
 
 class VisualizzaUtentiRegistrati extends React.Component {
   state = {
@@ -28,6 +29,15 @@ class VisualizzaUtentiRegistrati extends React.Component {
   }
 
     render() {
+      if (localStorage.getItem('isLogged') === 'true') {
+      
+        let user = localStorage.getItem('currentUser')
+        user = JSON.parse(user);
+  
+        if (!user.isAdmin) {
+          return <Redirect to="/home" />
+        }
+      } 
         return (
           this.state.loading ?
 
