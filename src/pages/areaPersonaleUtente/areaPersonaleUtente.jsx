@@ -14,7 +14,7 @@ class AreaPersonaleUtente extends React.Component {
           <div className="row py-3 px-3">
             <button
               type="button"
-              class="btn btn-primary btn-lg mx-auto bg-cyan border h3 col-xs-12 col-md-8"
+              className="btn btn-primary btn-lg mx-auto bg-cyan border h3 col-xs-12 col-md-8"
             >
               Le mie prenotazioni
             </button>
@@ -23,7 +23,7 @@ class AreaPersonaleUtente extends React.Component {
             <div className="row py-3 px-3">
               <button
                 type="button"
-                class="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
+                className="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
               >
                 Modifica password
               </button>
@@ -33,7 +33,7 @@ class AreaPersonaleUtente extends React.Component {
             <div className="row py-3 px-3">
               <button
                 type="button"
-                class="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
+                className="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
               >
                 Visualizza informazioni personali
               </button>
@@ -43,7 +43,7 @@ class AreaPersonaleUtente extends React.Component {
             <div className="row py-3 px-3">
               <button
                 type="button"
-                class="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
+                className="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
               >
                 Cancella account
               </button>
