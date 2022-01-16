@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+//import pagine PRN
 
 //import pagine Utente
 import Login from "./pages/Login/login";
@@ -27,6 +28,8 @@ import VisualizzaRichiesteDiTesseramento from './pages/visualizzaRichiesteDiTess
 import NotFound from './pages/paginaNotFound/paginaNotFound';
 
 import './App.css';
+import EffettuaPrenotazione from './pages/effettuaPrenotazione/effettuaPrenotazione';
+import EffettuaTesseramento from './pages/effettuaTesseramento/effettuaTesseramento';
 
 
 require('dotenv').config({ path: '../.env' })
@@ -55,7 +58,8 @@ function App() {
         <Route exact path="/editStructure/:id" component={ModificaStruttura} />
         <Route exact path="/showUsers" component={VisualizzaUtentiRegistrati} />
         <Route exact path="/showMembershipRequests" component={VisualizzaRichiesteDiTesseramento} />
-
+        <Route exact path="/makeReservation" component={EffettuaPrenotazione} />
+        <Route exact path="/makeMembership" component={EffettuaTesseramento} />
         <Route component={NotFound} />
 
       </Switch>
