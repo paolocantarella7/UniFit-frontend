@@ -52,20 +52,19 @@ class Login extends React.Component {
     ).then(responseJson => {
       
       console.log(responseJson.utente)
-      localStorage.setItem('isLogged' , true)
+      
 
       this.setState({ loading: false })
 
       if (responseJson.utente.isAdmin === 1 ) {
-        
+        localStorage.setItem('isLogged' , true)
         localStorage.setItem('currentUser', JSON.stringify(responseJson.utente))
-  
-        console.log( localStorage.getItem('isLogged'))
         window.location.href =  Server.FRONT_URL +'adminArea'
 
 
       } else {
-        console.log("non e admin")
+        localStorage.setItem('isLogged' , true)
+        localStorage.setItem('currentUser', JSON.stringify(responseJson.utente))
         window.location.href = Server.FRONT_URL + 'home'
 
       }
@@ -93,7 +92,6 @@ class Login extends React.Component {
       if (user.isAdmin) {
         return <Redirect to="/adminArea" />
       } else {
-        console.log('ti porto da pacios dev a fare un po di swift UI solo io e te')
         return <Redirect to="/home" />
       }
     } else {
