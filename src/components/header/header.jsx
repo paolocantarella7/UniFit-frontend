@@ -2,7 +2,7 @@ import React from "react";
 
 import "./header.scss";
 
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Server from "../../config.json";
 
 class ConnectedHeader extends React.Component {
@@ -28,12 +28,20 @@ class ConnectedHeader extends React.Component {
 
     window.location.assign(Server.FRONT_URL);
   };
+
   checkActive(route) {
     if (this.props.match.path === route) return "active";
   }
+  
   render() {
+    let user = localStorage.getItem('currentUser')
+      user = JSON.parse(user);
+
+  
+      
     return localStorage.getItem("isLogged") === "true" ? (
-      localStorage.getItem("currentUser").isAdmin === "1" ? (
+      
+     user.isAdmin === 1 ? (
         <div className="container-fluid header">
           <nav className="navbar navbar-expand-md navbar-light headerMenus">
             <img src="/img/logo.png" width={"60 px"} alt="" />

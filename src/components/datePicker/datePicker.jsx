@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Button } from "react-bootstrap"
 import DatePicker from "react-multi-date-picker"
 
 export default function MultipleDatePicker() {
@@ -9,11 +10,14 @@ export default function MultipleDatePicker() {
 
   const [values, setValues] = useState(/*[today, tomorrow]*/)
 
+
   return (
-    <DatePicker 
-      multiple
-      value={values} 
-      onChange={setValues}
-    />
+
+      <DatePicker 
+        multiple
+        value={values} 
+        onChange={setValues}
+      />
+
   )
 }
