@@ -1,3 +1,5 @@
+//homePage
+
 import React from "react";
 import "./homepage.scss";
 import ConnectedHeader from "../../components/header/header";
@@ -17,8 +19,6 @@ class HomePage extends React.Component {
       <div>
         <ConnectedHeader
           {...this.props}
-          currentUser={new User("user", "Luigi")}
-          type="login"
         />
         <div className="container-fluid text-dark rounded col-sm-10 col-10 text-center bg-white my-4">
           <h3 className="py-4 text-cyan">Bentornato su UniFit!</h3>
