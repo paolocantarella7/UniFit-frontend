@@ -1,6 +1,5 @@
 import React from 'react';
 import ConnectedHeader from '../../components/header/header';
-import { AccountConsumer } from '../../providers/accountProvider'
 import Footer from '../../components/footer/footer'
 import { Redirect, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -53,22 +52,21 @@ class Login extends React.Component {
     ).then(responseJson => {
       
       console.log(responseJson.utente)
+      localStorage.setItem('isLogged' , true)
 
       this.setState({ loading: false })
 
       if (responseJson.utente.isAdmin === 1 ) {
         
         localStorage.setItem('currentUser', JSON.stringify(responseJson.utente))
-        localStorage.setItem('isLogged' , true)
-
-
+  
         console.log( localStorage.getItem('isLogged'))
-        window.location.href = 'http://localhost:3000/adminArea'
+        window.location.href =  Server.FRONT_URL +'adminArea'
 
 
       } else {
         console.log("non e admin")
-        window.location.href = 'http://localhost:3000/home'
+        window.location.href = Server.FRONT_URL + 'home'
 
       }
 
