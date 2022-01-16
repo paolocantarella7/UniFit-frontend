@@ -3,7 +3,9 @@ import { Switch, Route } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 //import pagine PRN
-
+import EffettuaPrenotazione from './pages/effettuaPrenotazione/effettuaPrenotazione';
+import EffettuaTesseramento from './pages/effettuaTesseramento/effettuaTesseramento';
+import VisualizzaPrenotazioni from './pages/miePrenotazioni/miePrenotazioni';
 //import pagine Utente
 import Login from "./pages/Login/login";
 import SignUp from "./pages/SignUp/signup";
@@ -28,8 +30,7 @@ import VisualizzaRichiesteDiTesseramento from './pages/visualizzaRichiesteDiTess
 import NotFound from './pages/paginaNotFound/paginaNotFound';
 
 import './App.css';
-import EffettuaPrenotazione from './pages/effettuaPrenotazione/effettuaPrenotazione';
-import EffettuaTesseramento from './pages/effettuaTesseramento/effettuaTesseramento';
+
 
 
 require('dotenv').config({ path: '../.env' })
@@ -49,7 +50,7 @@ function App() {
         <Route exact path="/userDetails" component={InformazioniPersonaliUtente} />
         <Route exact path="/editPassword" component={ModificaPassword} />
         <Route exact path="/deleteAccount" component={CancellaAccount} />
-
+        <Route exact path="/viewReservations" component={VisualizzaPrenotazioni} />
         <Route exact path="/adminArea" component={AreaAmministratore} />
         <Route exact path="/addStructure" component={AggiungiStruttura} />
         <Route exact path="/showStructures" component={VisualizzaStrutture} />

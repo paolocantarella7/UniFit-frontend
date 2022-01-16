@@ -11,14 +11,16 @@ class AreaPersonaleUtente extends React.Component {
         <ConnectedHeader {...this.props} />
         <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
           <h1 className="pt-4">Area personale utente</h1>
-          <div className="row py-3 px-3">
-            <button
-              type="button"
-              class="btn btn-primary btn-lg mx-auto bg-cyan border h3 col-xs-12 col-md-8"
-            >
-              Le mie prenotazioni
-            </button>
-          </div>
+          <Link to={"/viewReservations"} className={`nav-link`}>
+            <div className="row py-3 px-3">
+              <button
+                type="button"
+                class="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
+              >
+                Le mie prenotazioni
+              </button>
+            </div>
+          </Link>
           <Link to={"/editPassword"} className={`nav-link`}>
             <div className="row py-3 px-3">
               <button
