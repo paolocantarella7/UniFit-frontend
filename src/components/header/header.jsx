@@ -28,14 +28,16 @@ class ConnectedHeader extends React.Component {
 
     window.location.assign(Server.FRONT_URL);
   };
+
   checkActive(route) {
     if (this.props.match.path === route) return "active";
   }
+  
   render() {
     let user = localStorage.getItem('currentUser')
       user = JSON.parse(user);
 
-      console.log(user);
+  
       
     return localStorage.getItem("isLogged") === "true" ? (
       

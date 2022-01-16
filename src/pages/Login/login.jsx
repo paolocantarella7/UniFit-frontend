@@ -19,11 +19,13 @@ class Login extends React.Component {
       user: {},
     }
   }
+
   handleChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
     this.setState({ [name]: value })
   }
+  
   formSubmit = (e) => {
     
     e.preventDefault();
@@ -50,6 +52,9 @@ class Login extends React.Component {
       body: data
     }).then(response =>  response.json()
     ).then(responseJson => {
+      
+      console.log(responseJson.utente)
+      
 
       this.setState({ loading: false })
 
