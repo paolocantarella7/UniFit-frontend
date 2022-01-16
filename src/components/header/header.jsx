@@ -32,14 +32,11 @@ class ConnectedHeader extends React.Component {
     if (this.props.match.path === route) return "active";
   }
   render() {
-    let user = localStorage.getItem('currentUser')
-      user = JSON.parse(user);
+    let user = localStorage.getItem("currentUser");
+    user = JSON.parse(user);
 
-      console.log(user);
-      
     return localStorage.getItem("isLogged") === "true" ? (
-      
-     user.isAdmin === 1 ? (
+      user.isAdmin === 1 ? (
         <div className="container-fluid header">
           <nav className="navbar navbar-expand-md navbar-light headerMenus">
             <img src="/img/logo.png" width={"60 px"} alt="" />
