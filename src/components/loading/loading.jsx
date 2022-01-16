@@ -1,5 +1,5 @@
 import React from 'react';
-import { RingLoader, PacmanLoader } from "react-spinners";
+import { PacmanLoader } from "react-spinners";
 import { css } from "@emotion/core";
 
 

@@ -5,6 +5,7 @@ import { User } from "../../models/User";
 import CardStruttura from "../../components/cardStruttura/cardStruttura";
 import Server from "../../config.json";
 import { Redirect } from 'react-router-dom';
+import Loading from "../../components/loading/loading";
 
 class VisualizzaStrutture extends React.Component {
   state = {
@@ -58,14 +59,11 @@ class VisualizzaStrutture extends React.Component {
     return (
       this.state.loading ?
         <>
-          <ConnectedHeader
-            {...this.props}
-            currentUser={new User("admin", "Luigi")}
-            type="admin" />
+          <ConnectedHeader/>
+    
 
-          <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
-            <h1 className="pt-4">Caricamento Strutture</h1>
-          </div>
+          <Loading/>
+
 
           <Footer {...this.props} />
         </>

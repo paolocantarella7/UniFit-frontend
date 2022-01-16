@@ -18,7 +18,7 @@ class DettagliStruttura extends React.Component {
   
   strutturaGet() {
     var url = Server.API_URL+`admin/strutture/dettagliStruttura/${this.props.match.params.id}`
-    console.log(url)
+    
     fetch(url)
       .then(response => response.json())
       .then(responseJson => {

@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Row, Col } from "react-bootstrap";
 import DatePicker from "react-multi-date-picker"
+import moment from 'moment';
 
 
 
@@ -35,7 +36,7 @@ const FormStruttura = (props) => {
 
       const dateConverted = new Date(date.year, date.month, date.day);
 
-      var d = dateConverted.getFullYear() + "-" + (dateConverted.getMonth() + 1) + "-" + dateConverted.getDay()
+      var d = moment(dateConverted).format('YYYY-MM-GG')
 
    
 

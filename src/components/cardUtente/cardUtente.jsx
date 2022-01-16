@@ -12,7 +12,7 @@ class CardUtente extends React.Component {
                                 <Card.Title className="text-dark align-self-center">{this.props.utente.nome +" " +this.props.utente.cognome}</Card.Title>
                             </div>
                             <div className="col-md-4 ">
-                                <Card.Title className="text-dark align-self-center">{this.props.utente.isTesserato == 1 ? "Tesserato" : "Non tesserato"}</Card.Title>
+                                <Card.Title className="text-dark align-self-center">{this.props.utente.isTesserato === 1 ? "Tesserato" : "Non tesserato"}</Card.Title>
                             </div>
                         </div>
                     </Card.Body>
