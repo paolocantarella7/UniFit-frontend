@@ -8,7 +8,7 @@ import InformazioniPersonaliUtente from './pages/informazioniPersonaliUtente/inf
 import AreaPersonaleUtente from './pages/areaPersonaleUtente/areaPersonaleUtente'
 import HomePage from './pages/HomePage/homepage'
 import SignUp from './pages/SignUp/signUp'
-import ConnectedLogin from './pages/Login/login'
+import Login from './pages/Login/login'
 import ConnectedDoctorList from './pages/doctorList/doctorList'
 import Recovery from './components/recovery/Recovery';
 import ConnectedRecover from './pages/recovery/recover'; 
@@ -37,8 +37,6 @@ toast.configure()
 function App() {
   return (
     <div className="App">
-
-      <AccountProvider>
         <Switch>
           <Route exact path="/adminArea" component={AreaAmministratore}/>
           <Route exact path="/addStructure" component={AggiungiStruttura}/>
@@ -56,7 +54,7 @@ function App() {
           <Route exact path="/userDetails" component={InformazioniPersonaliUtente}/>
           <Route exact path="/userArea" component={AreaPersonaleUtente}/>
           <Route exact path="/signup" component={SignUp}/>
-          <Route exact path="/" component={ConnectedLogin}/>
+          <Route exact path="/" component={Login}/>
           <Route exact path="/search/:location/:dept" component={ConnectedDoctorList}/>
           <Route exact path="/recovery/:token" component={Recovery}/>
           <Route exact path="/recover" component={ConnectedRecover}/>
@@ -65,7 +63,6 @@ function App() {
           <Route component={NotFound} />
 
         </Switch>
-      </AccountProvider>
     </div>
   );
 }

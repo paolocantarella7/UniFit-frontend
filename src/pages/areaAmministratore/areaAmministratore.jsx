@@ -10,8 +10,6 @@ class AreaAmministratore extends React.Component {
       <div>
         <ConnectedHeader
           {...this.props}
-          currentUser={new User("admin", "Luigi")}
-          type= "admin"
         />
         <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
           <h1 className="pt-4">Area Amministratore</h1>

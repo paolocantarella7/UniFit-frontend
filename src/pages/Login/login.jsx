@@ -13,7 +13,6 @@ class Login extends React.Component {
   constructor() {
     super();
     this.state = {
-      currentUser: false,
       username: "",
       pass: "",
       errors: {},
@@ -30,9 +29,9 @@ class Login extends React.Component {
     e.preventDefault();
     let errors = {};
     if (!this.state.username)
-      errors.username = "Please enter the user name";
+      errors.username = "Inserire l'email";
     if (!this.state.pass)
-      errors.pass = "Please enter the password"
+      errors.pass = "Inserire la password"
 
     if (errors.username || errors.pass) {
       this.setState({ errors })
@@ -55,28 +54,30 @@ class Login extends React.Component {
       
       console.log(responseJson.utente)
 
-      //this.setState({ loading: false })
+      this.setState({ loading: false })
 
       if (responseJson.utente.isAdmin === 1 ) {
         
         localStorage.setItem('currentUser', JSON.stringify(responseJson.utente))
         localStorage.setItem('isLogged' , true)
-        
+
+
+        console.log( localStorage.getItem('isLogged'))
         window.location.href = 'http://localhost:3000/adminArea'
 
 
       } else {
-        console.log("gg flutter")
-        window.location.href = 'http://localhost:3000/seiunostronzo'
+        console.log("non e admin")
+        window.location.href = 'http://localhost:3000/home'
 
       }
 
     }).catch(error => {
       this.setState({ loading: false })
       let errors = {
-        invalid: "Invalid username or password"
+        invalid: "email o password non corretti"
       }
-      toast.error('Invalid User Name Or Password', {
+      toast.error('email o password non corretti', {
         autoClose: 3000,
         className: "errorToast"
       })
@@ -86,21 +87,21 @@ class Login extends React.Component {
 
 
   render() {
-    if (this.props.currentUser) {
-      const exp_time = this.props.currentUser.password_expiration
-      const current_time = new Date().toISOString()
-      const d1 = new Date(exp_time),
-        d2 = new Date(current_time)
-      if (d1.getTime() > d2.getTime()) {
-        return <Redirect to="/" />
+    if (localStorage.getItem('isLogged') === 'true') {
+      
+      let user = localStorage.getItem('currentUser')
+      user = JSON.parse(user);
+
+      if (user.isAdmin) {
+        return <Redirect to="/adminArea" />
       } else {
-        localStorage.removeItem('currentUser')
-        return <Redirect to="/login" />
+        console.log('ti porto da pacios dev a fare un po di swift UI solo io e te')
+        return <Redirect to="/home" />
       }
     } else {
       return (
         <div className="pb-4">
-          <ConnectedHeader {...this.props} />
+          <ConnectedHeader />
           <div className="signup_right mx-auto pb-5 my-5 rounded">
             <div className="right_top">
               <h1 className="heading">Login</h1>
@@ -109,12 +110,12 @@ class Login extends React.Component {
               <form method="post" onSubmit={this.formSubmit}>
                 <div className="change">
                   <div className="input_icons">
-                    <i class="fa fa-user-o" aria-hidden="true"></i>
+                    <i className="fa fa-user-o" aria-hidden="true"></i>
                   </div>
                   <input
                     type="text"
                     name="username"
-                    placeholder="Username"
+                    placeholder="email"
                     className="effect-8"
                     value={this.state.username}
                     onChange={this.handleChange}
@@ -132,7 +133,7 @@ class Login extends React.Component {
 
                 <div className="change">
                   <div className="input_icons">
-                    <i class="fa fa-lock" aria-hidden="true"></i>
+                    <i className="fa fa-lock" aria-hidden="true"></i>
                   </div>
                   <input
                     type="password"
@@ -177,9 +178,5 @@ class Login extends React.Component {
 
   }
 }
-const ConnectedLogin = props => (
-  <AccountConsumer>
-    {({ currentUser, updateAccount }) => (<Login {...props} currentUser={currentUser} updateAccount={updateAccount} />)}
-  </AccountConsumer>
-)
-export default ConnectedLogin;
+
+export default Login;
