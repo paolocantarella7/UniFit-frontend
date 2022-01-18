@@ -49,7 +49,7 @@ class HomePage extends React.Component {
               <Card.Img variant="top" src={BookingSvg} />
               <Card.Body>
 
-                <Link to={"/editPassword"} className={`nav-link`}>
+                <Link to={"/prenota"} className={`nav-link`}>
                   <div className="row py-3 px-3">
                     <button
                       type="button"
@@ -68,7 +68,7 @@ class HomePage extends React.Component {
               <Card.Img variant="top" style={{ height: '13rem'  }} src={TesseramentoSvg} />
               <Card.Body>
 
-                <Link to={"/editPassword"} className={`nav-link`}>
+                <Link to={"/tesseramento"} className={`nav-link`}>
                   <div className="row py-3 px-3">
                     <button
                       type="button"
@@ -87,7 +87,7 @@ class HomePage extends React.Component {
               <Card.Img variant="top" src={AreaUtenteSvg} />
               <Card.Body>
 
-                <Link to={"/editPassword"} className={`nav-link`}>
+                <Link to={"/userArea"} className={`nav-link`}>
                   <div className="row py-3 px-3">
                     <button
                       type="button"
