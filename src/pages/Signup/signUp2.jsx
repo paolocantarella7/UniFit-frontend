@@ -65,7 +65,7 @@ class SignUp2 extends React.Component {
       errors.codiceFiscale = "Codice Fiscale non valido"
     if (this.state.indirizzo.length < 3)
       errors.indirizzo = "Indirizzo non valido"
-    if (this.state.telefono.length < 8)
+    if (this.state.telefono.length != 10)
       errors.telefono = "Numero di telefono non valido"
     
       //controllo data e nazionalita
