@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 import validEmailRegex from "../../emailRegx";
 import "./signupdoctor.scss";
 import Loading from "../../components/loading/loading";
+import Form from 'react-bootstrap'
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -74,9 +75,9 @@ class SignUp extends React.Component {
       console.log(this.state.errors)
       return;
     } else {
-        this.props.history.push({  
-          pathname: '/secondRegister',
-          state: { email: this.state.email, pass: this.state.pass, name: this.state.name, surname: this.state.surname }
+      this.props.history.push({
+        pathname: '/secondRegister',
+        state: { email: this.state.email, pass: this.state.pass, name: this.state.name, surname: this.state.surname }
       })
 
     }
@@ -201,6 +202,23 @@ class SignUp extends React.Component {
                       <i></i>
                     </span>
                   </div>
+
+                  {/* inserire check box per informativa privacy
+                  <div className="change">
+                    <div className="input_icons">
+                      <i className="fa fa-lock" aria-hidden="true"></i>
+                    </div>
+                    <div className="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                      <label className="form-check-label" for="flexCheckDefault">
+                        Conforme alla direttiva della privacy 00/2004
+                      </label>
+                    </div>
+                    <span className="focus-border">
+                      <i></i>
+                    </span>
+                  </div>*/}
+
                   <div className="error_div">
                     {this.state.errors.pass ? (
                       <p className="errmsg">{this.state.errors.pass}</p>
@@ -208,19 +226,19 @@ class SignUp extends React.Component {
                       ""
                     )}
                   </div>
-                 
+
                   <div className="row py-3 px-3">
-                  <button className="btn bg-white text-cyan border col-12 rounded">Avanti</button>
+                    <button className="btn bg-white text-cyan border col-12 rounded">Avanti</button>
                   </div>
-                
+
                 </form>
 
                 <div className="final_error">
-                    {this.state.errors.invalid ? (
-                      <p className="errmsg">{this.state.errors.invalid}</p>
-                    ) : (
-                     ''
-                    )}
+                  {this.state.errors.invalid ? (
+                    <p className="errmsg">{this.state.errors.invalid}</p>
+                  ) : (
+                    ''
+                  )}
                 </div>
 
               </div>
