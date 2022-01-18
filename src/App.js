@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Login from "./pages/Login/login";
 import SignUp from "./pages/SignUp/signup";
 import SignUp2 from "./pages/SignUp/signUp2";
+import RegistrazioneEffettuata from "./pages/SignUp/registrazioneEffettuata";
 import HomePage from "./pages/HomePage/homepage";
 import AreaPersonaleUtente from "./pages/areaPersonaleUtente/areaPersonaleUtente";
 import InformazioniPersonaliUtente from "./pages/informazioniPersonaliUtente/informazioniPersonaliUtente";
@@ -26,6 +27,7 @@ function App() {
         <Route exact path="/" component={Login} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/secondRegister" component={SignUp2} />
+        <Route exact path="/registerDone" component={RegistrazioneEffettuata} />
         <Route exact path="/recover" component={Recover} />
         <Route exact path="/recovery/:token" component={Recover2} />
         <Route exact path="/home" component={HomePage} />

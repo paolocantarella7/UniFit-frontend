@@ -107,7 +107,7 @@ class SignUp2 extends React.Component {
 
           localStorage.removeItem("currentUser");
           localStorage.setItem("isLogged", false);
-          window.location.assign(Server.FRONT_URL);
+          window.location.assign(Server.FRONT_URL + "registerDone");
 
         } else {
           if (responseJson.code === 400){
