@@ -9,7 +9,7 @@ class InformazioniPersonaliUtente extends React.Component {
     let user = localStorage.getItem('currentUser')
     user = JSON.parse(user);
     return (
-      <div>
+      <div className="page">
           <ConnectedHeader {...this.props}/>
           <div className="w-75 bg-white mx-auto pb-5 my-5 rounded">
               <div className="row">

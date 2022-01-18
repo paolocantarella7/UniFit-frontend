@@ -7,7 +7,7 @@ import "./areaPersonaleUtente.scss";
 class AreaPersonaleUtente extends React.Component {
   render() {
     return (
-      <div>
+      <div className="page">
         <ConnectedHeader {...this.props} />
         <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
           <h1 className="pt-4">Area personale utente</h1>

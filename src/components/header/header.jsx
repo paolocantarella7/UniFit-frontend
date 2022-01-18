@@ -86,7 +86,9 @@ class ConnectedHeader extends React.Component {
                     Prenota
                   </Link>
                 </li>
-                <li className="nav-item">
+
+                {user.isTesserato === 0 &&
+                  <li className="nav-item">
                   <Link
                     to={`/tesseramento`}
                     className={`${this.checkActive("/tesseramento")} nav-link`}
@@ -94,6 +96,8 @@ class ConnectedHeader extends React.Component {
                     Tesseramento
                   </Link>
                 </li>
+                }
+                
                 <li className="nav-item">
                   <Link
                     to={`/userArea`}
