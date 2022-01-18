@@ -1,14 +1,11 @@
 import React from "react";
 import ConnectedHeader from "../../components/header/header";
 import Footer from "../../components/footer/footer";
-import { AccountConsumer } from "../../providers/accountProvider";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import validEmailRegex from "../../emailRegx";
 import "./signupdoctor.scss";
-import { toast } from "react-toastify";
 import Loading from "../../components/loading/loading";
 
-// Signup page for doctors
 class SignUp extends React.Component {
   constructor(props) {
     super();
@@ -63,67 +60,31 @@ class SignUp extends React.Component {
   formSubmit = (e) => {
     e.preventDefault();
     let errors = {};
-    if (!validEmailRegex.test(this.state.email))
-      errors.email = "Email non valida";
-    if (this.state.pass.length < 8)
-      errors.pass = "La password deve essere almeno di 8 caratteri";
     if (this.state.name.length <= 0)
       errors.pass = "Inserire il nome";
     if (this.state.surname.length <= 0)
       errors.pass = "Inserire il cognome";
+    if (!validEmailRegex.test(this.state.email))
+      errors.email = "Email non valida";
+    if (this.state.pass.length < 8)
+      errors.pass = "La password deve essere almeno di 8 caratteri";
 
-    if (
-      errors.email ||
-      errors.pass ||
-      errors.name ||
-      errors.surname
-    ) {
+    if (errors.email || errors.pass || errors.name || errors.surname) {
       this.setState({ errors });
+      console.log(this.state.errors)
       return;
     } else {
-      {/*
-      this.setState({ loading: true });
-      fetch(`${process.env.REACT_APP_SERVER_DOMAIN}/user/signup`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+        this.props.history.push({  
+          pathname: '/secondRegister',
+          state: { email: this.state.email, pass: this.state.pass, name: this.state.name, surname: this.state.surname }
       })
 
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(response.status);
-          } else return response.json();
-        })
-        .then((user) => {
-          if (user) {
-            this.setState({ loading: false });
-            toast.success(
-              `Please verify your email verification link sent on ${this.state.email}}`,
-              { autoClose: 2000, className: "errorToast" }
-            );
-            let { history } = this.props;
-            history.push({ pathname: `/login` });
-          }
-        })
-        .catch((error) => {
-          this.setState({ loading: false });
-          let errors = {
-            invalid: "Username or Email Already Exist",
-          };
-          this.setState({ errors });
-          toast.error(`Username or Email Already Exist`, {
-            autoClose: 2000,
-            className: "errorToast",
-          });
-        }); */}
     }
   };
 
   render() {
     if (localStorage.getItem("isLogged") === "true") {
+
       let user = localStorage.getItem("currentUser");
       user = JSON.parse(user);
 
@@ -142,12 +103,65 @@ class SignUp extends React.Component {
                 <h1 className="heading">Registrati</h1>
               </div>
               <div className="right_bottom">
-                <form method="post" onSubmit={this.formSubmit}>
+                <form onSubmit={this.formSubmit}>
+                  <div className="change">
+                    <div className="input_icons">
+                      <i className="fa fa-user" aria-hidden="true"></i>
+                    </div>
+                    <input
+                      required
+                      type="text"
+                      name="name"
+                      placeholder="Nome"
+                      className="effect-8"
+                      maxLength="15"
+                      value={this.state.name}
+                      onChange={this.handleChange}
+                      onBlur={this.validate}
+                    ></input>
+                    <span className="focus-border">
+                      <i></i>
+                    </span>
+                  </div>
+                  <div className="error_div">
+                    {this.state.errors.name ? (
+                      <p className="errmsg">{this.state.errors.name}</p>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div className="change">
+                    <div className="input_icons">
+                      <i className="fa fa-user" aria-hidden="true"></i>
+                    </div>
+                    <input
+                      required
+                      type="text"
+                      name="surname"
+                      placeholder="Cognome"
+                      className="effect-8"
+                      maxLength="15"
+                      value={this.state.surname}
+                      onChange={this.handleChange}
+                      onBlur={this.validate}
+                    ></input>
+                    <span className="focus-border">
+                      <i></i>
+                    </span>
+                  </div>
+                  <div className="error_div">
+                    {this.state.errors.surname ? (
+                      <p className="errmsg">{this.state.errors.surname}</p>
+                    ) : (
+                      ""
+                    )}
+                  </div>
                   <div className="change">
                     <div className="input_icons">
                       <i className="fa fa-envelope" aria-hidden="true"></i>
                     </div>
                     <input
+                      required
                       type="email"
                       name="email"
                       placeholder="Email"
@@ -174,6 +188,7 @@ class SignUp extends React.Component {
                       <i className="fa fa-lock" aria-hidden="true"></i>
                     </div>
                     <input
+                      required
                       type="password"
                       name="pass"
                       placeholder="Password"
@@ -193,77 +208,21 @@ class SignUp extends React.Component {
                       ""
                     )}
                   </div>
-                  <div className="change">
-                    <div className="input_icons">
-                      <i className="fa fa-user-o" aria-hidden="true"></i>
-                    </div>
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Nome"
-                      className="effect-8"
-                      maxLength="15"
-                      value={this.state.name}
-                      onChange={this.handleChange}
-                      onBlur={this.validate}
-                    ></input>
-                    <span className="focus-border">
-                      <i></i>
-                    </span>
+                 
+                  <div className="row py-3 px-3">
+                  <button className="btn bg-white text-cyan border col-12 rounded">Avanti</button>
                   </div>
-                  <div className="error_div">
-                    {this.state.errors.name ? (
-                      <p className="errmsg">{this.state.errors.name}</p>
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                  <div className="change">
-                    <div className="input_icons">
-                      <i className="fa fa-user-o" aria-hidden="true"></i>
-                    </div>
-                    <input
-                      type="text"
-                      name="surname"
-                      placeholder="Cognome"
-                      className="effect-8"
-                      maxLength="15"
-                      value={this.state.surname}
-                      onChange={this.handleChange}
-                      onBlur={this.validate}
-                    ></input>
-                    <span className="focus-border">
-                      <i></i>
-                    </span>
-                  </div>
-                  <div className="error_div">
-                    {this.state.errors.surname ? (
-                      <p className="errmsg">{this.state.errors.surname}</p>
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                  <Link
-                    to={"/secondRegister"}
-                    className={`nav-link row mx-auto`}
-                  >
-                    <div className="row py-3 px-3">
-                      <button
-                        className="btn"
-                        class="btn bg-white text-cyan border col-12 rounded"
-                      >
-                        Avanti
-                      </button>
-                    </div>
-                  </Link>
+                
                 </form>
+
                 <div className="final_error">
-                  {this.state.errors.invalid ? (
-                    <p className="errmsg">{this.state.errors.invalid}</p>
-                  ) : (
-                    ""
-                  )}
+                    {this.state.errors.invalid ? (
+                      <p className="errmsg">{this.state.errors.invalid}</p>
+                    ) : (
+                     ''
+                    )}
                 </div>
+
               </div>
             </div>
           </div>
