@@ -45,25 +45,25 @@ class Recover extends React.Component {
       body: data
     }).then(response =>  response.json()
     ).then(responseJson => {
+      console.log(responseJson)
       if (responseJson.code === 200){
         toast.success(responseJson.msg , {
           autoClose: 8000,
           className: "success"
-      } )} else {
+      } )} else if (responseJson.code === 400) {
         responseJson.error.map(error => {
-            toast.error(
-                error.msg,
-                {
-                    autoClose: 8000,
-                    className: "errorToast"
-                }
-            )
+          toast.error(error.msg , {
+            autoClose: 8000,
+            className: "error"
+        } )
         })
+      } else {
+        toast.error(responseJson.msg , {
+          autoClose: 8000,
+          className: "error"
+      } )
       }
       this.setState({ loading: false })
-
-      
-
     })
   }
 
