@@ -41,20 +41,31 @@ class Recover2 extends React.Component {
       data.append('passwordConferma', this.state.confermaPassword)
     }
     this.setState({ loading: true })
-
-    var url = Server.API_URL + "reset-password?token="+this.props.match.params.token
+    console.log(this.props.match.params)
+    var url = Server.API_URL + `user/reset-password/${this.props.match.params.token.substring(0,this.props.match.params.token.length-1)}`
+    console.log(url)
     fetch(url, {
       method: 'POST',
       body: data
     }).then(response =>  response.json()
     ).then(responseJson => {
-      
       this.setState({ loading: false })
-      console.log(responseJson)
-      if (responseJson.codice === 200){    
+      if (responseJson.code === 200){    
         localStorage.removeItem("currentUser");
         localStorage.setItem("isLogged", false);
         window.location.assign(Server.FRONT_URL);
+      } else if(responseJson.msg) {
+        toast.error(responseJson.msg, {
+          autoClose: 8000,
+          className: "error"
+      })
+      } else {
+        responseJson.error.map(error => {
+          toast.error(error.msg, {
+            autoClose: 8000,
+            className: "error"
+        })
+        })
       }
     })
   }
