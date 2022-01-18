@@ -5,6 +5,7 @@ import Footer from "../../components/footer/footer";
 import "./homepage.scss";
 import { User } from "../../models/User";
 
+
 // Homepage
 class HomePage extends React.Component {
   constructor() {
