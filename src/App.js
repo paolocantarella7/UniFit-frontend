@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import EffettuaPrenotazione from './pages/effettuaPrenotazione/effettuaPrenotazione';
 import EffettuaTesseramento from './pages/effettuaTesseramento/effettuaTesseramento';
 import VisualizzaPrenotazioni from './pages/miePrenotazioni/miePrenotazioni';
+import Pagamento from './pages/pagamento/pagamento';
 //import pagine Utente
 import Login from "./pages/Login/login";
 import SignUp from "./pages/SignUp/signup";
@@ -30,6 +31,7 @@ import VisualizzaRichiesteDiTesseramento from './pages/visualizzaRichiesteDiTess
 import NotFound from './pages/paginaNotFound/paginaNotFound';
 
 import './App.css';
+
 
 
 
@@ -61,6 +63,7 @@ function App() {
         <Route exact path="/showMembershipRequests" component={VisualizzaRichiesteDiTesseramento} />
         <Route exact path="/makeReservation" component={EffettuaPrenotazione} />
         <Route exact path="/makeMembership" component={EffettuaTesseramento} />
+        <Route exact path="/makePayment" component={Pagamento} />
         <Route component={NotFound} />
 
       </Switch>
