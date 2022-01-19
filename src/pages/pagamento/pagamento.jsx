@@ -42,8 +42,8 @@ export default class Pagamento extends React.Component {
     if (errors.cvc || errors.expiry || errors.name || errors.number) {
       this.setState({ errors });
       return;
-    } else {
-      this.setState({ loading: true });
+    } else if (this.props.location.state.prenotazione === false){
+
       let user = localStorage.getItem("currentUser");
       user = JSON.parse(user);
 
@@ -56,6 +56,46 @@ export default class Pagamento extends React.Component {
       data.append("scadenzaCarta", this.state.expiry);
       data.append("cvvCarta", this.state.cvc);
       var url = Server.API_URL + "user/effettuaTesseramento";
+      fetch(url, {
+        method: "POST",
+        body: data,
+      })
+        .then((response) => response.json())
+        .then((responseJson) => {
+          console.log(responseJson);
+          if (responseJson.code === 200) {
+            toast.success(responseJson.msg, {
+              autoClose: 8000,
+              className: "success",
+            });
+            //window.location.assign(Server.FRONT_URL + "registerDone"); Porta a pagina di tesseramento effettuato!!! <3<<3<3<3
+          } else {
+            if (responseJson.code === 400) {
+              responseJson.error.map((error) => {
+                toast.error(error.msg, {
+                  autoClose: 8000,
+                  className: "errorToast",
+                });
+              });
+            }
+          }
+
+          this.setState({ loading: false });
+        });
+    } else {
+      let user = localStorage.getItem("currentUser");
+      user = JSON.parse(user);
+
+      var data = new FormData();
+      data.append("idUtente", user.idUtente);
+      data.append("numeroCarta", this.state.number);
+      data.append("intestatarioCarta", this.state.name);
+      data.append("scadenzaCarta", this.state.expiry);
+      data.append("cvvCarta", this.state.cvc);
+      data.append("idStruttura", this.props.location.state.selectedStructureId);
+      data.append("fascia", this.props.location.state.selectedFascia);
+      data.append("dataPrenotazione", this.props.location.state.date);
+      var url = Server.API_URL + "prenotazione/effettuaPrenotazione";
       fetch(url, {
         method: "POST",
         body: data,
@@ -199,8 +239,9 @@ export default class Pagamento extends React.Component {
               </form>
             </div>
           </div>
-          
-          <div className="row ">
+          {
+            this.props.location.state.prenotazione === false ? (
+              <div className="row ">
             <Button
               onClick={this.formSubmit}
               variant="primary"
@@ -210,6 +251,20 @@ export default class Pagamento extends React.Component {
               Paga ora {this.props.location.state.type === "Studente interno" ? "12€": "25€"}
             </Button>
           </div>
+            ) : (
+              <div className="row ">
+            <Button
+              onClick={this.formSubmit}
+              variant="primary"
+              size="lg"
+              className="my-3 mx-4 mx-auto"
+            >
+              Paga ora 2€
+            </Button>
+          </div>
+            )
+          }
+          
         </div>
         <Footer />
       </div>

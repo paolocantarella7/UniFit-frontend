@@ -17,6 +17,8 @@ class EffettuaPrenotazione extends React.Component {
       slot: "",
       loading: true,
       selectedStructureId: "",
+      selectedStructureName: "",
+      errors: {},
     };
   }
 
@@ -53,24 +55,58 @@ class EffettuaPrenotazione extends React.Component {
   goToPayment = () => {
     let errors = {};
     if (this.state.selectedStructureId === "")
-      errors.selectedStructureId = "Inserisci una data";
+      errors.selectedStructureId = "Inserisci una struttura";
     if (this.state.selectedFascia === "")
       errors.selectedFascia = "Inserisci una fascia";
-    if (errors.date || errors.slot) {
+    if (this.state.date === "") errors.data = "Inserisci una data";
+    if (errors.data || errors.selectedFascia || errors.selectedStructureId) {
       this.setState({ errors });
       return;
     }
     this.props.history.push({
       pathname: "/makePayment",
       state: {
-        type: this.state.type,
+        selectedStructureId: this.state.selectedStructureId,
+        selectedFascia: this.state.selectedFascia,
+        date: this.state.date,
+        prenotazione: true,
       },
     });
   };
 
   handleChange = (event) => {
-    const {name, value} = event.target;
-    this.setState({[name]: value})
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
+
+  onStructureSelect = (e) => {
+    this.state.selectedStructureId = e;
+    this.state.selectedFascia = "";
+    this.strutturaGetNome();
+    this.setState({});
+    this.fasceGet();
+  };
+
+  onFasciaSelect = (e) => {
+    this.state.selectedFascia = e;
+    this.setState({});
+  };
+
+  strutturaGetNome() {
+    var url =
+      Server.API_URL +
+      `admin/strutture/dettagliStruttura/${this.state.selectedStructureId}`;
+    fetch(url)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState(
+          { selectedStructureName: responseJson.struttura.nome },
+          () => {
+            this.setState({ loading: false });
+          }
+        );
+      })
+      .catch((error) => console.log(error));
   }
 
   render() {
@@ -94,7 +130,7 @@ class EffettuaPrenotazione extends React.Component {
                 <div className="col-6">
                   <Card>
                     <Card.Body>
-                      <Card.Text>{this.state.selectedStructureId}</Card.Text>
+                      <Card.Text>{this.state.selectedStructureName}</Card.Text>
                     </Card.Body>
                   </Card>
                 </div>
@@ -105,7 +141,7 @@ class EffettuaPrenotazione extends React.Component {
                     <DropdownButton
                       id="dropdown-basic-button"
                       title="Seleziona struttura"
-                      onSelect={this.handleChange}
+                      onSelect={this.onStructureSelect}
                     >
                       {this.state.structures.map((struttura) => (
                         <Dropdown.Item eventKey={struttura.idStruttura}>
@@ -116,44 +152,71 @@ class EffettuaPrenotazione extends React.Component {
                   )}
                 </div>
               </div>
+              <div className="row">
+                <div className="error_div mx-auto">
+                  {this.state.errors.selectedStructureId ? (
+                    <p className="errmsg">
+                      {this.state.errors.selectedStructureId}
+                    </p>
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </div>
 
               {this.state.selectedStructureId === "" ? (
                 ""
               ) : (
-                <div className="row my-4 mx-4">
-                  <div className="col-6">
-                    <Card>
-                      <Card.Body>
-                        <Card.Text>{this.state.selectedFascia}</Card.Text>
-                      </Card.Body>
-                    </Card>
+                <>
+                  <div className="row my-4 mx-4">
+                    <div className="col-6">
+                      <Card>
+                        <Card.Body>
+                          <Card.Text>{this.state.selectedFascia}</Card.Text>
+                        </Card.Body>
+                      </Card>
+                    </div>
+                    <div className="col-6">
+                      <DropdownButton
+                        id="dropdown-basic-button"
+                        title="Seleziona fascia"
+                        onSelect={this.onFasciaSelect}
+                      >
+                        {this.state.fasce.map((fascia) => (
+                          <Dropdown.Item eventKey={fascia}>
+                            {fascia}
+                          </Dropdown.Item>
+                        ))}
+                      </DropdownButton>
+                    </div>
                   </div>
-                  <div className="col-6">
-                    <DropdownButton
-                      id="dropdown-basic-button"
-                      title="Seleziona fascia"
-                      onSelect={this.handleChange}
-                    >
-                      {this.state.fasce.map((fascia) => (
-                        <Dropdown.Item eventKey={fascia}>
-                          {fascia}
-                        </Dropdown.Item>
-                      ))}
-                    </DropdownButton>
+                  <div className="row">
+                    <div className="error_div mx-auto">
+                      {this.state.errors.selectedFascia ? (
+                        <p className="errmsg">
+                          {this.state.errors.selectedFascia}
+                        </p>
+                      ) : (
+                        ""
+                      )}
+                    </div>
                   </div>
-                </div>
+                </>
               )}
 
+              <input
+                type="date"
+                name="date"
+                onChange={this.handleChange}
+                className="my-4"
+              />
               <div className="row">
-                <div className="col">
-                  <Card>
-                    <Card.Body>
-                      <Card.Text>{this.state.date}</Card.Text>
-                    </Card.Body>
-                  </Card>
-                </div>
-                <div className="col">
-                  <input type="date" name="date" onChange={this.handleChange}/>
+                <div className="error_div mx-auto">
+                  {this.state.errors.data ? (
+                    <p className="errmsg">{this.state.errors.data}</p>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
 
