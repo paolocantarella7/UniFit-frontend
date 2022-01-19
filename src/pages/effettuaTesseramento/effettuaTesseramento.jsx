@@ -6,6 +6,7 @@ import { Card, Form, Button } from "react-bootstrap";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 // Login page
 class EffettuaTesseramento extends React.Component {
+  
   constructor() {
     super();
     this.state = {
@@ -45,7 +46,10 @@ class EffettuaTesseramento extends React.Component {
     });
   };
 
+  
+
   render() {
+    
     let user = localStorage.getItem("currentUser");
     user = JSON.parse(user);
     if (localStorage.getItem("isLogged") === "false") {
@@ -65,8 +69,8 @@ class EffettuaTesseramento extends React.Component {
 
             <Card className="mx-4 my-4">
               <Card.Body>
-                <Card.Title>Codice fiscale</Card.Title>
-                <Card.Text>{user.codiceFiscale}</Card.Text>
+                <Card.Title className="h6 text-secondary">Codice fiscale</Card.Title>
+                <Card.Text className="font-weight-bold h5">{user.codiceFiscale}</Card.Text>
               </Card.Body>
             </Card>
 
@@ -74,16 +78,16 @@ class EffettuaTesseramento extends React.Component {
               <div className="col">
                 <Card className="mx-4 my-4">
                   <Card.Body>
-                    <Card.Title>Indirizzo</Card.Title>
-                    <Card.Text>{user.indirizzoResidenza}</Card.Text>
+                    <Card.Title className="h6 text-secondary">Indirizzo</Card.Title>
+                    <Card.Text className="font-weight-bold h5">{user.indirizzoResidenza}</Card.Text>
                   </Card.Body>
                 </Card>
               </div>
               <div className="col">
                 <Card className="mx-4 my-4">
                   <Card.Body>
-                    <Card.Title>Telefono</Card.Title>
-                    <Card.Text>{user.numeroTelefono}</Card.Text>
+                    <Card.Title className="h6 text-secondary">Telefono</Card.Title>
+                    <Card.Text className="font-weight-bold h5">{user.numeroTelefono}</Card.Text>
                   </Card.Body>
                 </Card>
               </div>
@@ -93,16 +97,16 @@ class EffettuaTesseramento extends React.Component {
               <div className="col">
                 <Card className="mx-4 my-4">
                   <Card.Body>
-                    <Card.Title>Data di nascita</Card.Title>
-                    <Card.Text>{user.dataNascita}</Card.Text>
+                    <Card.Title className="h6 text-secondary">Data di nascita</Card.Title>
+                    <Card.Text className="font-weight-bold h5">{user.dataNascita}</Card.Text>
                   </Card.Body>
                 </Card>
               </div>
               <div className="col">
                 <Card className="mx-4 my-4">
                   <Card.Body>
-                    <Card.Title>Nazionalità</Card.Title>
-                    <Card.Text>{user.nazionalita}</Card.Text>
+                    <Card.Title className="h6 text-secondary">Nazionalità</Card.Title>
+                    <Card.Text className="font-weight-bold h5">{user.nazionalita}</Card.Text>
                   </Card.Body>
                 </Card>
               </div>
@@ -119,9 +123,10 @@ class EffettuaTesseramento extends React.Component {
                 onSelect={this.handleSelct}
               >
                 {["Interno", "Esterno"].map((tipo) => (
-                  <Dropdown.Item eventKey={tipo}>{tipo}</Dropdown.Item>
+                  <Dropdown.Item onFocus={(e)=>{e.target.size = 5}} eventKey={tipo}>{tipo}</Dropdown.Item>
                 ))}
               </DropdownButton>
+              
             </Form>
             <div className="error_div">
               {this.state.errors.type ? (
@@ -131,17 +136,16 @@ class EffettuaTesseramento extends React.Component {
               )}
             </div>
 
+                <hr className="pb-3"></hr>
+            <h4 className="text-center pb-3">Seleziona il certificato medico</h4>
+
             <div className="container">
 
                 <div className="input-group">
-                  <div className="input-group-prepend">
-                    <span
-                      className="input-group-text"
-                      id="inputGroupFileAddon01"
-                    >
-                      Upload
-                    </span>
-                  </div>
+                  
+
+                
+
                   <div className="custom-file">
                     <input
                       type="file"
@@ -154,7 +158,7 @@ class EffettuaTesseramento extends React.Component {
                       className="custom-file-label"
                       htmlFor="inputGroupFile01"
                     >
-                      {this.state.selectedFile === null ? "Seleziona il certificato medico" : this.state.selectedFile.name}
+                      {this.state.selectedFile === null ? "Nessun certificato caricato" : this.state.selectedFile.name}
                     </label>
                   </div>
                 </div>
@@ -168,12 +172,12 @@ class EffettuaTesseramento extends React.Component {
 
               <div className="row">
                 <Button
-                  variant="primary"
+                  
                   size="lg"
-                  className="my-3 col-8 mx-auto"
+                  className="my-3 col-8 mx-auto bg-cyan border"
                   onClick={this.goToPayment}
                 >
-                  Inoltra richiesta di tesseramento
+                  Inoltra richiesta
                 </Button>
               </div>
             </div>
