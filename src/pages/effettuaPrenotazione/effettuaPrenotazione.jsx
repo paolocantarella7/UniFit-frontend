@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ConnectedHeader from '../../components/header/header';
 import Footer from '../../components/footer/footer'
-import { Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import Server from "../../config.json";
-import { DropdownButton, Dropdown } from 'react-bootstrap';
+import { DropdownButton, Dropdown , Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 
-// Login page
 class EffettuaPrenotazione extends React.Component {
   constructor() {
     super();
     this.state = {
-        structures: [],
-        loading: true,
+      structures: [],
+      date: "",
+      slot: "", 
+      loading: true,
     }
   }
 
@@ -32,10 +33,28 @@ class EffettuaPrenotazione extends React.Component {
       .catch(error => console.log(error))
   }
 
+  goToPayment = () => {
+    let errors = {};
+    if (this.state.date === "")
+      errors.date = "Inserisci una data"
+    if (this.state.slot === "")
+      errors.slot = "Inserisci una fascia"
+    if (errors.date || errors.slot) {
+      this.setState({ errors });
+      return;
+    }
+    this.props.history.push({
+      pathname: "/makePayment",
+      state: {
+        type: this.state.type,
+      },
+    });
+  };
+
   render() {
-      console.log(this.state.structures)
+    console.log(this.state.structures)
     if (localStorage.getItem('isLogged') === 'false') {
-      
+
       let user = localStorage.getItem('currentUser')
       user = JSON.parse(user);
 
@@ -51,14 +70,26 @@ class EffettuaPrenotazione extends React.Component {
           <div className="container-fluid text-dark rounded col-sm-10 col-10 text-center bg-white my-4 py-2">
             <h3 className="py-4 text-cyan">Effettua prenotazione</h3>
             <Form>
-                <DropdownButton id="dropdown-basic-button" title="Seleziona struttura">
-                    {
-                        this.state.structures.map(struttura => (
-                            <Dropdown.Item href={struttura.id}>{struttura.nome}</Dropdown.Item>
-                        ))
-                    }
-                </DropdownButton>
-                <button className="login_btn px-3">Prenota</button>
+              <DropdownButton id="dropdown-basic-button" title="Seleziona struttura">
+                {
+                  this.state.structures.map(struttura => (
+                    <Dropdown.Item href={struttura.id}>{struttura.nome}</Dropdown.Item>
+                  ))
+                }
+              </DropdownButton>
+
+
+
+
+              <div className="row">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  className="my-3 col-8 mx-auto"
+                  onClick={this.goToPayment}>
+                  Paga ora
+                </Button>
+              </div>
             </Form>
           </div>
           <Footer {...this.props} />
