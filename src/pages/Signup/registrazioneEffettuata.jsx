@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Lottie from 'react-lottie';
+import RegistrazioneEffettuataSvg from "../../registrazioneEffettuata.svg";
 
 export default function RegistrazioneEffettuata() {
 
@@ -13,6 +14,7 @@ export default function RegistrazioneEffettuata() {
 
         <div className="container-fluid text-dark rounded col-sm-10 col-10 text-center bg-white my-4">
 
+        <img className="my-5" width="200" src={RegistrazioneEffettuataSvg}/>
           <h3 className="my-5 text-cyan">Registrazione Effettuata!</h3>
 
           <Link to={"/"} className={`nav-link`}>
@@ -21,7 +23,7 @@ export default function RegistrazioneEffettuata() {
                 type="button"
                 className="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
               >
-                Effettua il login
+                Torna al login
               </button>
             </div>
           </Link>

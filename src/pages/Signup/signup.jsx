@@ -96,7 +96,7 @@ class SignUp extends React.Component {
       }
     } else {
       return (
-        <div>
+        <div className="page">
           <ConnectedHeader {...this.props} />
           <div className="signup_main">
             <div className="signup_right mx-auto">

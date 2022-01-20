@@ -95,7 +95,7 @@ class ConnectedDoctorList extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="page">
         <ConnectedHeader {...this.props}/>
         <DoctorListSearch {...this.props} search={this.search}/>
         <section className="profile-single-content mt-3 doctorListPage">

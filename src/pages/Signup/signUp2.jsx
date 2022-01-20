@@ -131,7 +131,7 @@ class SignUp2 extends React.Component {
       return <Redirect to="/" />
     else {
       return (
-        <div>
+        <div className="page">
           <ConnectedHeader {...this.props} />
           <div className="signup_main">
             <div className="signup_right mx-auto">

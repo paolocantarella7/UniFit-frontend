@@ -45,7 +45,7 @@ class CancellaAccount extends React.Component {
   }
   render() {
     return (
-        <div>
+        <div className="page">
           <ConnectedHeader {...this.props} />
           <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
             <p className="pt-4">Confermi di voler cancellare il tuo account definitivamente?</p>

@@ -90,9 +90,12 @@ class Login extends React.Component {
       }
     } else {
       return (
-        <div className="pb-4">
+        <div className="pb-4 page border border-danger ">
+
+      
           <ConnectedHeader />
-          <div className="signup_right mx-auto pb-5 my-5 rounded">
+
+          <div className="signup_right mx-auto pb-5 rounded">
             <div className="right_top">
               <h1 className="heading">Login</h1>
             </div>
@@ -146,7 +149,7 @@ class Login extends React.Component {
                 <div className="pb-2">
                   <Link
                     to={`/recover`}
-                    className="nav-link login d-flex justify-content-start forget_pass_btn">Password dimenticata?</Link>
+                    className="nav-link login d-flex justify-content-start forget_pass_btn text-white">Password dimenticata?</Link>
                 </div>
                 <button className="login_btn">LOGIN</button>
               </form>
@@ -161,7 +164,8 @@ class Login extends React.Component {
           {
             this.state.loading ? <Loading /> : ''
           }
-          <Footer />
+
+          <Footer className="navbar fixed-bottom"/>
         </div>
       )
     }
