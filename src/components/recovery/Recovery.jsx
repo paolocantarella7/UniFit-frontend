@@ -1,7 +1,6 @@
 
 import React from 'react';
 import ConnectedHeader from '../../components/header/header';
-import { AccountConsumer } from '../../providers/accountProvider'
 import Footer from '../../components/footer/footer'
 import { Redirect, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';

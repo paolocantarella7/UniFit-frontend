@@ -85,7 +85,6 @@ class SignUp extends React.Component {
 
   render() {
     if (localStorage.getItem("isLogged") === "true") {
-
       let user = localStorage.getItem("currentUser");
       user = JSON.parse(user);
 
@@ -128,8 +127,8 @@ class SignUp extends React.Component {
                     {this.state.errors.name ? (
                       <p className="errmsg">{this.state.errors.name}</p>
                     ) : (
-                      ""
-                    )}
+                        ""
+                      )}
                   </div>
                   <div className="change">
                     <div className="input_icons">
@@ -154,8 +153,8 @@ class SignUp extends React.Component {
                     {this.state.errors.surname ? (
                       <p className="errmsg">{this.state.errors.surname}</p>
                     ) : (
-                      ""
-                    )}
+                        ""
+                      )}
                   </div>
                   <div className="change">
                     <div className="input_icons">
@@ -181,8 +180,8 @@ class SignUp extends React.Component {
                     {this.state.errors.email ? (
                       <p className="errmsg">{this.state.errors.email}</p>
                     ) : (
-                      ""
-                    )}
+                        ""
+                      )}
                   </div>
                   <div className="change">
                     <div className="input_icons">
@@ -223,8 +222,8 @@ class SignUp extends React.Component {
                     {this.state.errors.pass ? (
                       <p className="errmsg">{this.state.errors.pass}</p>
                     ) : (
-                      ""
-                    )}
+                        ""
+                      )}
                   </div>
 
                   <div className="row py-3 px-3">
@@ -237,8 +236,8 @@ class SignUp extends React.Component {
                   {this.state.errors.invalid ? (
                     <p className="errmsg">{this.state.errors.invalid}</p>
                   ) : (
-                    ''
-                  )}
+                      ''
+                    )}
                 </div>
 
               </div>
