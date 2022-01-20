@@ -72,20 +72,33 @@ export default class Pagamento extends React.Component {
       })
         .then((response) => response.json())
         .then((responseJson) => {
-          console.log(responseJson);
-          if (responseJson.code === 200) {
+          console.log(responseJson)
+          if (responseJson.code === 200 || responseJson.code === 201) {
             toast.success(responseJson.msg, {
               autoClose: 8000,
               className: "success",
             });
-            //window.location.assign(Server.FRONT_URL + "registerDone"); Porta a pagina di tesseramento effettuato!!! <3<<3<3<3
+
+            {/**
+              this.props.history.push({
+              pathname: "/doneMembership",
+            });
+             */}
+            
+            
+
           } else {
-            if (responseJson.code === 400) {
+            if (responseJson.code === 400 && responseJson.error) {
               responseJson.error.map((error) => {
                 toast.error(error.msg, {
                   autoClose: 8000,
                   className: "errorToast",
                 });
+              });
+            } else {
+              toast.error(responseJson.msg, {
+                autoClose: 8000,
+                className: "error",
               });
             }
           }
