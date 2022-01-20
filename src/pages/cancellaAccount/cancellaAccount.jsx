@@ -2,7 +2,6 @@ import React from 'react';
 import ConnectedHeader from '../../components/header/header';
 import Footer from '../../components/footer/footer'
 import Server from "../../config.json";
-import {toast} from 'react-toastify';
 
 import { Redirect } from 'react-router-dom';
 
@@ -24,28 +23,23 @@ class CancellaAccount extends React.Component {
   effettuaCancellazione = () => {
     let user = localStorage.getItem("currentUser");
     user = JSON.parse(user);
-    var url = Server.API_URL+`user/cancellaAccount?idUtente=${user.idUtente}`
+    var url = Server.API_URL+`user/cancellaAccount?idUtente=${user.id}`
     fetch(url)
       .then(response => response.json())
       .then(responseJson => {
-        if (responseJson.code !== 200){
-          responseJson.error.map( (item) => {
-          toast.error(item.msg , {
-            autoClose: 8000,
-            className: "errorToast"
-          })
-        } )}
+        this.setState({ structure: responseJson.struttura }, () => {
+          this.setState({ loading: false })
+        })
       })
       .catch(error => console.log(error))
-
     localStorage.removeItem("currentUser");
-    localStorage.removeItem("isLogged");
-    window.location.assign(Server.FRONT_URL);
+    localStorage.setItem("isLogged", false);
 
+    window.location.assign(Server.FRONT_URL);
   }
   render() {
     return (
-        <div className="page">
+        <div>
           <ConnectedHeader {...this.props} />
           <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
             <p className="pt-4">Confermi di voler cancellare il tuo account definitivamente?</p>

@@ -80,8 +80,8 @@ class ConnectedHeader extends React.Component {
               <ul className="nav navbar-nav ml-auto navItems">
                 <li className="nav-item">
                   <Link
-                    to={`/prenota`}
-                    className={`${this.checkActive("/prenota")} nav-link`}
+                    to={`/makeReservation`}
+                    className={`${this.checkActive("/makeReservation")} nav-link`}
                   >
                     Prenota
                   </Link>
@@ -90,8 +90,8 @@ class ConnectedHeader extends React.Component {
                 {user.isTesserato === 0 &&
                   <li className="nav-item">
                   <Link
-                    to={`/tesseramento`}
-                    className={`${this.checkActive("/tesseramento")} nav-link`}
+                    to={`/makeMembership`}
+                    className={`${this.checkActive("/makeMembership")} nav-link`}
                   >
                     Tesseramento
                   </Link>

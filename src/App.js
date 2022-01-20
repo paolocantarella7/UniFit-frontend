@@ -1,7 +1,12 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React from 'react';
+import { Switch, Route } from 'react-router-dom'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+//import pagine PRN
+import EffettuaPrenotazione from './pages/effettuaPrenotazione/effettuaPrenotazione';
+import EffettuaTesseramento from './pages/effettuaTesseramento/effettuaTesseramento';
+import VisualizzaPrenotazioni from './pages/miePrenotazioni/miePrenotazioni';
+import Pagamento from './pages/pagamento/pagamento';
 //import pagine Utente
 import Login from "./pages/Login/login";
 import SignUp from "./pages/SignUp/signup";
@@ -12,11 +17,6 @@ import AreaPersonaleUtente from "./pages/areaPersonaleUtente/areaPersonaleUtente
 import InformazioniPersonaliUtente from "./pages/informazioniPersonaliUtente/informazioniPersonaliUtente";
 import ModificaPassword from "./pages/modificaPassword/modificaPassword";
 import CancellaAccount from "./pages/cancellaAccount/cancellaAccount";
-import Recover2 from "./pages/recovery2/recover2";
-import Recover from "./pages/recovery/recover";
-
-import "./App.css";
-
 //import admin area
 import AreaAmministratore from './pages/areaAmministratore/areaAmministratore';
 import AggiungiStruttura from './pages/aggiungiStruttura/aggiungiStruttura';
@@ -29,8 +29,14 @@ import VisualizzaRichiesteDiTesseramento from './pages/visualizzaRichiesteDiTess
 //Not found page
 import NotFound from './pages/paginaNotFound/paginaNotFound';
 
-require("dotenv").config({ path: "../.env" });
-toast.configure();
+import './App.css';
+
+
+
+
+require('dotenv').config({ path: '../.env' })
+
+toast.configure()
 function App() {
   return (
     <div className="App">
@@ -46,7 +52,7 @@ function App() {
         <Route exact path="/userDetails" component={InformazioniPersonaliUtente} />
         <Route exact path="/editPassword" component={ModificaPassword} />
         <Route exact path="/deleteAccount" component={CancellaAccount} />
-
+        <Route exact path="/viewReservations" component={VisualizzaPrenotazioni} />
         <Route exact path="/adminArea" component={AreaAmministratore} />
         <Route exact path="/addStructure" component={AggiungiStruttura} />
         <Route exact path="/showStructures" component={VisualizzaStrutture} />
@@ -55,7 +61,9 @@ function App() {
         <Route exact path="/editStructure/:id" component={ModificaStruttura} />
         <Route exact path="/showUsers" component={VisualizzaUtentiRegistrati} />
         <Route exact path="/showMembershipRequests" component={VisualizzaRichiesteDiTesseramento} />
-
+        <Route exact path="/makeReservation" component={EffettuaPrenotazione} />
+        <Route exact path="/makeMembership" component={EffettuaTesseramento} />
+        <Route exact path="/makePayment" component={Pagamento} />
         <Route component={NotFound} />
 
       </Switch>

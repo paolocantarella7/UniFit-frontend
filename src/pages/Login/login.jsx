@@ -52,25 +52,10 @@ class Login extends React.Component {
       body: data
     }).then(response =>  response.json()
     ).then(responseJson => {
-      console.log(responseJson)
-      if (responseJson.code !== 200){
-        toast.error(responseJson.msg , {
-          autoClose: 8000,
-          className: "errorToast"
-      } )} else {
-        if (responseJson.utente.isAdmin === 1 ) {
-          localStorage.setItem('isLogged' , true)
-          localStorage.setItem('currentUser', JSON.stringify(responseJson.utente))
-          window.location.href =  Server.FRONT_URL +'adminArea'
-  
-  
-        } else {
-          localStorage.setItem('isLogged' , true)
-          localStorage.setItem('currentUser', JSON.stringify(responseJson.utente))
-          window.location.href = Server.FRONT_URL + 'home'
-  
-        }
-      }
+      
+      console.log(responseJson.utente)
+      
+
       this.setState({ loading: false })
 
       
