@@ -8,6 +8,8 @@ import EffettuaTesseramento from './pages/effettuaTesseramento/effettuaTesserame
 import VisualizzaPrenotazioni from './pages/miePrenotazioni/miePrenotazioni';
 import Pagamento from './pages/pagamento/pagamento';
 //import pagine Utente
+import Recover2 from "./pages/recovery2/recover2";
+import Recover from "./pages/recovery/recover";
 import Login from "./pages/Login/login";
 import SignUp from "./pages/SignUp/signup";
 import SignUp2 from "./pages/SignUp/signUp2";
