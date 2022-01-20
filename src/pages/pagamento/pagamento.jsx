@@ -209,7 +209,7 @@ export default class Pagamento extends React.Component {
                   )}
                 </div>
                 <div className="row">
-                  <div className="col-5">
+                  <div className="col-6">
                     <input
                       type="month"
                       name="expiry"
@@ -254,7 +254,7 @@ export default class Pagamento extends React.Component {
                 className="my-3 mx-4 mx-auto"
               >
                 Paga ora{" "}
-                {this.props.location.state.type === "Studente interno"
+                {this.props.location.state.type === "Interno"
                   ? "12€"
                   : "25€"}
               </Button>
