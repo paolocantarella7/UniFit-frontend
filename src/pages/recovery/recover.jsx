@@ -1,23 +1,20 @@
 import React from 'react';
 import ConnectedHeader from '../../components/header/header';
-import { AccountConsumer } from '../../providers/accountProvider'
 import Footer from '../../components/footer/footer'
 import { Redirect, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import './recover.scss';
 import Loading from '../../components/loading/loading';
+import Server from '../../config.json';
 
-
-// Recovery page
+// Login page
 class Recover extends React.Component {
   constructor() {
     super();
     this.state = {
-      currentUser: false,
-      email: "",
-      pass: "",
+      username: "",
       errors: {},
-      loading:false
+      loading: false,
+      user: {}
     }
   }
   handleChange = (event) => {
@@ -26,122 +23,115 @@ class Recover extends React.Component {
     this.setState({ [name]: value })
   }
   formSubmit = (e) => {
+    
     e.preventDefault();
     let errors = {};
-    if (!this.state.email)
-      errors.email = "Please enter Email";
+    if (!this.state.username)
+      errors.username = "Inserire l'email";
 
-    if (errors.email) {
+    if (errors.username) {
       this.setState({ errors })
       return;
     } else {
-      let data = {
-        email: this.state.email,
-      }
-      this.setState({loading:true})
-      fetch(`${process.env.REACT_APP_SERVER_DOMAIN}/reset/`, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      }).then(response => {
-        if (!response.ok) {
-          throw new Error(response.status);
-        } else
-        toast.success('Password reset link is sent by email, Please check your mail.', {
-          autoClose: 3000,
-          className: "successToast"
-        })
-        setTimeout(function () {
-          window.location.href = '/login';
-      }, 3000);
-        
-      }
-      // ).then(user => {
-      //   this.setState({loading:false})
-      //   if (user.role === 'doctor' && user.is_verified) {
-      //     console.log(user)
-      //   } else {
-          // toast.error('Your account is not verified.', {
-          //   autoClose: 3000,
-          //   className: "errorToast"
-          // })
-      //   }
-        
-      // }
-      ).catch(error => {
-        this.setState({loading:false})
-        let errors = {
-          invalid: "User not found"
-        }
-        toast.error('User not found', {
-          autoClose: 3000,
-          className: "errorToast"
-        })
-        this.setState({ errors })
-      })
+      var data = new FormData()
+
+      data.append('email', this.state.username)
     }
+    this.setState({ loading: true })
+
+    var url = Server.API_URL + "user/recupero-password"
+    fetch(url, {
+      method: 'POST',
+      body: data
+    }).then(response =>  response.json()
+    ).then(responseJson => {
+      console.log(responseJson)
+      if (responseJson.code === 200){
+        toast.success(responseJson.msg , {
+          autoClose: 8000,
+          className: "success"
+      } )} else if (responseJson.code === 400) {
+        responseJson.error.map(error => {
+          toast.error(error.msg , {
+            autoClose: 8000,
+            className: "error"
+        } )
+        })
+      } else {
+        toast.error(responseJson.msg , {
+          autoClose: 8000,
+          className: "error"
+      } )
+      }
+      this.setState({ loading: false })
+    })
   }
 
+
   render() {
+    if (localStorage.getItem('isLogged') === 'true') {
+      
+      let user = localStorage.getItem('currentUser')
+      user = JSON.parse(user);
+
+      if (user.isAdmin) {
+        return <Redirect to="/adminArea" />
+      } else {
+        return <Redirect to="/home" />
+      }
+    } else {
       return (
-        <div className="pb-4">
-          <ConnectedHeader {...this.props} />
-          <div className="signup_main ">
-            <div className="signup_right mx-auto pb-5 my-5">
-              <div className="right_top">
-                <h1 className="heading">Reset Password</h1>
-              </div>
-              <div className="right_bottom pt-3">
-                <form method="post" onSubmit={this.formSubmit}>
-                  <div className="change">
-                    <div className="input_icons">
-                      <i class="fa fa-user-o" aria-hidden="true"></i>
-                    </div>
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Email"
-                      className="effect-8"
-                      value={this.state.email}
-                      onChange={this.handleChange}
-                      onBlur={this.validate} />
-                    <span className="focus-border">
-                      <i></i>
-                    </span>
+        <div className="pb-4 page">
+          <ConnectedHeader />
+          <div className="signup_right mx-auto pb-5 my-5 rounded">
+            <div className="right_top">
+              <h1 className="heading">Recupero password</h1>
+            </div>
+            <div className="right_bottom">
+              <form method="post" onSubmit={this.formSubmit}>
+                <div className="change">
+                  <div className="input_icons">
+                    <i className="fa fa-user-o" aria-hidden="true"></i>
                   </div>
-                  <div className="error_div">
-                    {this.state.errors.email
-                      ? <p className="errmsg">{this.state.errors.email}</p>
-                      : ''
-                    }
-                  </div>
-                  <button className="login_btn pt-3">Submit</button>
-                </form>
-                <div className="final_error">
-                  {this.state.errors.invalid
-                    ? <p className="errmsg">{this.state.errors.invalid}</p>
+                  <input
+                    type="text"
+                    name="username"
+                    placeholder="email"
+                    className="effect-8"
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                    onBlur={this.validate} />
+                  <span className="focus-border">
+                    <i></i>
+                  </span>
+                </div>
+                <div className="error_div">
+                  {this.state.errors.username
+                    ? <p className="errmsg">{this.state.errors.username}</p>
                     : ''
                   }
                 </div>
+
+                
+                <button className="login_btn">Recupera</button>
+              </form>
+              <div className="final_error">
+                {this.state.errors.invalid
+                  ? <p className="errmsg">{this.state.errors.invalid}</p>
+                  : ''
+                }
               </div>
             </div>
           </div>
           {
-            this.state.loading ? <Loading />:''
+            this.state.loading ? <Loading /> : ''
           }
-          <Footer/>
+          <Footer />
         </div>
-        
       )
     }
 
   }
-const ConnectedRecover = props => (
-  <AccountConsumer>
-    {({ currentUser, updateAccount }) => (<Recover {...props} currentUser={currentUser} updateAccount={updateAccount} />)}
-  </AccountConsumer>
-)
-export default ConnectedRecover;
+}
+
+export default Recover;
