@@ -55,6 +55,7 @@ class ModificaStruttura extends React.Component {
 
   ModificaStruttura(form) {
     console.log("pagina", form)
+
     var data = new FormData()
 
     data.append('nome', form.nome)
@@ -65,7 +66,7 @@ class ModificaStruttura extends React.Component {
     data.append('oraFineMattina', form.oraFineMattina)
     data.append('oraInizioPomeriggio', form.oraInizioPomeriggio)
     data.append('oraFinePomeriggio', form.oraFinePomeriggio)
-    data.append('durataPerFascia', form.durataperFascia)
+    data.append('durataPerFascia', form.durataPerFascia)
     data.append('idStruttura', form.idStruttura)
 
     console.log("pagina", form.giorniChiusura)
@@ -78,34 +79,29 @@ class ModificaStruttura extends React.Component {
       data.append('dateChiusura', JSON.stringify({ dateChiusura: form.giorniChiusura }))
     }
 
+    console.log(data)
     var url = Server.API_URL + "admin/strutture/modificastruttura"
-    alert(data)
+
     fetch(url, {
       method: 'POST',
       body: data
     }).then(response => response.json()
     ).then(responseJson => {
       console.log(responseJson)
-      if (responseJson.code === 201) {
+      if (responseJson.code === 200) {
         toast.success(responseJson.msg, {
           autoClose: 8000,
           className: "success"
         })
-
-        localStorage.removeItem("currentUser");
-        localStorage.setItem("isLogged", false);
-        window.location.assign(Server.FRONT_URL + "registerDone");
-
-      } else {
-        if (responseJson.code === 400) {
-          responseJson.error.map(error => {
-            toast.error(error.msg, {
-              autoClose: 8000,
-              className: "errorToast"
-            })
+      } else if (responseJson.code === 400) {
+        responseJson.error.map(error => {
+          toast.error(error.msg, {
+            autoClose: 8000,
+            className: "errorToast"
           })
-        }
+        })
       }
+
 
       this.setState({ loading: false })
 

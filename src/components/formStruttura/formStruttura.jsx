@@ -6,8 +6,6 @@ import { Row, Col } from "react-bootstrap";
 import DatePicker from "react-multi-date-picker"
 import moment from 'moment';
 
-
-
 const FormStruttura = (props) => {
 
   const [form, setForm] = useState({})
@@ -38,10 +36,7 @@ const FormStruttura = (props) => {
 
       var d = moment(dateConverted).format('YYYY-MM-GG')
 
-   
-
       datesToConvert.push(d)
-
 
     })
 
@@ -228,11 +223,8 @@ const FormStruttura = (props) => {
           </Form.Group>
         </Row>
 
-        
-
         <Button type='submit' onClick={handleSubmit}>Aggiungi</Button>
       </Form>
-
 
       <div className="modal" id="modalDatePicker" tabIndex="-1" role="dialog">
         <div className="modal-dialog" role="document">

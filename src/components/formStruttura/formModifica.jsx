@@ -14,19 +14,23 @@ const FormModifica = (props) => {
     const [values, setValues] = useState([])
 
     useEffect(() => {
-        console.log("component" ,props.struttura.giorniChiusura)
         setFormState()
     }, [])
 
     const setFormState = () => {
 
         setForm(props.struttura) 
+        setDateChiusura()
+
+        setLoading(false)
+    }
+
+    const setDateChiusura = () =>{
         var tempDate = []
         props.struttura.giorniChiusura.map(obj => {
-            tempDate.push(obj.dataChiusura)
+            tempDate.push(moment(obj.datachiusura).format('YYYY-MM-GG'))
         }) 
         setValues(tempDate)
-        setLoading(false)
     }
 
     const setField = (field, value) => {
@@ -104,6 +108,8 @@ const FormModifica = (props) => {
 
 
     if (!loading) {
+        console.log(values)
+        console.log("componet", form)
         return (
             <>
                 <Form>
