@@ -5,8 +5,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 //import pagine Utente
 import Login from "./pages/Login/login";
-import SignUp from "./pages/SignUp/signup"; //signup per css di login
-import SignUp2 from './pages/SignUp/signUp2';
 import ModificaPassword from "./pages/modificaPassword/modificaPassword";
 
 //import admin area
