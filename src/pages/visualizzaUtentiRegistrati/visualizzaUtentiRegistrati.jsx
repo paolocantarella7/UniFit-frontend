@@ -10,9 +10,17 @@ class VisualizzaUtentiRegistrati extends React.Component {
   state = {
     users:[],
     loading : true,
+    searchText: ""
   }
   componentDidMount() {
     this.utentiGet()
+  }
+
+  handleChange = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    this.setState({ [name]: value })
+    console.log(this.state.searchText);
   }
 
   utentiGet() {
@@ -61,18 +69,36 @@ class VisualizzaUtentiRegistrati extends React.Component {
                 type= "admin"/>
               
               <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
-                <h1 className="pt-4">Utenti Registrati</h1>
+                <h1 className="pt-4 mb-4">Utenti Registrati</h1>
+
+                <input
+                        type="text"
+                        name="searchText"
+                        placeholder="Cerca utente..."
+                        className="effect-8 rounded col-xs-12 col-sm-6 mb-4"
+                        style={{ border: '2px solid #00c1fc' }}
+                        value={this.state.searchText}
+                        onChange={this.handleChange} />
                 
                 <div className='col'>
                   {(this.state.users.length == 0) ? (
                     <p>Non ci sono utenti!</p>
                   ):(
-                    this.state.users.map(utente =>(
-                    <CardUtente
-                      key = {utente.id}
-                      utente = {utente} />   
-                    )))
-                  }
+                   
+                    this.state.users.filter(user => user.nome.toLowerCase().includes(this.state.searchText.toLowerCase()) 
+                    || user.cognome.toLowerCase().includes(this.state.searchText.toLowerCase())
+                    ).map(filteredUser => (
+                      <CardUtente
+                      key = {filteredUser.id}
+                      utente = {filteredUser} />   
+                    ))
+                    
+                    )}
+                  
+
+                  
+
+
                 </div>
 
               </div>
