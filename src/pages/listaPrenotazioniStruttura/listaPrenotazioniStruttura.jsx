@@ -70,13 +70,13 @@ class ListaPrenotazioniStruttura extends React.Component {
             type="admin" />
 
           <div className="container-fluid text-dark rounded col-xs-12 col-sm-8 text-center bg-white my-4">
+          <h1 className="pt-4 text-cyan mb-4">{`Prenotazioni di ${this.state.structure.nome}`}</h1>
 
             <div className='col'>
               {(this.state.reservation.length == 0) ? (
                 <p>Non ci sono prenotazioni</p>
               ) : (
                 <div>
-                  <h1 className="pt-4 text-cyan mb-4">{`Prenotazioni di ${this.state.structure.nome}`}</h1>
 
 
           
@@ -128,10 +128,3 @@ class ListaPrenotazioniStruttura extends React.Component {
 }
 
 export default ListaPrenotazioniStruttura;
-
-/*
-this.state.reservation.map(prenotazione =>(
-  <CardPrenotazione
-    key = {prenotazione.id}
-    prenotazione = {prenotazione} />   
-  ))*/
