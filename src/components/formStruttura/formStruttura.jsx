@@ -6,8 +6,6 @@ import { Row, Col } from "react-bootstrap";
 import DatePicker from "react-multi-date-picker"
 import moment from 'moment';
 
-
-
 const FormStruttura = (props) => {
 
   const [form, setForm] = useState({})
@@ -31,23 +29,19 @@ const FormStruttura = (props) => {
 
   const convertDates = () => {
     var datesToConvert = []
-    
-    values.map((date) =>{
 
-      const dateConverted = new Date(date.year, date.month, date.day);
+    values.map((date) => {
 
-      var d = moment(dateConverted).format('YYYY-MM-GG')
+        const dateConverted = new Date(date.year, date.monthIndex, date.day);
+        console.log('data nel map' , dateConverted)
 
-   
+        var d = moment(dateConverted).format('YYYY-MM-DD')
 
-      datesToConvert.push(d)
-
-
+        datesToConvert.push(d)
     })
 
-    setField('dateChiusura',datesToConvert);
- 
-  }
+    setField('giorniChiusura', datesToConvert);
+}
 
   const [values, setValues] = useState([])
 
@@ -91,7 +85,6 @@ const FormStruttura = (props) => {
     else if (capacitaPerFascia <= 0 || capacitaPerFascia > 100) newErrors.prezzoPerFascia = 'capaci`ta non valida'
     // start morning errors
     if (!oraIM || oraIM === '') newErrors.oraIM = 'ora inizio mattina vuota!'
-    else if (oraIM < '07:00' || oraIM >= oraFM) newErrors.oraIM = 'ora non valida (apertura 07:00)'
     // end morning errors
     if (!oraFM || oraFM === '') newErrors.oraFM = 'ora fine mattina vuota!'
     else if (oraFM >= oraIP) newErrors.oraFM = 'ora non valida'
@@ -100,7 +93,6 @@ const FormStruttura = (props) => {
     else if (oraIP >= oraFP) newErrors.oraIP = 'ora non valida'
     // end evening errors
     if (!oraFP || oraFP === '') newErrors.oraFP = 'ora fine pomeriggio vuota!'
-    else if (oraFP > '21:00') newErrors.oraFP = 'ora non valida (chiusura 21:00)'
 
     return newErrors
   }
@@ -140,7 +132,7 @@ const FormStruttura = (props) => {
               onChange={e => setField('durataFascia', e.target.value)}
               isInvalid={!!errors.durataFascia}
             >
-              <option selected disabled >Seleziona una durata</option>
+              <option value='disabled' >Seleziona una durata</option>
               <option value='1'>1</option>
               <option value='2'>2</option>
               <option value='3'>3</option>
@@ -222,24 +214,21 @@ const FormStruttura = (props) => {
               onChange={e => setField('oraFP', e.target.value)}
               isInvalid={!!errors.oraFP}
             />
+          < Form.Control.Feedback type='invalid'> {errors.oraFP} </Form.Control.Feedback>
           </Form.Group>
-          <Form.Control.Feedback type='invalid'> {errors.oraFP} </Form.Control.Feedback>
 
           <Form.Group as={Col} md="5" className="mx-auto my-4 " >
             <Button className="btn btn-outline-primary" data-toggle="modal" data-target="#modalDatePicker">Seleziona giorni di chiusura</Button>
           </Form.Group>
         </Row>
 
-        
-
         <Button type='submit' onClick={handleSubmit}>Aggiungi</Button>
       </Form>
-
 
       <div className="modal" id="modalDatePicker" tabIndex="-1" role="dialog">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
-          <h5 class="modal-title my-2" id="exampleModalLabel">
+          <h5 className="modal-title my-2" id="exampleModalLabel">
                     giorni di chiusura
                   </h5>
             <div className="modal-body mx-auto">

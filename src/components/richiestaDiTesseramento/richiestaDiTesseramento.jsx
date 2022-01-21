@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
-import Server from '../../config.json'
+import Server from '../../config.json';
+import saveAs from 'file-saver';
 
 class RichiestaDiTesseramento extends React.Component{
 
@@ -40,6 +41,13 @@ class RichiestaDiTesseramento extends React.Component{
         })
     }
 
+    saveFile = () => {
+        saveAs(
+            "http://localhost:5000/static/richieste_tesseramento/1/certificato.pdf" , 
+            "certificatoDownload.pdf"
+        );
+    };
+
     render(){
         return (
             <>
@@ -52,7 +60,7 @@ class RichiestaDiTesseramento extends React.Component{
                             </Card.Title>
                         </div>
                         <div className="col-8 mx-auto">
-                            <button type="button" className="col-12 col-lg-3 btn btn-primary mx-1 my-2">Documenti</button>
+                            <button type="button" className="col-12 col-lg-3 btn btn-primary mx-1 my-2" onClick={this.saveFile}>Documenti</button>
                             <button type="button" className= "col-12 col-lg-3 btn btn-success mx-1 my-2" data-toggle="modal" data-target="#modalValida">Valida</button>
                             <button type="button" className="col-12 col-lg-3 btn btn-danger mx-1 my-2" data-toggle="modal" data-target="#modalDeclina" >Declina</button>
                         </div>
