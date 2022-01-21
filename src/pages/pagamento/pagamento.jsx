@@ -35,8 +35,6 @@ export default class Pagamento extends React.Component {
     });
 
     
-
-    
   };
 
   formSubmit = (e) => {
@@ -78,14 +76,8 @@ export default class Pagamento extends React.Component {
               autoClose: 8000,
               className: "success",
             });
-
-            {/**
-              this.props.history.push({
-              pathname: "/doneMembership",
-            });
-             */}
             
-            
+            window.location.assign(Server.FRONT_URL + "paymentDone");
 
           } else {
             if (responseJson.code === 400 && responseJson.error) {
@@ -127,11 +119,14 @@ export default class Pagamento extends React.Component {
         .then((responseJson) => {
           console.log(responseJson);
           if (responseJson.code === 200) {
+
             toast.success(responseJson.msg, {
               autoClose: 8000,
               className: "success",
             });
-            //window.location.assign(Server.FRONT_URL + "registerDone"); Porta a pagina di tesseramento effettuato!!! <3<<3<3<3
+
+            window.location.assign(Server.FRONT_URL + "paymentDone");
+
           } else {
             if (responseJson.code === 400) {
               responseJson.error.map((error) => {
@@ -187,13 +182,13 @@ export default class Pagamento extends React.Component {
                 number={this.state.number}
               />
             </div>
-            <div className="col-7 d-flex ">
+            <div className="col-7 mx-auto">
               <form className="mb-4 ">
                 <input
                   type="tel"
                   name="number"
                   onBlur={this.validate}
-                  className="form-control mb-2"
+                  className="form-control mb-2 "
                   placeholder="Numero della carta"
                   onChange={this.handleInputChange}
                   onFocus={this.handleInputFocus}
@@ -221,8 +216,8 @@ export default class Pagamento extends React.Component {
                     ""
                   )}
                 </div>
-                <div className="row">
-                  <div className="col-6">
+                <div>
+                  <div>
                     <input
                       type="month"
                       name="expiry"
@@ -236,7 +231,7 @@ export default class Pagamento extends React.Component {
                       )}
                     </div>
                   </div>
-                  <div className="col-6">
+                  <div className="col-8 mx-auto">
                     <input
                       type="number"
                       name="cvc"

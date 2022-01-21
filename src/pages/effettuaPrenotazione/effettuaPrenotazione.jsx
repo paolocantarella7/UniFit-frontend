@@ -224,7 +224,7 @@ class EffettuaPrenotazione extends React.Component {
                 <Button
                   variant="primary"
                   size="lg"
-                  className="my-3 col-8 mx-auto"
+                  className="my-3 col-8 mx-auto bg-cyan border"
                   onClick={this.goToPayment}
                 >
                   Paga ora

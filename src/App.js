@@ -7,6 +7,7 @@ import EffettuaPrenotazione from './pages/effettuaPrenotazione/effettuaPrenotazi
 import EffettuaTesseramento from './pages/effettuaTesseramento/effettuaTesseramento';
 import VisualizzaPrenotazioni from './pages/miePrenotazioni/miePrenotazioni';
 import Pagamento from './pages/pagamento/pagamento';
+import PagamentoEffettuato from './pages/pagamentoEffettuato/pagamentoEffettuato';
 //import pagine Utente
 import Login from "./pages/Login/login";
 import SignUp from "./pages/SignUp/signup";
@@ -61,7 +62,9 @@ function App() {
         <Route exact path="/makeReservation" component={EffettuaPrenotazione} />
         <Route exact path="/makeMembership" component={EffettuaTesseramento} />
         <Route exact path="/makePayment" component={Pagamento} />
+        <Route exact path="/paymentDone" component={PagamentoEffettuato} />
         <Route exact path="/doneMembership" component={TesseramentoEffettuato} />
+        
         <Route component={NotFound} />
 
       </Switch>
