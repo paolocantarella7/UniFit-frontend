@@ -40,8 +40,7 @@ class VisualizzaRichiesteDiTesseramento extends React.Component {
               <>
                 <ConnectedHeader
                   {...this.props}
-                  currentUser={new User("admin", "Luigi")}
-                  type= "admin"/>
+                />
             
                 <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
                   <h1 className="pt-4">Caricamento richieste di tessseramento</h1>

@@ -7,6 +7,7 @@ import EffettuaPrenotazione from './pages/effettuaPrenotazione/effettuaPrenotazi
 import EffettuaTesseramento from './pages/effettuaTesseramento/effettuaTesseramento';
 import VisualizzaPrenotazioni from './pages/miePrenotazioni/miePrenotazioni';
 import Pagamento from './pages/pagamento/pagamento';
+import ModificaPrenotazione from './pages/modificaPrenotazione/modificaPrenotazione';
 //import pagine Utente
 import Login from "./pages/Login/login";
 import SignUp from "./pages/SignUp/signup";
@@ -50,6 +51,7 @@ function App() {
         <Route exact path="/editPassword" component={ModificaPassword} />
         <Route exact path="/deleteAccount" component={CancellaAccount} />
         <Route exact path="/viewReservations" component={VisualizzaPrenotazioni} />
+        <Route exact path="/editReservation/:id" component={ModificaPrenotazione} />
         <Route exact path="/adminArea" component={AreaAmministratore} />
         <Route exact path="/addStructure" component={AggiungiStruttura} />
         <Route exact path="/showStructures" component={VisualizzaStrutture} />
@@ -62,6 +64,7 @@ function App() {
         <Route exact path="/makeMembership" component={EffettuaTesseramento} />
         <Route exact path="/makePayment" component={Pagamento} />
         <Route exact path="/doneMembership" component={TesseramentoEffettuato} />
+        
         <Route component={NotFound} />
 
       </Switch>

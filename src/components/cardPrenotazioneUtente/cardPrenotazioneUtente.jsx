@@ -19,7 +19,7 @@ class CardPrenotazioneUtente extends React.Component {
                 <Link to="/showStructures" className="navbar-brand">
                     <img className="img-responsive" src="assets/images/delete.png" alt="delete" data-toggle="modal" data-target="#modalElimina" onClick={() => this.props.onPress(this.props.struttura.idStruttura)} style={{ height: "25px", width: "25px" }} />
                 </Link>
-                <Link to={`/editStructure/${this.props.prenotazione.idPrenotazione}`} className="navbar-brand">
+                <Link to={`/editReservation/${this.props.prenotazione.idPrenotazione}`} className="navbar-brand">
                     <img className="img-responsive" src="assets/images/edit.png" alt="modify" style={{ height: "25px", width: "25px" }} />
                 </Link>
               </div>
