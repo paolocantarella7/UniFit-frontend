@@ -7,11 +7,8 @@ import EffettuaPrenotazione from './pages/effettuaPrenotazione/effettuaPrenotazi
 import EffettuaTesseramento from './pages/effettuaTesseramento/effettuaTesseramento';
 import VisualizzaPrenotazioni from './pages/miePrenotazioni/miePrenotazioni';
 import Pagamento from './pages/pagamento/pagamento';
-<<<<<<< HEAD
 import ModificaPrenotazione from './pages/modificaPrenotazione/modificaPrenotazione';
-=======
 import PagamentoEffettuato from './pages/pagamentoEffettuato/pagamentoEffettuato';
->>>>>>> 19e4cf032440db3270501d34fe64aca79d5683c8
 //import pagine Utente
 import Login from "./pages/Login/login";
 import SignUp from "./pages/SignUp/signup";
