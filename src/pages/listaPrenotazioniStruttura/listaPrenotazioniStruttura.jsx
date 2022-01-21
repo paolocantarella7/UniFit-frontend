@@ -65,11 +65,7 @@ class ListaPrenotazioniStruttura extends React.Component {
         </>
         :
         <>
-          <ConnectedHeader
-            {...this.props}
-            currentUser={new User("admin", "Luigi")}
-            type="admin" />
-
+          <ConnectedHeader {...this.props} />
           <div className="container-fluid text-dark rounded col-xs-12 col-sm-8 text-center bg-white my-4">
             <h1 className="pt-4 text-cyan mb-4">{`Prenotazioni di ${this.state.structure.nome}`}</h1>
 
@@ -79,7 +75,7 @@ class ListaPrenotazioniStruttura extends React.Component {
 
                 <div className="mb-4">
                   <img className="my-5" width="200" src={NessunaPrenotazioneSvg} />
-                  <p>Non ci sono prenotazioni</p>
+                  <p className="pb-4">Non ci sono prenotazioni</p>
                 </div>
               ) : (
                 <div>
