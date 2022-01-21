@@ -29,6 +29,7 @@ import VisualizzaRichiesteDiTesseramento from './pages/visualizzaRichiesteDiTess
 import NotFound from './pages/paginaNotFound/paginaNotFound';
 
 import './App.css';
+import TesseramentoEffettuato from './pages/tesseramentoEffettuato/tesseramentoEffettuato';
 
 
 
@@ -60,6 +61,7 @@ function App() {
         <Route exact path="/makeReservation" component={EffettuaPrenotazione} />
         <Route exact path="/makeMembership" component={EffettuaTesseramento} />
         <Route exact path="/makePayment" component={Pagamento} />
+        <Route exact path="/doneMembership" component={TesseramentoEffettuato} />
         <Route component={NotFound} />
 
       </Switch>
