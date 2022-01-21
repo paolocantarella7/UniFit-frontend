@@ -11,8 +11,6 @@ import Pagamento from './pages/pagamento/pagamento';
 import Login from "./pages/Login/login";
 import SignUp from "./pages/SignUp/signup";
 import SignUp2 from "./pages/SignUp/signUp2";
-import Recovery from "./components/recovery/Recovery";
-import ConnectedRecover from "./pages/recovery/recover";
 import HomePage from "./pages/HomePage/homepage";
 import AreaPersonaleUtente from "./pages/areaPersonaleUtente/areaPersonaleUtente";
 import InformazioniPersonaliUtente from "./pages/informazioniPersonaliUtente/informazioniPersonaliUtente";
@@ -45,8 +43,6 @@ function App() {
         <Route exact path="/" component={Login} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/secondRegister" component={SignUp2} />
-        <Route exact path="/recover" component={ConnectedRecover} />
-        <Route exact path="/recovery/:token" component={Recovery} />
         <Route exact path="/home" component={HomePage} />
         <Route exact path="/userArea" component={AreaPersonaleUtente} />
         <Route exact path="/userDetails" component={InformazioniPersonaliUtente} />
