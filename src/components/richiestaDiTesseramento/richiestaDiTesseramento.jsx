@@ -43,7 +43,7 @@ class RichiestaDiTesseramento extends React.Component{
 
     saveFile = () => {
         saveAs(
-            "http://localhost:5000/static/richieste_tesseramento/1/certificato.pdf" , 
+            Server.API_URL+"admin/reqtess/downloadCertificato/"+this.props.request.idRichiesta_tesseramento, 
             "certificatoDownload.pdf"
         );
     };
