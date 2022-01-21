@@ -3,9 +3,12 @@ import ConnectedHeader from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import { Redirect } from "react-router-dom";
 import validEmailRegex from "../../emailRegx";
-import "./signupdoctor.scss";
 import Loading from "../../components/loading/loading";
-import Form from 'react-bootstrap'
+import validPasswordRegex from "../../passwordRegx";
+import validNameRegex from "../../nomeRegx";
+import validSurnameRegex from "../../cognomeRegx";
+import "./signupdoctor.scss";
+import { toast } from "react-toastify";
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -35,22 +38,13 @@ class SignUp extends React.Component {
         errors.email = validEmailRegex.test(value) ? "" : "Email non valida";
         break;
       case "pass":
-        errors.pass =
-          value.length < 8
-            ? "La password deve essere almeno di 8 caratteri"
-            : "";
+        errors.pass = validPasswordRegex.test(value) ? "" : "La password deve essere almeno di 8 caratteri";
         break;
       case "name":
-        errors.name =
-          value.length <= 0
-            ? "Inserire il nome"
-            : "";
+        errors.name = validNameRegex.test(value) ? "" : "Nome non valido";
         break;
       case "surname":
-        errors.surname =
-          value.length <= 0
-            ? "Inserire il cognome"
-            : "";
+        errors.surname = validSurnameRegex.test(value) ? "" : "Cognome non valido";
         break;
       default:
         break;
@@ -61,18 +55,44 @@ class SignUp extends React.Component {
   formSubmit = (e) => {
     e.preventDefault();
     let errors = {};
-    if (this.state.name.length <= 0)
-      errors.pass = "Inserire il nome";
-    if (this.state.surname.length <= 0)
-      errors.pass = "Inserire il cognome";
+    if (!validNameRegex.test(this.state.name))
+      errors.name = "Inserire il nome";
+    if (!validSurnameRegex.test(this.state.surname))
+      errors.surname = "Inserire il cognome";
     if (!validEmailRegex.test(this.state.email))
       errors.email = "Email non valida";
-    if (this.state.pass.length < 8)
+    if (!validPasswordRegex.test(this.state.pass))
       errors.pass = "La password deve essere almeno di 8 caratteri";
 
     if (errors.email || errors.pass || errors.name || errors.surname) {
       this.setState({ errors });
-      console.log(this.state.errors)
+      
+       /* if(errors.name !==  ""){
+        toast.error(this.state.error.name , 
+          {
+            autoClose: 5000,
+            className: "errorToast"
+          })}
+      else if(errors.surname !== ""){
+        toast.error(this.state.error.surname , 
+          {
+            autoClose: 5000,
+            className: "errorToast"
+          })}
+      else if(errors.pass !== ""){
+        toast.error(this.state.error.pass , 
+          {
+            autoClose: 5000,
+            className: "errorToast"
+          })}
+      else if(errors.pass !== ""){
+        toast.error(this.state.error.pass , 
+          {
+            autoClose: 5000,
+            className: "errorToast"
+          })} */
+ 
+          console.log("Errori nel form",errors)
       return;
     } else {
       this.props.history.push({
@@ -168,7 +188,6 @@ class SignUp extends React.Component {
                       placeholder="Email"
                       className="effect-8"
                       onBlur={this.validate}
-                      required
                       value={this.state.email}
                       onChange={this.handleChange}
                     />
