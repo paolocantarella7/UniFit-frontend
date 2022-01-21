@@ -7,7 +7,6 @@ import { toast } from 'react-toastify';
 import FormModifica from "../../components/formStruttura/formModifica";
 class ModificaStruttura extends React.Component {
   state = {
-
     structure: {},
     form: [],
     loading: true,
@@ -46,8 +45,14 @@ class ModificaStruttura extends React.Component {
     fetch(url)
       .then(response => response.json())
       .then(responseJson => {
+        var tempDate = []
 
-        this.setState({ structure: responseJson.struttura }, () => { this.setState({ loading: false }) })
+        responseJson.struttura.giorniChiusura.map(obj => {
+          tempDate.push(obj.dataChiusura)
+        })
+        responseJson.struttura.giorniChiusura = tempDate
+        this.setState({ structure: responseJson.struttura },
+          () => { this.setState({ loading: false }) })
       })
 
       .catch(error => console.log(error))
@@ -102,9 +107,7 @@ class ModificaStruttura extends React.Component {
         })
       }
 
-
       this.setState({ loading: false })
-
     })
   }
 
@@ -129,6 +132,7 @@ class ModificaStruttura extends React.Component {
             <h1 className="pt-4">Modifica Struttura</h1>
 
             {!this.state.loading && <FormModifica
+              //date={this.state.array}
               onSubmit={(form) => this.ModificaStruttura(form)}
               struttura={this.state.structure}
             />}

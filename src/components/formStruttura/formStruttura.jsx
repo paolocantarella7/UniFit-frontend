@@ -29,20 +29,19 @@ const FormStruttura = (props) => {
 
   const convertDates = () => {
     var datesToConvert = []
-    
-    values.map((date) =>{
 
-      const dateConverted = new Date(date.year, date.month, date.day);
+    values.map((date) => {
 
-      var d = moment(dateConverted).format('YYYY-MM-GG')
+        const dateConverted = new Date(date.year, date.monthIndex, date.day);
+        console.log('data nel map' , dateConverted)
 
-      datesToConvert.push(d)
+        var d = moment(dateConverted).format('YYYY-MM-DD')
 
+        datesToConvert.push(d)
     })
 
-    setField('dateChiusura',datesToConvert);
- 
-  }
+    setField('giorniChiusura', datesToConvert);
+}
 
   const [values, setValues] = useState([])
 

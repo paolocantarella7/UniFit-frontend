@@ -19,18 +19,11 @@ const FormModifica = (props) => {
 
     const setFormState = () => {
 
-        setForm(props.struttura) 
-        setDateChiusura()
+        setForm(props.struttura)
+
+        setValues(props.struttura.giorniChiusura)
 
         setLoading(false)
-    }
-
-    const setDateChiusura = () =>{
-        var tempDate = []
-        props.struttura.giorniChiusura.map(obj => {
-            tempDate.push(moment(obj.datachiusura).format('YYYY-MM-GG'))
-        }) 
-        setValues(tempDate)
     }
 
     const setField = (field, value) => {
@@ -49,9 +42,10 @@ const FormModifica = (props) => {
 
         values.map((date) => {
 
-            const dateConverted = new Date(date.year, date.month, date.day);
+            const dateConverted = new Date(date.year, date.monthIndex, date.day);
+            console.log('data nel map', dateConverted)
 
-            var d = moment(dateConverted).format('YYYY-MM-GG')
+            var d = moment(dateConverted).format('YYYY-MM-DD')
 
             datesToConvert.push(d)
         })
@@ -108,8 +102,8 @@ const FormModifica = (props) => {
 
 
     if (!loading) {
-        console.log(values)
-        console.log("componet", form)
+        console.log("form ", form)
+        console.log("date convertite", values)
         return (
             <>
                 <Form>
