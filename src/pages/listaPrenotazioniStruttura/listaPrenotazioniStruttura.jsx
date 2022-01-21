@@ -7,6 +7,7 @@ import { Redirect } from 'react-router-dom';
 import { Table } from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
+import NessunaPrenotazioneSvg from "../../nessunaPrenotazione.svg";
 
 class ListaPrenotazioniStruttura extends React.Component {
   state = {
@@ -70,26 +71,31 @@ class ListaPrenotazioniStruttura extends React.Component {
             type="admin" />
 
           <div className="container-fluid text-dark rounded col-xs-12 col-sm-8 text-center bg-white my-4">
-          <h1 className="pt-4 text-cyan mb-4">{`Prenotazioni di ${this.state.structure.nome}`}</h1>
+            <h1 className="pt-4 text-cyan mb-4">{`Prenotazioni di ${this.state.structure.nome}`}</h1>
 
             <div className='col'>
               {(this.state.reservation.length == 0) ? (
-                <p>Non ci sono prenotazioni</p>
+
+
+                <div className="mb-4">
+                  <img className="my-5" width="200" src={NessunaPrenotazioneSvg} />
+                  <p>Non ci sono prenotazioni</p>
+                </div>
               ) : (
                 <div>
 
 
-          
-                    <div className=" mx-auto">
-                      <input
-                        type="text"
-                        name="searchText"
-                        placeholder="Cerca prenotazione..."
-                        className="effect-8 rounded col-xs-12 col-sm-6"
-                        style={{ border: '2px solid #00c1fc' }}
-                        value={this.state.searchText}
-                        onChange={this.handleChange} />
-                    </div>
+
+                  <div className=" mx-auto">
+                    <input
+                      type="text"
+                      name="searchText"
+                      placeholder="Cerca prenotazione..."
+                      className="effect-8 rounded col-xs-12 col-sm-6"
+                      style={{ border: '2px solid #00c1fc' }}
+                      value={this.state.searchText}
+                      onChange={this.handleChange} />
+                  </div>
 
 
                   <Table striped borderless hover>
