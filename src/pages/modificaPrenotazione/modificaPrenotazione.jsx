@@ -29,42 +29,42 @@ class ModificaPrenotazione extends React.Component {
     this.datiStrutturaGet();
   }
 
-  datiStrutturaGet(){
+  datiStrutturaGet() {
     var url =
       Server.API_URL +
       `prenotazione/dettagliPrenotazione?idPrenotazione=${this.props.match.params.id}`;
     fetch(url)
-        .then((response) => response.json())
-        .then((responseJson) => {
-            this.setState({
-                selectedStructureId: responseJson.dettagli.struttura,
-                prenotazione: responseJson.dettagli,
-                date: responseJson.dettagli.dataPrenotazione,
-                selectedFascia: `${responseJson.dettagli.oraInizio.substring(0,responseJson.dettagli.oraInizio.lastIndexOf(":"))}-${responseJson.dettagli.oraFine.substring(0,responseJson.dettagli.oraFine.lastIndexOf(":"))}`
-            }, () => {
-            this.setState({ loading: false });
-            this.fasceGet();
-            this.getNomeStruttura();
-            });
-        })
-        .catch((error) => console.log(error));
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({
+          selectedStructureId: responseJson.dettagli.struttura,
+          prenotazione: responseJson.dettagli,
+          date: responseJson.dettagli.dataPrenotazione,
+          selectedFascia: `${responseJson.dettagli.oraInizio.substring(0, responseJson.dettagli.oraInizio.lastIndexOf(":"))}-${responseJson.dettagli.oraFine.substring(0, responseJson.dettagli.oraFine.lastIndexOf(":"))}`
+        }, () => {
+          this.setState({ loading: false });
+          this.fasceGet();
+          this.getNomeStruttura();
+        });
+      })
+      .catch((error) => console.log(error));
   }
 
-  getNomeStruttura(){
-    
+  getNomeStruttura() {
+
     var url =
       Server.API_URL +
       `admin/strutture/dettagliStruttura/${this.state.prenotazione.struttura}`;
     fetch(url)
-        .then((response) => response.json())
-        .then((responseJson) => {
-            this.setState({
-                selectedStructureName: responseJson.struttura.nome,
-            }, () => {
-            this.setState({ loading: false });
-            });
-        })
-        .catch((error) => console.log(error));
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({
+          selectedStructureName: responseJson.struttura.nome,
+        }, () => {
+          this.setState({ loading: false });
+        });
+      })
+      .catch((error) => console.log(error));
   }
 
   struttureGet() {
@@ -91,24 +91,24 @@ class ModificaPrenotazione extends React.Component {
         });
       })
       .catch((error) => console.log(error));
-    }
+  }
 
-    strutturaGetNome() {
-        var url =
-          Server.API_URL +
-          `admin/strutture/dettagliStruttura/${this.state.selectedStructureId}`;
-        fetch(url)
-          .then((response) => response.json())
-          .then((responseJson) => {
-            this.setState(
-              { selectedStructureName: responseJson.struttura.nome },
-              () => {
-                this.setState({ loading: false });
-              }
-            );
-          })
-          .catch((error) => console.log(error));
-      }
+  strutturaGetNome() {
+    var url =
+      Server.API_URL +
+      `admin/strutture/dettagliStruttura/${this.state.selectedStructureId}`;
+    fetch(url)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState(
+          { selectedStructureName: responseJson.struttura.nome },
+          () => {
+            this.setState({ loading: false });
+          }
+        );
+      })
+      .catch((error) => console.log(error));
+  }
 
   edit = () => {
     let errors = {};
@@ -122,34 +122,34 @@ class ModificaPrenotazione extends React.Component {
       return;
     }
     var url =
-          Server.API_URL +
-          `prenotazione/modificaPrenotazione`;
+      Server.API_URL +
+      `prenotazione/modificaPrenotazione`;
     var data = new FormData();
     data.append("idStruttura", this.state.selectedStructureId);
     data.append("dataPrenotazione", this.state.date);
     data.append("fascia", this.state.selectedFascia);
     data.append("idPrenotazione", this.props.match.params.id);
     fetch(url, {
-        method: "POST",
-        body: data,
+      method: "POST",
+      body: data,
     })
-          .then((response) => response.json())
-          .then((responseJson) => {
-            if(responseJson.code === 200){
-                toast.success(responseJson.msg, {
-                    autoClose: 8000,
-                    className: "success",
-                })
-            } else {
-                responseJson.error.map(error => {
-                    toast.error(error.msg, {
-                        autoClose: 8000,
-                        className: "error",
-                    })
-                })
-            }
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.code === 200) {
+          toast.success(responseJson.msg, {
+            autoClose: 8000,
+            className: "success",
           })
-          .catch((error) => console.log(error));
+        } else {
+          responseJson.error.map(error => {
+            toast.error(error.msg, {
+              autoClose: 8000,
+              className: "error",
+            })
+          })
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   handleChange = (event) => {
@@ -171,44 +171,44 @@ class ModificaPrenotazione extends React.Component {
   };
 
   render() {
-    if (localStorage.getItem("isLogged") === "false") {
+    if (localStorage.getItem("isLogged") === false) {
+      return <Redirect to="/" />;
+    }
+    else {
       let user = localStorage.getItem("currentUser");
       user = JSON.parse(user);
 
-      if (user.isAdmin) {
+      if (user.isAdmin === 1) {
         return <Redirect to="/adminArea" />;
       } else {
-        return <Redirect to="/home" />;
-      }
-    } else {
-      return (
-        <div>
-          <ConnectedHeader {...this.props} />
-          <div className="container-fluid text-dark rounded col-sm-10 col-10 text-center bg-white my-4 py-2">
-            <h3 className="py-4 text-cyan">Modifica prenotazione</h3>
-            <Form>
-              <div className="row my-4 mx-4">
-                <div className="col-6">
-                  <Card>
-                    <Card.Body>
-                      <Card.Text>{this.state.selectedStructureName}</Card.Text>
-                    </Card.Body>
-                  </Card>
+        return (
+          <div>
+            <ConnectedHeader {...this.props} />
+            <div className="container-fluid text-dark rounded col-sm-10 col-10 text-center bg-white my-4 py-2">
+              <h3 className="py-4 text-cyan">Modifica prenotazione</h3>
+              <Form>
+                <div className="row my-4 mx-4">
+                  <div className="col-6">
+                    <Card>
+                      <Card.Body>
+                        <Card.Text>{this.state.selectedStructureName}</Card.Text>
+                      </Card.Body>
+                    </Card>
+                  </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="error_div mx-auto">
-                  {this.state.errors.selectedStructureId ? (
-                    <p className="errmsg">
-                      {this.state.errors.selectedStructureId}
-                    </p>
-                  ) : (
-                    ""
-                  )}
+                <div className="row">
+                  <div className="error_div mx-auto">
+                    {this.state.errors.selectedStructureId ? (
+                      <p className="errmsg">
+                        {this.state.errors.selectedStructureId}
+                      </p>
+                    ) : (
+                      ""
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              
+
                 <>
                   <div className="row my-4 mx-4">
                     <div className="col-6">
@@ -246,41 +246,41 @@ class ModificaPrenotazione extends React.Component {
                 </>
 
                 <div className="row my-4 mx-4">
-                <div className="col-6">
-                  <Card>
-                    <Card.Body>
-                      <Card.Text>{this.state.date}</Card.Text>
-                    </Card.Body>
-                  </Card>
+                  <div className="col-6">
+                    <Card>
+                      <Card.Body>
+                        <Card.Text>{this.state.date}</Card.Text>
+                      </Card.Body>
+                    </Card>
+                  </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="error_div mx-auto">
-                  {this.state.errors.data ? (
-                    <p className="errmsg">{this.state.errors.data}</p>
-                  ) : (
-                    ""
-                  )}
+                <div className="row">
+                  <div className="error_div mx-auto">
+                    {this.state.errors.data ? (
+                      <p className="errmsg">{this.state.errors.data}</p>
+                    ) : (
+                      ""
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              <div className="row">
-                <Button
-                  variant="primary"
-                  size="lg"
-                  className="my-3 col-8 mx-auto"
-                  onClick={this.edit}
-                >
-                  Salva
-                </Button>
-              </div>
-            </Form>
+                <div className="row">
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    className="my-3 col-8 mx-auto"
+                    onClick={this.edit}
+                  >
+                    Salva
+                  </Button>
+                </div>
+              </Form>
+            </div>
+            <Footer {...this.props} />
           </div>
-          <Footer {...this.props} />
-        </div>
-      );
+        );
+      }
     }
   }
 }
-
 export default ModificaPrenotazione;
