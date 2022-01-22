@@ -1,3 +1,11 @@
+.text-cyan{
+  color: #00c1fc;
+}
+
+.bg-cyan{
+  background-color: #00c1fc;
+}
+
 .page{
   height: 100vh;
 }

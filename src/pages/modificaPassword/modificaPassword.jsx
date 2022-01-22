@@ -55,8 +55,8 @@ class ModificaPassword extends React.Component {
       .then((responseJson) => {
         this.setState({ loading: false });
         console.log(responseJson);
-        if (responseJson.code === 200) {
-          toast.success(responseJson.msg, {
+        if (responseJson.code === 200){
+          toast.success(responseJson.msg , {
             autoClose: 8000,
             className: "success"
           })
@@ -65,13 +65,13 @@ class ModificaPassword extends React.Component {
           window.location.assign(Server.FRONT_URL);
         } else {
           responseJson.error.map(error => {
-            toast.error(
-              error.msg,
-              {
-                autoClose: 8000,
-                className: "errorToast"
-              }
-            )
+              toast.error(
+                  error.msg,
+                  {
+                      autoClose: 8000,
+                      className: "errorToast"
+                  }
+              )
           })
         }
       })
@@ -79,11 +79,12 @@ class ModificaPassword extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="page">
         <ConnectedHeader {...this.props} />
         <form className="container-fluid text-dark rounded col-10 col-md-6 text-center bg-white my-4 py-4">
-          <h1 className="pt-4">Modifica password</h1>
-          <div class="form-group py-2">
+          <h1 className="pt-4 text-cyan">Modifica password</h1>
+
+          <div class="form-group py-2 col-8 mx-auto">
             <input
               name="password"
               type="password"
@@ -95,7 +96,7 @@ class ModificaPassword extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <div class="form-group py-2">
+          <div class="form-group py-2 col-8 mx-auto">
             <input
               name="confirmPassword"
               type="password"

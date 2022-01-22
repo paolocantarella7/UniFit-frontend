@@ -58,7 +58,7 @@ class VisualizzaStrutture extends React.Component {
     } 
     return (
       this.state.loading ?
-        <>
+        <div className="page">
           <ConnectedHeader/>
     
 
@@ -66,16 +66,16 @@ class VisualizzaStrutture extends React.Component {
 
 
           <Footer {...this.props} />
-        </>
+        </div>
         :
-        <>
+        <div className="page">
           <ConnectedHeader
             {...this.props}
             currentUser={new User("admin", "Luigi")}
             type="admin" />
 
           <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
-            <h1 className="pt-4">Visualizza strutture</h1>
+            <h1 className="pt-4 text-cyan">Visualizza strutture</h1>
 
             <div className='col'>
               {(this.state.structures.length === 0) ? (
@@ -107,7 +107,7 @@ class VisualizzaStrutture extends React.Component {
             </div>
           </div>
 
-        </>
+        </div>
     );
   }
 }

@@ -11,14 +11,15 @@ class CardStruttura extends React.Component {
   render() {
     return (
       <>
-        <Card className="h-100 w-100 d-inline-block " id={this.props.struttura.idStruttura} style={{ margin: "10px 0px" }}>
+      <hr className="mt-4"/>
+        <Card className="h-100 w-100 d-inline-block border border-0" id={this.props.struttura.idStruttura} style={{ margin: "10px 0px" }}>
           <Card.Body>
             <div className="row justify-content-between">
               <div className="d-flex align-items-start mx-auto">
                 {this.props.struttura.isCancellata == 0 ?
                   <Card.Title className="text-dark align-self-center">{this.props.struttura.nome}</Card.Title>
                   :
-                  <Card.Title className="text-dark align-self-center"><del>{this.props.struttura.nome}</del></Card.Title>
+                  <Card.Title className="text-danger align-self-center">{this.props.struttura.nome}</Card.Title>
                 }
               </div>
               <div className="col-md-4 ">
@@ -41,8 +42,11 @@ class CardStruttura extends React.Component {
                 }
               </div>
             </div>
+
+            
           </Card.Body>
         </Card>
+        <hr className="mt-4"/>
       </>
     );
   }
