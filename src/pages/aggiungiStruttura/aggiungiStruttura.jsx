@@ -14,7 +14,6 @@ class AggiungiStruttura extends React.Component {
   };
 
   salvaStruttura(form) {
-    console.log(form)
 
       var data = new FormData()
      
@@ -28,14 +27,12 @@ class AggiungiStruttura extends React.Component {
       data.append('oraFinePomeriggio', form.oraFP )
       data.append('durataPerFascia', form.durataFascia )
       
-      console.log("pagina", form.dateChiusura)
-    if (form.dateChiusura.length === 0) {
+    if (form.giorniChiusura.length === 0) {
       data.append('dateChiusura', JSON.stringify({ dateChiusura: [] }))
       console.log("PAGE senza date")
     }
     else {
-      console.log("DATE in JSON " + JSON.stringify(form.dateChiusura))
-      data.append('dateChiusura', JSON.stringify({ dateChiusura: form.dateChiusura }))
+      data.append('dateChiusura', JSON.stringify({ dateChiusura: form.giorniChiusura }))
     }
       
       var url = Server.API_URL + "admin/strutture/aggiungistruttura"
@@ -57,11 +54,7 @@ class AggiungiStruttura extends React.Component {
               autoClose: 5000,
               className: "success"
             })
-          }
-            
-
-          console.log('DATA', responseJson)
-           
+          } 
         })
         .catch(error => console.log(error))
 

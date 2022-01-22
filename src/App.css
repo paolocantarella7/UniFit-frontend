@@ -1,5 +1,10 @@
+.text-cyan{
+  color: #00c1fc;
+}
 
-
+.bg-cyan{
+  background-color: #00c1fc;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
