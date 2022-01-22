@@ -1,7 +1,7 @@
 import React from "react";
 import ConnectedHeader from "../../components/header/header";
 import Footer from "../../components/footer/footer";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loading from "../../components/loading/loading";
 import Server from "../../config.json";
@@ -26,49 +26,53 @@ class Recover2 extends React.Component {
   formSubmit = (e) => {
     e.preventDefault();
     let errors = {};
-    if (!this.state.password)
-      errors.password = "Inserire la nuova password";
+    if (!this.state.password) errors.password = "Inserire la nuova password";
     if (!this.state.confermaPassword)
-      errors.confermaPassword = "Inserire la conferma della password"
+      errors.confermaPassword = "Inserire la conferma della password";
     if (errors.password || errors.confermaPassword) {
-      this.setState({ errors })
+      this.setState({ errors });
       return;
     } else {
-      var data = new FormData()
-      let user = localStorage.getItem('currentUser')
-      user = JSON.parse(user);
-      data.append('password', this.state.password)
-      data.append('passwordConferma', this.state.confermaPassword)
+      var data = new FormData();
+      data.append("password", this.state.password);
+      data.append("passwordConferma", this.state.confermaPassword);
     }
-    this.setState({ loading: true })
-    console.log(this.props.match.params)
-    var url = Server.API_URL + `user/reset-password/${this.props.match.params.token.substring(0,this.props.match.params.token.length-1)}`
-    console.log(url)
+    this.setState({ loading: true });
+    console.log(this.props.match.params);
+    var url =
+      Server.API_URL +
+      `user/reset-password/${this.props.match.params.token.substring(
+        0,
+        this.props.match.params.token.length - 1
+      )}`;
+    console.log(url);
     fetch(url, {
-      method: 'POST',
-      body: data
-    }).then(response =>  response.json()
-    ).then(responseJson => {
-      this.setState({ loading: false })
-      if (responseJson.code === 200){    
-        localStorage.removeItem("currentUser");
-        localStorage.setItem("isLogged", false);
-        window.location.assign(Server.FRONT_URL);
-      } else if(responseJson.msg) {
-        toast.error(responseJson.msg, {
-          autoClose: 8000,
-          className: "error"
-      })
-      } else {
-        responseJson.error.map(error => {
-          toast.error(error.msg, {
-            autoClose: 8000,
-            className: "error"
-        })
-        })
-      }
+      method: "POST",
+      body: data,
     })
-  }
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({ loading: false });
+        if (responseJson.code === 200) {
+          localStorage.removeItem("currentUser");
+          localStorage.setItem("isLogged", false);
+          window.location.assign(Server.FRONT_URL);
+        } else if (responseJson.msg) {
+          toast.error(responseJson.msg, {
+            autoClose: 8000,
+            className: "error",
+          });
+        } else {
+          responseJson.error.map((error) => {
+            toast.error(error.msg, {
+              autoClose: 8000,
+              className: "error",
+            });
+            return null;
+          });
+        }
+      });
+  };
 
   render() {
     if (localStorage.getItem("isLogged") === "true") {
@@ -133,7 +137,9 @@ class Recover2 extends React.Component {
                 </div>
                 <div className="error_div">
                   {this.state.errors.confermaPassword ? (
-                    <p className="errmsg">{this.state.errors.confermaPassword}</p>
+                    <p className="errmsg">
+                      {this.state.errors.confermaPassword}
+                    </p>
                   ) : (
                     ""
                   )}
