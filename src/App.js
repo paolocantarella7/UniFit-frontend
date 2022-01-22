@@ -12,15 +12,14 @@ import Login from "./pages/Login/login";
 import SignUp from "./pages/SignUp/signup";
 import SignUp2 from "./pages/SignUp/signUp2";
 import RegistrazioneEffettuata from "./pages/SignUp/registrazioneEffettuata";
+import Recover from "./pages/recovery/recover";
+import Recover2 from "./pages/recovery/recover2";
 import HomePage from "./pages/HomePage/homepage";
 import AreaPersonaleUtente from "./pages/areaPersonaleUtente/areaPersonaleUtente";
 import InformazioniPersonaliUtente from "./pages/informazioniPersonaliUtente/informazioniPersonaliUtente";
 import ModificaPassword from "./pages/modificaPassword/modificaPassword";
 import CancellaAccount from "./pages/cancellaAccount/cancellaAccount";
-import Recover2 from "./pages/recovery/recover2";
-import Recover from "./pages/recovery/recover";
-import Login from "./pages/Login/login";
-import ModificaPassword from "./pages/modificaPassword/modificaPassword";
+
 
 //import admin area
 import AreaAmministratore from './pages/areaAmministratore/areaAmministratore';
@@ -52,6 +51,7 @@ function App() {
         <Route exact path="/userArea" component={AreaPersonaleUtente} />
         <Route exact path="/userDetails"component={InformazioniPersonaliUtente}/>
         <Route exact path="/editPassword" component={ModificaPassword} />
+        <Route exact path="/deleteAccount" component={CancellaAccount}/>
 
         <Route exact path="/adminArea" component={AreaAmministratore} />
         <Route exact path="/addStructure" component={AggiungiStruttura} />
@@ -60,6 +60,7 @@ function App() {
         <Route exact path="/showReservation/:id" component={ListaPrenotazioniStruttura} />
         <Route exact path="/editStructure/:id" component={ModificaStruttura} />
         <Route exact path="/showUsers" component={VisualizzaUtentiRegistrati} />
+
         <Route exact path="/showMembershipRequests" component={VisualizzaRichiesteDiTesseramento} />
         <Route exact path="/makeReservation" component={EffettuaPrenotazione} />
         <Route exact path="/makeMembership" component={EffettuaTesseramento} />

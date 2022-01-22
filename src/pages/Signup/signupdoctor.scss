@@ -1,0 +1,263 @@
+.errmsg {
+  font-size: 15px;
+  text-align: left;
+  font-weight: 400;
+  color: red !important;
+  margin: 0;
+}
+
+.checkDoctor {
+  span {
+    position: absolute;
+    left: 25px;
+    color: #f8b600;
+    pointer-events: none;
+    font-size: 17px;
+    line-height: 31px;
+    font-weight: 600;
+  }
+}
+
+.signup_main {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  padding: 40px 0px;
+  @media screen and (max-width: 767px) and (min-width: 320px) {
+    width: 90%;
+    padding: 0px 0px;
+  }
+}
+
+.signup_left {
+  width: 50%;
+  background-size: contain;
+  position: relative;
+  background-repeat: no-repeat;
+  background-color: #f8f6f9;
+  height: 654px;
+}
+
+.signup_left > span > img {
+  width: 514px;
+  height: 405px;
+}
+
+.signup_left > div {
+  position: absolute;
+  top: 34px;
+  padding: 10px;
+  color: #f8f6f9;
+}
+
+.signup_left > div > p {
+  color: #222222de;
+}
+
+.signup_left > div > div > button {
+  background-color: #00bffe;
+  padding: 8px 65px;
+  color: white;
+  font-size: large;
+}
+
+.signup_right {
+  width: 50%;
+  background-color: #00bffe;
+  @media screen and (max-width: 767px) and (min-width: 320px) {
+    width: 85%;
+    margin: 0 auto;
+  }
+}
+
+.right_top {
+  width: 80%;
+  margin: 0 auto;
+  padding: 50px 0px 20px 0px;
+  @media screen and (max-width: 568px) and (min-width: 320px) {
+    text-align: center;
+    padding: 20px 0px 20px 0px;
+    width: 100%;
+  }
+}
+
+.right_top > h3 {
+  padding: 5px;
+  color: white;
+}
+
+.right_top > p {
+  padding: 5px;
+  color: #ffffff;
+}
+
+.right_bottom > form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+.right_bottom > form > div > input {
+  width: 100%;
+  background-color: #57bffe;
+  color: white !important;
+}
+
+.right_bottom > form > div > input::placeholder {
+  color: #e8e8e8;
+}
+
+.right_bottom > form > button {
+  background-color: #f6f6f6;
+  color: #00bffe;
+  @media screen and (max-width: 767px) and (min-width: 320px) {
+    width: 30%;
+    margin: 0 auto;
+  }
+}
+
+.effect-8 {
+  border: none;
+  padding: 8px 14px 8px;
+  margin: 1px;
+  transition: 0.4s;
+}
+
+.effect-8 ~ .focus-border:before,
+.effect-8 ~ .focus-border:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #3399ff;
+  transition: 0.3s;
+}
+
+.effect-8 ~ .focus-border:after {
+  top: auto;
+  bottom: 0;
+  left: auto;
+  right: 0;
+}
+
+.effect-8 ~ .focus-border i:before,
+.effect-8 ~ .focus-border i:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 0;
+  background-color: #3399ff;
+  transition: 0.4s;
+}
+
+.effect-8 ~ .focus-border i:after {
+  left: auto;
+  right: 0;
+  top: auto;
+  bottom: 0;
+}
+
+.effect-8:focus ~ .focus-border:before,
+.effect-8:focus ~ .focus-border:after {
+  width: 100%;
+  transition: 0.3s;
+}
+
+.effect-8:focus ~ .focus-border i:before,
+.effect-8:focus ~ .focus-border i:after {
+  height: 100%;
+  transition: 0.4s;
+}
+
+.change {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 1px 1px #e0e0e0 inset;
+}
+
+/* necessary to give position: relative to parent. */
+.right_end {
+  width: 75%;
+  margin: 20px auto 0px auto;
+}
+
+.right_end > p {
+  padding: 5px;
+  color: white;
+}
+
+.medical {
+  font-weight: 600;
+  color: #57bffe;
+}
+
+.tourism {
+  font-weight: 500;
+  color: #57bffe;
+}
+
+.error_div {
+  margin: 5px 0px;
+  height: 27px;
+  display: flex;
+  align-items: center;
+}
+
+.final_error {
+  width: 75%;
+  margin: 0 auto;
+  display: flex;
+  padding: 5px;
+  justify-content: center;
+}
+
+.signup_btn {
+  margin: 5px 0px;
+  padding: 10px 0px;
+  border: none;
+  border-radius: 2px;
+}
+
+.heading {
+  font-weight: 500;
+  color: #ffff;
+  text-transform: none;
+  @media screen and (max-width: 768px) and (min-width: 320px) {
+    font-size: 30px;
+  }
+}
+
+.welcome_to {
+  font-weight: 600;
+  @media screen and (max-width: 768px) and (min-width: 568px) {
+    font-size: 34px;
+  }
+  @media screen and (max-width: 568px) and (min-width: 320px) {
+    font-size: 24px;
+  }
+}
+
+.img_span {
+  position: absolute;
+  bottom: 0;
+}
+
+.input_icons {
+  padding: 7px 14px 7px;
+  width: 50px;
+  color: #cddde2;
+  height: inherit;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
