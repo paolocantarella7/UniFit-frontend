@@ -1,7 +1,6 @@
 import React from "react";
 import ConnectedHeader from "../../components/header/header";
 import Footer from "../../components/footer/footer";
-import { User } from "../../models/User";
 import Server from "../../config.json";
 import { Redirect } from 'react-router-dom';
 import { Table } from "react-bootstrap";
@@ -50,10 +49,7 @@ class ListaPrenotazioniStruttura extends React.Component {
       this.state.loading ?
 
         <div className="page">
-          <ConnectedHeader
-            {...this.props}
-            currentUser={new User("admin", "Luigi")}
-            type="admin" />
+          <ConnectedHeader {...this.props}/>
 
           <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
             <h1 className="pt-4">Caricamento prenotazioni</h1>

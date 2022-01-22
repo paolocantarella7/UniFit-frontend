@@ -2,7 +2,6 @@ import React from 'react';
 import Footer from '../../components/footer/footer'
 import ConnectedHeader from '../../components/header/header'
 import { Link } from "react-router-dom";
-import { User } from "../../models/User";
 import Server from "../../config.json";
 import { Redirect } from 'react-router-dom';
 class DettagliStruttura extends React.Component {
@@ -55,10 +54,7 @@ class DettagliStruttura extends React.Component {
     return (
 
       <div className="page">
-        <ConnectedHeader
-          {...this.props}
-          currentUser={new User("admin", "Luigi")}
-          type="admin" />
+        <ConnectedHeader {...this.props}/>
 
         <div className="w-75 bg-white mx-auto pb-5 my-5 rounded">
           <div className="row">
