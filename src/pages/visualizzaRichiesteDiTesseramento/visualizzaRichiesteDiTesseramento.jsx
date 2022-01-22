@@ -7,7 +7,8 @@ import { Redirect } from 'react-router-dom';
 class VisualizzaRichiesteDiTesseramento extends React.Component {
   state = {
     loading: true,
-    requests: []
+    requests: [],
+    selectedRequest: {},
   }
   componentDidMount() {
     this.getReq()
@@ -24,7 +25,51 @@ class VisualizzaRichiesteDiTesseramento extends React.Component {
       })
       .catch(error => console.log(error))
   }
+
+  approvaRichiesta = () => {
+
+    var url = Server.API_URL+"admin/reqtess/validatesseramento"
+
+    fetch(url , {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            azione: 'accetta',
+            idReqTess: this.state.selectedRequest.idRichiesta,
+            idUtente: this.state.selectedRequest.utenteRichiedente.idUtente,
+        })
+    }).then(response => response.json())
+    .then(responseJson => {
+      console.log(responseJson)
+    })
+}
+
+declinaRichiesta = () => {
+    console.log(this.state.selectedRequest)
+    var url = Server.API_URL+"admin/reqtess/validatesseramento"
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            azione: 'rifiuta',
+            idReqTess: this.state.selectedRequest.idRichiesta_tesseramento,
+            idUtente: this.state.selectedRequest.utenteRichiedente.idUtente,
+        })
+    }).then(response => response.json())
+    .then(responseJson => {
+      console.log(responseJson)
+    })
+}
+
   render() {
+    console.log(this.state.requests)
     if (localStorage.getItem('isLogged') === 'true') {
 
       let user = localStorage.getItem('currentUser')
@@ -58,7 +103,11 @@ class VisualizzaRichiesteDiTesseramento extends React.Component {
                   <p>Non ci sono richieste!</p>
                 ) : (
                   this.state.requests.map(request => (
-                    <RichiestaDiTesseramento key={request.id} request={request} />
+                    <RichiestaDiTesseramento key={request.id} request={request} onPress={
+                      (data) => this.setState({
+                        selectedRequest: data,
+                      })
+                    }/>
                   )))
                 }
               </div>
@@ -66,6 +115,33 @@ class VisualizzaRichiesteDiTesseramento extends React.Component {
             </div>
             <Footer {...this.props} />
           </div>
+          <div className="modal" id="modalValida" role="dialog">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-body">
+                            <p>Sei sicuro di voler approvare questa richiesta di tesseramento?</p>
+                        </div>
+                        <div className="modal-footer">
+                        <button type="button" className="btn btn-success" data-dismiss="modal" onClick={this.approvaRichiesta}>Conferma</button>
+                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="modal" id="modalDeclina" role="dialog">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-body">
+                            <p>Sei sicuro di voler declinare questa richiesta di tesseramento?</p>
+                        </div>
+                        <div className="modal-footer">
+                        <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={this.declinaRichiesta}>Conferma</button>
+                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Annulla</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </>
     );
   }
