@@ -4,9 +4,9 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 //import pagine Utente
 import Login from "./pages/Login/login";
-import SignUp from "./pages/Signup/signup";
-import SignUp2 from "./pages/Signup/signUp2";
-import RegistrazioneEffettuata from "./pages/Signup/registrazioneEffettuata";
+import SignUp from "./pages/SignUp/signup";
+import SignUp2 from "./pages/SignUp/signUp2";
+import RegistrazioneEffettuata from "./pages/SignUp/registrazioneEffettuata";
 import HomePage from "./pages/HomePage/homepage";
 import AreaPersonaleUtente from "./pages/areaPersonaleUtente/areaPersonaleUtente";
 import InformazioniPersonaliUtente from "./pages/informazioniPersonaliUtente/informazioniPersonaliUtente";
