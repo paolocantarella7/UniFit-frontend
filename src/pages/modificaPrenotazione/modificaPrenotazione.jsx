@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ConnectedHeader from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import { Redirect } from "react-router-dom";
@@ -20,7 +20,7 @@ class ModificaPrenotazione extends React.Component {
       selectedStructureId: "",
       selectedStructureName: "",
       errors: {},
-      prenotazione: {}
+      prenotazione: {},
     };
   }
 
@@ -36,33 +36,44 @@ class ModificaPrenotazione extends React.Component {
     fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
-        this.setState({
-          selectedStructureId: responseJson.dettagli.struttura,
-          prenotazione: responseJson.dettagli,
-          date: responseJson.dettagli.dataPrenotazione,
-          selectedFascia: `${responseJson.dettagli.oraInizio.substring(0, responseJson.dettagli.oraInizio.lastIndexOf(":"))}-${responseJson.dettagli.oraFine.substring(0, responseJson.dettagli.oraFine.lastIndexOf(":"))}`
-        }, () => {
-          this.setState({ loading: false });
-          this.fasceGet();
-          this.getNomeStruttura();
-        });
+        this.setState(
+          {
+            selectedStructureId: responseJson.dettagli.struttura,
+            prenotazione: responseJson.dettagli,
+            date: responseJson.dettagli.dataPrenotazione,
+            selectedFascia: `${responseJson.dettagli.oraInizio.substring(
+              0,
+              responseJson.dettagli.oraInizio.lastIndexOf(":")
+            )}-${responseJson.dettagli.oraFine.substring(
+              0,
+              responseJson.dettagli.oraFine.lastIndexOf(":")
+            )}`,
+          },
+          () => {
+            this.setState({ loading: false });
+            this.fasceGet();
+            this.getNomeStruttura();
+          }
+        );
       })
       .catch((error) => console.log(error));
   }
 
   getNomeStruttura() {
-
     var url =
       Server.API_URL +
       `admin/strutture/dettagliStruttura/${this.state.prenotazione.struttura}`;
     fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
-        this.setState({
-          selectedStructureName: responseJson.struttura.nome,
-        }, () => {
-          this.setState({ loading: false });
-        });
+        this.setState(
+          {
+            selectedStructureName: responseJson.struttura.nome,
+          },
+          () => {
+            this.setState({ loading: false });
+          }
+        );
       })
       .catch((error) => console.log(error));
   }
@@ -121,9 +132,7 @@ class ModificaPrenotazione extends React.Component {
       this.setState({ errors });
       return;
     }
-    var url =
-      Server.API_URL +
-      `prenotazione/modificaPrenotazione`;
+    var url = Server.API_URL + `prenotazione/modificaPrenotazione`;
     var data = new FormData();
     data.append("idStruttura", this.state.selectedStructureId);
     data.append("dataPrenotazione", this.state.date);
@@ -139,14 +148,15 @@ class ModificaPrenotazione extends React.Component {
           toast.success(responseJson.msg, {
             autoClose: 8000,
             className: "success",
-          })
+          });
         } else {
-          responseJson.error.map(error => {
+          responseJson.error.map((error) => {
             toast.error(error.msg, {
               autoClose: 8000,
               className: "error",
-            })
-          })
+            });
+            return null;
+          });
         }
       })
       .catch((error) => console.log(error));
@@ -158,23 +168,25 @@ class ModificaPrenotazione extends React.Component {
   };
 
   onStructureSelect = (e) => {
-    this.state.selectedStructureId = e;
-    this.state.selectedFascia = "";
+    this.setState({
+      selectedStructureId: e,
+      selectedFascia: "",
+    });
     this.strutturaGetNome();
     this.setState({});
     this.fasceGet();
   };
 
   onFasciaSelect = (e) => {
-    this.state.selectedFascia = e;
-    this.setState({});
+    this.setState({
+      selectedFascia: e,
+    });
   };
 
   render() {
     if (localStorage.getItem("isLogged") === false) {
       return <Redirect to="/" />;
-    }
-    else {
+    } else {
       let user = localStorage.getItem("currentUser");
       user = JSON.parse(user);
 
@@ -191,7 +203,9 @@ class ModificaPrenotazione extends React.Component {
                   <div className="col-6">
                     <Card>
                       <Card.Body>
-                        <Card.Text>{this.state.selectedStructureName}</Card.Text>
+                        <Card.Text>
+                          {this.state.selectedStructureName}
+                        </Card.Text>
                       </Card.Body>
                     </Card>
                   </div>
@@ -207,7 +221,6 @@ class ModificaPrenotazione extends React.Component {
                     )}
                   </div>
                 </div>
-
 
                 <>
                   <div className="row my-4 mx-4">

@@ -2,24 +2,21 @@ import React from "react";
 import Footer from "../../components/footer/footer";
 import ConnectedHeader from "../../components/header/header";
 import { Link } from "react-router-dom";
-import { Redirect } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 
 class AreaAmministratore extends React.Component {
   render() {
-    if (localStorage.getItem('isLogged') === 'true') {
-      
-      let user = localStorage.getItem('currentUser')
+    if (localStorage.getItem("isLogged") === "true") {
+      let user = localStorage.getItem("currentUser");
       user = JSON.parse(user);
 
       if (!user.isAdmin) {
-        return <Redirect to="/home" />
+        return <Redirect to="/home" />;
       }
-    } 
+    }
     return (
       <div>
-        <ConnectedHeader
-          {...this.props}
-        />
+        <ConnectedHeader {...this.props} />
         <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
           <h1 className="pt-4">Area Amministratore</h1>
           <Link to={"/addStructure"} className={`nav-link`}>
@@ -58,7 +55,7 @@ class AreaAmministratore extends React.Component {
                 type="button"
                 className="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
               >
-                Visualizza richieste di tesseramento 
+                Visualizza richieste di tesseramento
               </button>
             </div>
           </Link>

@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import ConnectedHeader from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import { Redirect } from "react-router-dom";
@@ -28,13 +28,12 @@ class EffettuaPrenotazione extends React.Component {
   }
 
   struttureGet() {
-    this.setState({ loading: true })
+    this.setState({ loading: true });
     var url = Server.API_URL + "prenotazione/struttureDisponibili";
 
     fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
-
         if (responseJson.code === 200) {
           this.setState({ structures: responseJson.strutture }, () => {
             this.setState({ loading: false });
@@ -42,8 +41,8 @@ class EffettuaPrenotazione extends React.Component {
         } else {
           toast.error("Connessione al server non riuscita", {
             autoClose: 5000,
-            className: 'errorToast',
-          })
+            className: "errorToast",
+          });
           this.setState({ loading: false });
         }
       })
@@ -51,8 +50,10 @@ class EffettuaPrenotazione extends React.Component {
   }
 
   fasceGet() {
-    this.setState({ loading: true })
-    var url = Server.API_URL + `prenotazione/getFasce?idStruttura=${this.state.selectedStructureId}`;
+    this.setState({ loading: true });
+    var url =
+      Server.API_URL +
+      `prenotazione/getFasce?idStruttura=${this.state.selectedStructureId}`;
 
     fetch(url)
       .then((response) => response.json())
@@ -75,7 +76,7 @@ class EffettuaPrenotazione extends React.Component {
       this.setState({ errors });
       return;
     }
-     // controllo se una facia e`piena 
+    // controllo se una facia e`piena
     this.props.history.push({
       pathname: "/makePayment",
       state: {
@@ -93,34 +94,39 @@ class EffettuaPrenotazione extends React.Component {
   };
 
   onStructureSelect = (e) => {
-    this.state.selectedStructureId = e;
-    this.state.selectedFascia = "";
     this.strutturaGetNome();
-    this.setState({});
+    this.setState({
+      selectedStructureId: e,
+      selectedFascia: "",
+    });
     this.fasceGet();
   };
 
   onFasciaSelect = (e) => {
-    this.state.selectedFascia = e;
-    this.setState({});
+    this.setState({
+      selectedFascia: e,
+    });
   };
 
   strutturaGetNome() {
-    this.setState({ loading: true })
+    this.setState({ loading: true });
 
-    this.state.structures.map(strutturaSelected => {
-      if (strutturaSelected.idStruttura === Number(this.state.selectedStructureId)) {
-        this.setState({ selectedStructureName: strutturaSelected.nome },
-          () => this.setState({ loading: false }))
+    this.state.structures.map((strutturaSelected) => {
+      if (
+        strutturaSelected.idStruttura === Number(this.state.selectedStructureId)
+      ) {
+        this.setState({ selectedStructureName: strutturaSelected.nome }, () =>
+          this.setState({ loading: false })
+        );
       }
-    })
+      return null;
+    });
   }
 
   render() {
-    if (localStorage.getItem("isLogged") === 'false') {
+    if (localStorage.getItem("isLogged") === "false") {
       return <Redirect to="/" />;
-    }
-    else {
+    } else {
       let user = localStorage.getItem("currentUser");
       user = JSON.parse(user);
 
@@ -137,7 +143,9 @@ class EffettuaPrenotazione extends React.Component {
                   <div className="col-6">
                     <Card>
                       <Card.Body>
-                        <Card.Text>{this.state.selectedStructureName}</Card.Text>
+                        <Card.Text>
+                          {this.state.selectedStructureName}
+                        </Card.Text>
                       </Card.Body>
                     </Card>
                   </div>

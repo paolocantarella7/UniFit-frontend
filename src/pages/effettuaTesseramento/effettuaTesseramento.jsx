@@ -22,8 +22,9 @@ class EffettuaTesseramento extends React.Component {
   };
 
   handleSelct = (e) => {
-    this.state.type = e;
-    this.setState({});
+    this.setState({
+      type: e,
+    });
   };
 
   goToPayment = () => {
@@ -47,10 +48,9 @@ class EffettuaTesseramento extends React.Component {
   };
 
   render() {
-    if (localStorage.getItem("isLogged") === 'false') {
+    if (localStorage.getItem("isLogged") === "false") {
       return <Redirect to="/" />;
-    }
-    else {
+    } else {
       let user = localStorage.getItem("currentUser");
       user = JSON.parse(user);
 

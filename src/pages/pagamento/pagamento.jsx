@@ -24,39 +24,40 @@ export default class Pagamento extends React.Component {
   };
 
   handleInputChange = (e) => {
-
     const { name, value } = e.target;
 
     this.setState({ [name]: value }, () => {
-      if (name === 'expiry') {
+      if (name === "expiry") {
         this.setState({
-          expiryOnCard: `${this.state.expiry.substring(this.state.expiry.indexOf("-") + 1, this.state.expiry.length)}${this.state.expiry.substring(2, 4)}`
-        })
+          expiryOnCard: `${this.state.expiry.substring(
+            this.state.expiry.indexOf("-") + 1,
+            this.state.expiry.length
+          )}${this.state.expiry.substring(2, 4)}`,
+        });
       }
     });
-
-
   };
 
   formSubmit = (e) => {
     e.preventDefault();
     let errors = {};
-    if (this.state.cvc.length != 3) errors.cvc = "CVC non valido valido";
+    let user = localStorage.getItem("currentUser");
+    user = JSON.parse(user);
+    var url = "";
+    var data = new FormData();
+
+    if (this.state.cvc.length !== 3) errors.cvc = "CVC non valido valido";
     if (this.state.cvc.length === 0) errors.cvc = "Inserire CVC";
     if (this.state.expiry.length === 0)
       errors.expiry = "Inserire una scadenza valida";
     if (this.state.name.length <= 0) errors.name = "Inserire l'intestatario";
-    if (this.state.number.length != 16)
+    if (this.state.number.length !== 16)
       errors.number = "Numero della carta non valido";
 
     if (errors.cvc || errors.expiry || errors.name || errors.number) {
       this.setState({ errors });
       return;
     } else if (this.props.location.state.prenotazione === false) {
-      let user = localStorage.getItem("currentUser");
-      user = JSON.parse(user);
-
-      var data = new FormData();
       data.append("file", this.props.location.state.selectedFile);
       data.append("tipologiaTesseramento", this.props.location.state.type);
       data.append("idUtente", user.idUtente);
@@ -64,14 +65,14 @@ export default class Pagamento extends React.Component {
       data.append("intestatarioCarta", this.state.name);
       data.append("scadenzaCarta", this.state.expiry);
       data.append("cvvCarta", this.state.cvc);
-      var url = Server.API_URL + "user/effettuaTesseramento";
+      url = Server.API_URL + "user/effettuaTesseramento";
       fetch(url, {
         method: "POST",
         body: data,
       })
         .then((response) => response.json())
         .then((responseJson) => {
-          console.log(responseJson)
+          console.log(responseJson);
           if (responseJson.code === 200 || responseJson.code === 201) {
             toast.success(responseJson.msg, {
               autoClose: 8000,
@@ -79,7 +80,6 @@ export default class Pagamento extends React.Component {
             });
 
             window.location.assign(Server.FRONT_URL + "paymentDone");
-
           } else {
             if (responseJson.code === 400 && responseJson.error) {
               responseJson.error.map((error) => {
@@ -87,6 +87,7 @@ export default class Pagamento extends React.Component {
                   autoClose: 8000,
                   className: "errorToast",
                 });
+                return null;
               });
             } else {
               toast.error(responseJson.msg, {
@@ -99,10 +100,6 @@ export default class Pagamento extends React.Component {
           this.setState({ loading: false });
         });
     } else {
-      let user = localStorage.getItem("currentUser");
-      user = JSON.parse(user);
-
-      var data = new FormData();
       data.append("idUtente", user.idUtente);
       data.append("numeroCarta", this.state.number);
       data.append("intestatarioCarta", this.state.name);
@@ -111,7 +108,7 @@ export default class Pagamento extends React.Component {
       data.append("idStruttura", this.props.location.state.selectedStructureId);
       data.append("fascia", this.props.location.state.selectedFascia);
       data.append("dataPrenotazione", this.props.location.state.date);
-      var url = Server.API_URL + "prenotazione/effettuaPrenotazione";
+      url = Server.API_URL + "prenotazione/effettuaPrenotazione";
       fetch(url, {
         method: "POST",
         body: data,
@@ -120,22 +117,18 @@ export default class Pagamento extends React.Component {
         .then((responseJson) => {
           console.log(responseJson);
           if (responseJson.code === 200) {
-
             toast.success(responseJson.msg, {
               autoClose: 8000,
               className: "success",
             });
 
             window.location.assign(Server.FRONT_URL + "paymentDone");
-
           } else {
             if (responseJson.code === 400) {
-    
-                toast.error(responseJson.msg, {
-                  autoClose: 8000,
-                  className: "errorToast",
-                });
-             
+              toast.error(responseJson.msg, {
+                autoClose: 8000,
+                className: "errorToast",
+              });
             }
           }
 
@@ -150,16 +143,17 @@ export default class Pagamento extends React.Component {
     let errors = this.state.errors;
     switch (name) {
       case "number":
-        errors.number = value.length != 16 ? "Numero carta non valido" : "";
+        errors.number = value.length !== 16 ? "Numero carta non valido" : "";
         break;
       case "name":
         errors.name = value.length <= 0 ? "Inserire il nome" : "";
         break;
       case "cvc":
-        errors.cvc = value.length != 3 ? "Inserire un cvc valido" : "";
+        errors.cvc = value.length !== 3 ? "Inserire un cvc valido" : "";
         break;
       case "expiry":
-        errors.expiry = value.length === 0 ? "Inserire una scadenza valida" : "";
+        errors.expiry =
+          value.length === 0 ? "Inserire una scadenza valida" : "";
         break;
       default:
         break;
@@ -168,11 +162,9 @@ export default class Pagamento extends React.Component {
   };
 
   render() {
-    if (localStorage.getItem("isLogged") === 'false') {
-
+    if (localStorage.getItem("isLogged") === "false") {
       return <Redirect to="/" />;
-    }
-    else {
+    } else {
       let user = localStorage.getItem("currentUser");
       user = JSON.parse(user);
 

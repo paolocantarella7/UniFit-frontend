@@ -5,7 +5,6 @@ import "./homepage.scss";
 import ConnectedHeader from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import "./homepage.scss";
-import { User } from "../../models/User";
 
 // Homepage
 class HomePage extends React.Component {
@@ -17,9 +16,7 @@ class HomePage extends React.Component {
   render() {
     return (
       <div>
-        <ConnectedHeader
-          {...this.props}
-        />
+        <ConnectedHeader {...this.props} />
         <div className="container-fluid text-dark rounded col-sm-10 col-10 text-center bg-white my-4">
           <h3 className="py-4 text-cyan">Bentornato su UniFit!</h3>
         </div>
