@@ -58,12 +58,12 @@ class EffettuaTesseramento extends React.Component {
         return <Redirect to="/adminArea" />;
       } else {
         return (
-          <div>
+          <div className="page">
             <ConnectedHeader {...this.props} />
             <div className="container-fluid text-dark rounded w-100 col-sm-10 col-10 bg-white my-4 px-4 py-4">
-              <h3 className="py-4 text-cyan text-center">
+              <h1 className="py-4 text-cyan text-center">
                 Effettua tesseramento
-              </h3>
+              </h1>
 
               <Card className="mx-4 my-4">
                 <Card.Body>

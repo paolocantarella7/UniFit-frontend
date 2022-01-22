@@ -1,4 +1,4 @@
-import React from "react";
+import React  from "react";
 import ConnectedHeader from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import { Redirect } from "react-router-dom";
@@ -6,6 +6,7 @@ import Server from "../../config.json";
 import { DropdownButton, Dropdown, Button, Card } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { toast } from "react-toastify";
+import NuovaPrenotazioneSvg from "../../nuovaPrenotazione.svg";
 
 class EffettuaPrenotazione extends React.Component {
   constructor() {
@@ -28,12 +29,13 @@ class EffettuaPrenotazione extends React.Component {
   }
 
   struttureGet() {
-    this.setState({ loading: true });
+    this.setState({ loading: true })
     var url = Server.API_URL + "prenotazione/struttureDisponibili";
 
     fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
+
         if (responseJson.code === 200) {
           this.setState({ structures: responseJson.strutture }, () => {
             this.setState({ loading: false });
@@ -41,8 +43,8 @@ class EffettuaPrenotazione extends React.Component {
         } else {
           toast.error("Connessione al server non riuscita", {
             autoClose: 5000,
-            className: "errorToast",
-          });
+            className: 'errorToast',
+          })
           this.setState({ loading: false });
         }
       })
@@ -50,10 +52,8 @@ class EffettuaPrenotazione extends React.Component {
   }
 
   fasceGet() {
-    this.setState({ loading: true });
-    var url =
-      Server.API_URL +
-      `prenotazione/getFasce?idStruttura=${this.state.selectedStructureId}`;
+    this.setState({ loading: true })
+    var url = Server.API_URL + `prenotazione/getFasce?idStruttura=${this.state.selectedStructureId}`;
 
     fetch(url)
       .then((response) => response.json())
@@ -76,7 +76,7 @@ class EffettuaPrenotazione extends React.Component {
       this.setState({ errors });
       return;
     }
-    // controllo se una facia e`piena
+     // controllo se una facia e`piena 
     this.props.history.push({
       pathname: "/makePayment",
       state: {
@@ -94,39 +94,34 @@ class EffettuaPrenotazione extends React.Component {
   };
 
   onStructureSelect = (e) => {
+    this.state.selectedStructureId = e;
+    this.state.selectedFascia = "";
     this.strutturaGetNome();
-    this.setState({
-      selectedStructureId: e,
-      selectedFascia: "",
-    });
+    this.setState({});
     this.fasceGet();
   };
 
   onFasciaSelect = (e) => {
-    this.setState({
-      selectedFascia: e,
-    });
+    this.state.selectedFascia = e;
+    this.setState({});
   };
 
   strutturaGetNome() {
-    this.setState({ loading: true });
+    this.setState({ loading: true })
 
-    this.state.structures.map((strutturaSelected) => {
-      if (
-        strutturaSelected.idStruttura === Number(this.state.selectedStructureId)
-      ) {
-        this.setState({ selectedStructureName: strutturaSelected.nome }, () =>
-          this.setState({ loading: false })
-        );
+    this.state.structures.map(strutturaSelected => {
+      if (strutturaSelected.idStruttura === Number(this.state.selectedStructureId)) {
+        this.setState({ selectedStructureName: strutturaSelected.nome },
+          () => this.setState({ loading: false }))
       }
-      return null;
-    });
+    })
   }
 
   render() {
-    if (localStorage.getItem("isLogged") === "false") {
+    if (localStorage.getItem("isLogged") === 'false') {
       return <Redirect to="/" />;
-    } else {
+    }
+    else {
       let user = localStorage.getItem("currentUser");
       user = JSON.parse(user);
 
@@ -134,22 +129,13 @@ class EffettuaPrenotazione extends React.Component {
         return <Redirect to="/adminArea" />;
       } else {
         return (
-          <div>
+          <div className="page">
             <ConnectedHeader {...this.props} />
             <div className="container-fluid text-dark rounded col-sm-10 col-10 text-center bg-white my-4 py-2">
-              <h3 className="py-4 text-cyan">Effettua prenotazione</h3>
+              <h1 className="py-4 text-cyan">Nuova prenotazione</h1>
               <Form>
-                <div className="row my-4 mx-4">
-                  <div className="col-6">
-                    <Card>
-                      <Card.Body>
-                        <Card.Text>
-                          {this.state.selectedStructureName}
-                        </Card.Text>
-                      </Card.Body>
-                    </Card>
-                  </div>
-                  <div className="col-6">
+                <div className="my-4 mx-4">
+                <div className="col-6 mx-auto">
                     {this.state.structures.size === 0 ? (
                       ""
                     ) : (
@@ -166,6 +152,14 @@ class EffettuaPrenotazione extends React.Component {
                       </DropdownButton>
                     )}
                   </div>
+                  <div className="col-6 mx-auto">
+                    <Card className="border border-0">
+                      <Card.Body>
+                        <Card.Text className="h2">{this.state.selectedStructureName}</Card.Text>
+                      </Card.Body>
+                    </Card>
+                  </div>
+                  
                 </div>
                 <div className="row">
                   <div className="error_div mx-auto">
@@ -183,15 +177,8 @@ class EffettuaPrenotazione extends React.Component {
                   ""
                 ) : (
                   <>
-                    <div className="row my-4 mx-4">
-                      <div className="col-6">
-                        <Card>
-                          <Card.Body>
-                            <Card.Text>{this.state.selectedFascia}</Card.Text>
-                          </Card.Body>
-                        </Card>
-                      </div>
-                      <div className="col-6">
+                    <div className="my-4 mx-4">
+                    <div className="col-6 mx-auto">
                         <DropdownButton
                           id="dropdown-basic-button"
                           title="Seleziona fascia"
@@ -204,6 +191,14 @@ class EffettuaPrenotazione extends React.Component {
                           ))}
                         </DropdownButton>
                       </div>
+                      <div className="col-6 mx-auto">
+                        <Card className="border border-0">
+                          <Card.Body>
+                            <Card.Text className="h2">{this.state.selectedFascia}</Card.Text>
+                          </Card.Body>
+                        </Card>
+                      </div>
+                      
                     </div>
                     <div className="row">
                       <div className="error_div mx-auto">
@@ -239,14 +234,22 @@ class EffettuaPrenotazione extends React.Component {
                   <Button
                     variant="primary"
                     size="lg"
-                    className="my-3 col-8 mx-auto bg-cyan border"
+                    className="my-3 col-4 mx-auto bg-cyan border"
                     onClick={this.goToPayment}
                   >
                     Paga ora
                   </Button>
                 </div>
               </Form>
+              
             </div>
+
+            <img
+                className="my-5 d-block mx-auto"
+                alt="Pagamento effettuato"
+                width="200"
+                src={NuovaPrenotazioneSvg}
+              />
             <Footer {...this.props} />
           </div>
         );

@@ -194,7 +194,7 @@ class ModificaPrenotazione extends React.Component {
         return <Redirect to="/adminArea" />;
       } else {
         return (
-          <div>
+          <div className="page">
             <ConnectedHeader {...this.props} />
             <div className="container-fluid text-dark rounded col-sm-10 col-10 text-center bg-white my-4 py-2">
               <h3 className="py-4 text-cyan">Modifica prenotazione</h3>

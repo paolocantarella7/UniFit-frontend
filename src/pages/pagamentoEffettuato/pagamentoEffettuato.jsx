@@ -13,7 +13,7 @@ export default function PagamentoEffettuato() {
       return <Redirect to="/adminArea" />;
     } else {
       return (
-        <div className="container h-100">
+        <div className="container h-100 page">
           <div
             className="d-flex align-items-center justify-content-center"
             style={{ height: "100vh" }}

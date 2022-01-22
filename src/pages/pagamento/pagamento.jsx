@@ -125,10 +125,13 @@ export default class Pagamento extends React.Component {
             window.location.assign(Server.FRONT_URL + "paymentDone");
           } else {
             if (responseJson.code === 400) {
-              toast.error(responseJson.msg, {
-                autoClose: 8000,
-                className: "errorToast",
-              });
+              responseJson.error.map(error =>{
+                toast.error(error.msg, {
+                  autoClose: 8000,
+                  className: "errorToast",
+                });
+              })
+              
             }
           }
 
@@ -172,10 +175,10 @@ export default class Pagamento extends React.Component {
         return <Redirect to="/adminArea" />;
       } else {
         return (
-          <div className="pb-4">
+          <div className="pb-4 page">
             <ConnectedHeader {...this.props} />
             <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4 px-4 py-4">
-              <h3 className="py-4 text-cyan text-center">Pagamento</h3>
+              <h1 className="py-4 text-cyan text-center">Pagamento</h1>
               <div id="PaymentForm" className="row">
                 <div className="col my-4">
                   <Cards
