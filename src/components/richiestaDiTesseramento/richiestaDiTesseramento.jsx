@@ -8,7 +8,7 @@ class RichiestaDiTesseramento extends React.Component{
     saveFile = () => {
         saveAs(
             Server.API_URL+"admin/reqtess/downloadCertificato/"+this.props.request.idRichiesta_tesseramento, 
-            "certificatoDownload.pdf"
+            `certificato ${this.props.request.utenteRichiedente.nome + this.props.request.utenteRichiedente.cognome}.pdf`
         );
     };
 
@@ -25,7 +25,7 @@ class RichiestaDiTesseramento extends React.Component{
                         </div>
                         <div className="col-8 mx-auto">
                             <button type="button" className="col-12 col-lg-3 btn btn-primary mx-1 my-2" onClick={this.saveFile}>Documenti</button>
-                            <button type="button" className= "col-12 col-lg-3 btn btn-success mx-1 my-2"  data-toggle="modal" data-target="#modalValida" onClick={() => this.props.onPress(this.props.reques)}>Valida</button>
+                            <button type="button" className= "col-12 col-lg-3 btn btn-success mx-1 my-2"  data-toggle="modal" data-target="#modalValida" onClick={() => this.props.onPress(this.props.request)}>Valida</button>
                             <button type="button" className="col-12 col-lg-3 btn btn-danger mx-1 my-2"  data-toggle="modal" data-target="#modalDeclina" onClick={() => this.props.onPress(this.props.request)}>Declina</button>
                         </div>
                     </div>

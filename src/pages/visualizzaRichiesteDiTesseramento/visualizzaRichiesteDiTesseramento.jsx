@@ -38,12 +38,16 @@ class VisualizzaRichiesteDiTesseramento extends React.Component {
         },
         body: JSON.stringify({
             azione: 'accetta',
-            idReqTess: this.state.selectedRequest.idRichiesta,
+            idReqTess: this.state.selectedRequest.idRichiesta_tesseramento,
             idUtente: this.state.selectedRequest.utenteRichiedente.idUtente,
         })
     }).then(response => response.json())
     .then(responseJson => {
       console.log(responseJson)
+      if (responseJson.code === '200') {
+        this.getReq();
+      }
+      window.location.reload(false);
     })
 }
 
@@ -65,6 +69,10 @@ declinaRichiesta = () => {
     }).then(response => response.json())
     .then(responseJson => {
       console.log(responseJson)
+      if (responseJson.code === '200') {
+        this.getReq();
+      }
+      window.location.reload(false);
     })
 }
 
