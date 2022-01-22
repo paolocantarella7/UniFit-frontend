@@ -75,7 +75,7 @@ class EffettuaPrenotazione extends React.Component {
       this.setState({ errors });
       return;
     }
-    
+     // controllo se una facia e`piena 
     this.props.history.push({
       pathname: "/makePayment",
       state: {
