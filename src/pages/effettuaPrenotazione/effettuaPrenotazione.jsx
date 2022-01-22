@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React  from "react";
 import ConnectedHeader from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import { Redirect } from "react-router-dom";
 import Server from "../../config.json";
 import { DropdownButton, Dropdown, Button, Card } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import { toast } from "react-toastify";
 
 class EffettuaPrenotazione extends React.Component {
   constructor() {
@@ -27,21 +28,32 @@ class EffettuaPrenotazione extends React.Component {
   }
 
   struttureGet() {
-    var url = Server.API_URL + "admin/strutture/visualizzastrutture";
+    this.setState({ loading: true })
+    var url = Server.API_URL + "prenotazione/struttureDisponibili";
+
     fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
-        this.setState({ structures: responseJson.strutture }, () => {
+
+        if (responseJson.code === 200) {
+          this.setState({ structures: responseJson.strutture }, () => {
+            this.setState({ loading: false });
+          });
+        } else {
+          toast.error("Connessione al server non riuscita", {
+            autoClose: 5000,
+            className: 'errorToast',
+          })
           this.setState({ loading: false });
-        });
+        }
       })
       .catch((error) => console.log(error));
   }
 
   fasceGet() {
-    var url =
-      Server.API_URL +
-      `prenotazione/getFasce?idStruttura=${this.state.selectedStructureId}`;
+    this.setState({ loading: true })
+    var url = Server.API_URL + `prenotazione/getFasce?idStruttura=${this.state.selectedStructureId}`;
+
     fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
@@ -93,24 +105,18 @@ class EffettuaPrenotazione extends React.Component {
   };
 
   strutturaGetNome() {
-    var url =
-      Server.API_URL +
-      `admin/strutture/dettagliStruttura/${this.state.selectedStructureId}`;
-    fetch(url)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        this.setState(
-          { selectedStructureName: responseJson.struttura.nome },
-          () => {
-            this.setState({ loading: false });
-          }
-        );
-      })
-      .catch((error) => console.log(error));
+    this.setState({ loading: true })
+
+    this.state.structures.map(strutturaSelected => {
+      if (strutturaSelected.idStruttura === Number(this.state.selectedStructureId)) {
+        this.setState({ selectedStructureName: strutturaSelected.nome },
+          () => this.setState({ loading: false }))
+      }
+    })
   }
 
   render() {
-    if (localStorage.getItem("isLogged") === false) {
+    if (localStorage.getItem("isLogged") === 'false') {
       return <Redirect to="/" />;
     }
     else {
