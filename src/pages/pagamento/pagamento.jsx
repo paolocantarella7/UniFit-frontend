@@ -130,12 +130,12 @@ export default class Pagamento extends React.Component {
 
           } else {
             if (responseJson.code === 400) {
-              responseJson.error.map((error) => {
-                toast.error(error.msg, {
+    
+                toast.error(responseJson.msg, {
                   autoClose: 8000,
                   className: "errorToast",
                 });
-              });
+             
             }
           }
 

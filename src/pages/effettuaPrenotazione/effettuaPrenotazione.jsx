@@ -75,6 +75,7 @@ class EffettuaPrenotazione extends React.Component {
       this.setState({ errors });
       return;
     }
+    
     this.props.history.push({
       pathname: "/makePayment",
       state: {
