@@ -55,26 +55,24 @@ class ModificaPassword extends React.Component {
       .then((responseJson) => {
         this.setState({ loading: false });
         console.log(responseJson);
-        if (responseJson.code === 200){
-          toast.success(responseJson.msg , {
+        if (responseJson.code === 200) {
+          toast.success(responseJson.msg, {
             autoClose: 8000,
-            className: "success"
-          })
+            className: "success",
+          });
           localStorage.removeItem("currentUser");
           localStorage.setItem("isLogged", false);
           window.location.assign(Server.FRONT_URL);
         } else {
-          responseJson.error.map(error => {
-              toast.error(
-                  error.msg,
-                  {
-                      autoClose: 8000,
-                      className: "errorToast"
-                  }
-              )
-          })
+          responseJson.error.map((error) => {
+            toast.error(error.msg, {
+              autoClose: 8000,
+              className: "errorToast",
+            });
+            return null;
+          });
         }
-      })
+      });
   };
 
   render() {

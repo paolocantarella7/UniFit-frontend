@@ -1,79 +1,79 @@
 .left_section {
-    width: 50%;
-    background-size: contain;
-    position: relative;
-    background-repeat: no-repeat;
-    background-color: #f8f6f9;
-    height: 636px;
-    @media screen and (max-width: 767px) and (min-width: 568px) {
-        height: 290px;
-    }
-    @media screen and (max-width: 568px) and (min-width: 476px) {
-        height: 250px;
-    }
-    @media screen and (max-width: 476px) and (min-width: 300px) {
-        height: 330px;
-    }
+  width: 50%;
+  background-size: contain;
+  position: relative;
+  background-repeat: no-repeat;
+  background-color: #f8f6f9;
+  height: 636px;
+  @media screen and (max-width: 767px) and (min-width: 568px) {
+    height: 290px;
+  }
+  @media screen and (max-width: 568px) and (min-width: 476px) {
+    height: 250px;
+  }
+  @media screen and (max-width: 476px) and (min-width: 300px) {
+    height: 330px;
+  }
 }
 
-.left_section>span>img {
+.left_section > span > img {
+  width: 100%;
+  height: 405px;
+  @media screen and (max-width: 1024px) and (min-width: 768px) {
     width: 100%;
-    height: 405px;
-    @media screen and (max-width: 1024px) and (min-width: 768px) {
-        width: 100%;
-        height: 309px;
-        display: block;
-    }
-    @media screen and (max-width: 767px) and (min-width: 320px) {
-        display: none;
-    }
+    height: 309px;
+    display: block;
+  }
+  @media screen and (max-width: 767px) and (min-width: 320px) {
+    display: none;
+  }
 }
 
-.left_section>div {
-    position: absolute;
-    top: 34px;
-    padding: 10px;
-    color: #f8f6f9;
-    @media screen and (max-width: 767px) and (min-width: 320px) {
-        text-align: center;
-        top:0px
-    }
+.left_section > div {
+  position: absolute;
+  top: 34px;
+  padding: 10px;
+  color: #f8f6f9;
+  @media screen and (max-width: 767px) and (min-width: 320px) {
+    text-align: center;
+    top: 0px;
+  }
 }
 
-.left_section>div>p {
-    color: #222222de;
+.left_section > div > p {
+  color: #222222de;
 }
 
-.left_section>div>div>button {
-    background-color: #00BFFE;
-    padding: 8px 65px;
-    color: white;
-    font-size: large;
+.left_section > div > div > button {
+  background-color: #00bffe;
+  padding: 8px 65px;
+  color: white;
+  font-size: large;
 }
 
 .login_btn {
-    margin: 5px 0px;
-    padding: 10px 0px;
-    border: none;
-    border-radius: 2px;
-  }
-
-.left_signup_btn{
-    background-color: #00BFFE;
-    padding: 9px 8px;
-    color: white;
-    font-size: large;
-    width: 30%;
-    font-weight: 400;
-    border-radius: 3px;
-    @media screen and (max-width: 767px) and (min-width: 320px) {
-        margin: 0 auto;
-    }
+  margin: 5px 0px;
+  padding: 10px 0px;
+  border: none;
+  border-radius: 2px;
 }
 
-.left_signup_btn:hover{
-    color: black;
+.left_signup_btn {
+  background-color: #00bffe;
+  padding: 9px 8px;
+  color: white;
+  font-size: large;
+  width: 30%;
+  font-weight: 400;
+  border-radius: 3px;
+  @media screen and (max-width: 767px) and (min-width: 320px) {
+    margin: 0 auto;
+  }
+}
+
+.left_signup_btn:hover {
+  color: black;
 }
 .loginSignupTop {
-    height: 130px !important;
+  height: 130px !important;
 }

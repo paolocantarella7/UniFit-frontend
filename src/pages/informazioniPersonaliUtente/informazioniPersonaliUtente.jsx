@@ -5,9 +5,8 @@ import './informazioniPersonaliUtente.scss';
 import InformazioniPersonaliSvg from "../../informazioniPersonali.svg";
 
 class InformazioniPersonaliUtente extends React.Component {
-
   render() {
-    let user = localStorage.getItem('currentUser')
+    let user = localStorage.getItem("currentUser");
     user = JSON.parse(user);
     return (
       <div className="page">
@@ -62,7 +61,7 @@ class InformazioniPersonaliUtente extends React.Component {
 
           <Footer />
       </div>
-    )
+    );
   }
 }
 

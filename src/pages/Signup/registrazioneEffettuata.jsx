@@ -1,20 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Lottie from 'react-lottie';
+import React from "react";
+import { Link } from "react-router-dom";
 import RegistrazioneEffettuataSvg from "../../registrazioneEffettuata.svg";
 
 export default function RegistrazioneEffettuata() {
-
-
   return (
-
-
     <div class="container h-100">
-      <div class="d-flex align-items-center justify-content-center" style={{"height" : "100vh"}}>
-
+      <div
+        class="d-flex align-items-center justify-content-center"
+        style={{ height: "100vh" }}
+      >
         <div className="container-fluid text-dark rounded col-sm-10 col-10 text-center bg-white my-4">
-
-        <img width="200" src={RegistrazioneEffettuataSvg}/>
+          <img
+            alt="Registrazione effettuata"
+            width="200"
+            src={RegistrazioneEffettuataSvg}
+          />
           <h3 className="my-5 text-cyan">Registrazione Effettuata!</h3>
 
           <Link to={"/"} className={`nav-link`}>
@@ -23,15 +23,12 @@ export default function RegistrazioneEffettuata() {
                 type="button"
                 className="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
               >
-                Torna al  login
+                Torna al login
               </button>
             </div>
           </Link>
-
         </div>
-
       </div>
     </div>
   );
-
 }
