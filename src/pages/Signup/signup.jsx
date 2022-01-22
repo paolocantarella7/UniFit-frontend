@@ -56,9 +56,9 @@ class SignUp extends React.Component {
     e.preventDefault();
     let errors = {};
     if (!validNameRegex.test(this.state.name))
-      errors.name = "Inserire il nome";
+      errors.name = "Nome non valido";
     if (!validSurnameRegex.test(this.state.surname))
-      errors.surname = "Inserire il cognome";
+      errors.surname = "Cognome non valido";
     if (!validEmailRegex.test(this.state.email))
       errors.email = "Email non valida";
     if (!validPasswordRegex.test(this.state.pass))
@@ -67,30 +67,30 @@ class SignUp extends React.Component {
     if (errors.email || errors.pass || errors.name || errors.surname) {
       this.setState({ errors });
       
-       /* if(errors.name !==  ""){
-        toast.error(this.state.error.name , 
+        if(errors.name !==  ""){
+        toast.error(errors.name , 
           {
             autoClose: 5000,
             className: "errorToast"
           })}
       else if(errors.surname !== ""){
-        toast.error(this.state.error.surname , 
+        toast.error(errors.surname , 
           {
             autoClose: 5000,
             className: "errorToast"
           })}
       else if(errors.pass !== ""){
-        toast.error(this.state.error.pass , 
+        toast.error(errors.pass , 
           {
             autoClose: 5000,
             className: "errorToast"
           })}
       else if(errors.pass !== ""){
-        toast.error(this.state.error.pass , 
+        toast.error(errors.pass , 
           {
             autoClose: 5000,
             className: "errorToast"
-          })} */
+          })} 
  
           console.log("Errori nel form",errors)
       return;
