@@ -3,6 +3,7 @@ import Footer from "../../components/footer/footer";
 import ConnectedHeader from "../../components/header/header";
 import { Link } from "react-router-dom";
 import "./areaPersonaleUtente.scss";
+import AreaPersonaleUtenteSvg from "../../areaPersonaleUtente.svg";
 
 class AreaPersonaleUtente extends React.Component {
   render() {
@@ -49,6 +50,9 @@ class AreaPersonaleUtente extends React.Component {
               </button>
             </div>
           </Link>
+
+          <img className="pt-3 pb-4 img-fluid mx-auto" width={180} src={AreaPersonaleUtenteSvg} alt="React Logo" />
+
         </div>
 
         <Footer {...this.props} />

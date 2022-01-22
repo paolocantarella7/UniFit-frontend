@@ -3,8 +3,7 @@ import ConnectedHeader from '../../components/header/header';
 import Footer from '../../components/footer/footer'
 import Server from "../../config.json";
 import {toast} from 'react-toastify';
-
-import { Redirect } from 'react-router-dom';
+import CancellaAccountSvg from "../../cancellaAccount.svg";
 
 
 
@@ -48,6 +47,8 @@ class CancellaAccount extends React.Component {
         <div className="page">
           <ConnectedHeader {...this.props} />
           <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
+          <img className="pt-5 img-fluid" width={180} src={CancellaAccountSvg} alt="React Logo" />
+
             <p className="pt-4">Confermi di voler cancellare il tuo account definitivamente?</p>
             <div className="row py-3 px-3">
               <button type="button" class="btn btn-danger btn-lg mx-auto bg-cyan border h3 col-xs-12 col-md-8" data-toggle="modal" data-target="#exampleModalLong" >Cancella Account</button>

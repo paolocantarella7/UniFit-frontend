@@ -5,6 +5,8 @@ import { Redirect, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loading from '../../components/loading/loading';
 import Server from '../../config.json';
+import RecuperoPasswordSvg from "../../recuperoPassword.svg";
+
 
 // Login page
 class Recover extends React.Component {
@@ -126,6 +128,8 @@ class Recover extends React.Component {
           {
             this.state.loading ? <Loading /> : ''
           }
+                    <img className="pt-3 pb-4 img-fluid mx-auto d-block" width={180} src={RecuperoPasswordSvg} alt="React Logo" />
+
           <Footer />
         </div>
       )
