@@ -1,9 +1,9 @@
 import React from "react";
-import ConnectedHeader from '../../components/header/header';
+import ConnectedHeader from "../../components/header/header";
 import RichiestaDiTesseramento from "../../components/richiestaDiTesseramento/richiestaDiTesseramento";
 import Footer from "../../components/footer/footer";
-import Server from '../../config.json'
-import { Redirect } from 'react-router-dom';
+import Server from "../../config.json";
+import { Redirect } from "react-router-dom";
 import NessunaRichiestaSvg from "../../nessunaPrenotazione.svg";
 
 class VisualizzaRichiesteDiTesseramento extends React.Component {
@@ -11,151 +11,190 @@ class VisualizzaRichiesteDiTesseramento extends React.Component {
     loading: true,
     requests: [],
     selectedRequest: {},
-  }
+  };
   componentDidMount() {
-    this.getReq()
+    this.getReq();
   }
 
   getReq() {
-    var url = Server.API_URL + "admin/reqtess/visualizzareqtess"
+    var url = Server.API_URL + "admin/reqtess/visualizzareqtess";
     fetch(url)
-      .then(response => response.json())
-      .then(responseJson => {
+      .then((response) => response.json())
+      .then((responseJson) => {
         this.setState({ requests: responseJson.richiesteTess }, () => {
-          this.setState({ loading: false })
-        })
+          this.setState({ loading: false });
+        });
       })
-      .catch(error => console.log(error))
+      .catch((error) => console.log(error));
   }
 
   approvaRichiesta = () => {
-
-    var url = Server.API_URL + "admin/reqtess/validatesseramento"
+    var url = Server.API_URL + "admin/reqtess/validatesseramento";
 
     fetch(url, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        azione: 'accetta',
+        azione: "accetta",
         idReqTess: this.state.selectedRequest.idRichiesta_tesseramento,
         idUtente: this.state.selectedRequest.utenteRichiedente.idUtente,
-      })
-    }).then(response => response.json())
-      .then(responseJson => {
-        console.log(responseJson)
-        if (responseJson.code === '200') {
+      }),
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+        if (responseJson.code === "200") {
           this.getReq();
         }
         window.location.reload(false);
-      })
-  }
+      });
+  };
 
   declinaRichiesta = () => {
-    console.log(this.state.selectedRequest)
-    var url = Server.API_URL + "admin/reqtess/validatesseramento"
+    console.log(this.state.selectedRequest);
+    var url = Server.API_URL + "admin/reqtess/validatesseramento";
 
     fetch(url, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        azione: 'rifiuta',
+        azione: "rifiuta",
         idReqTess: this.state.selectedRequest.idRichiesta_tesseramento,
         idUtente: this.state.selectedRequest.utenteRichiedente.idUtente,
-      })
-    }).then(response => response.json())
-      .then(responseJson => {
-        console.log(responseJson)
-        if (responseJson.code === '200') {
+      }),
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+        if (responseJson.code === "200") {
           this.getReq();
         }
         window.location.reload(false);
-      })
-  }
+      });
+  };
 
   render() {
-    console.log(this.state.requests)
-    if (localStorage.getItem('isLogged') === 'true') {
-
-      let user = localStorage.getItem('currentUser')
+    console.log(this.state.requests);
+    if (localStorage.getItem("isLogged") === "true") {
+      let user = localStorage.getItem("currentUser");
       user = JSON.parse(user);
 
       if (!user.isAdmin) {
-        return <Redirect to="/home" />
+        return <Redirect to="/home" />;
       }
     }
-    return (
-      this.state.loading ?
-        <div className="page">
+    return this.state.loading ? (
+      <div className="page">
+        <ConnectedHeader {...this.props} />
+
+        <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
+          <h1 className="pt-4">Caricamento richieste di tessseramento</h1>
+        </div>
+
+        <Footer {...this.props} />
+      </div>
+    ) : (
+      <div className="page">
+        <div>
           <ConnectedHeader {...this.props} />
 
           <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
-            <h1 className="pt-4">Caricamento richieste di tessseramento</h1>
-          </div>
+            <h1 className="pt-4 text-cyan">Richieste di tesseramento</h1>
 
-          <Footer {...this.props} />
-        </div>
-        :
-        <div className="page">
-          <div>
-            <ConnectedHeader {...this.props} />
-
-            <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
-              <h1 className="pt-4 text-cyan">Richieste di tesseramento</h1>
-
-              <div className='col'>
-                {(this.state.requests.length === 0) ? (
-                  <div className="mb-4">
-                    <img className="my-5" width="200" src={NessunaRichiestaSvg} />
-                    <p className="pb-4">Non ci sono richieste</p>
-                  </div>
-                ) : (
-                  this.state.requests.map(request => (
-                    <RichiestaDiTesseramento key={request.id} request={request} onPress={
-                      (data) => this.setState({
+            <div className="col">
+              {this.state.requests.length === 0 ? (
+                <div className="mb-4">
+                  <img
+                    alt="Nessuna richiesta"
+                    className="my-5"
+                    width="200"
+                    src={NessunaRichiestaSvg}
+                  />
+                  <p className="pb-4">Non ci sono richieste</p>
+                </div>
+              ) : (
+                this.state.requests.map((request) => (
+                  <RichiestaDiTesseramento
+                    key={request.id}
+                    request={request}
+                    onPress={(data) =>
+                      this.setState({
                         selectedRequest: data,
                       })
-                    } />
-                  )))
-                }
-              </div>
-
-            </div>
-            <Footer {...this.props} />
-          </div>
-          <div className="modal" id="modalValida" role="dialog">
-            <div className="modal-dialog" role="document">
-              <div className="modal-content">
-                <div className="modal-body">
-                  <p>Sei sicuro di voler approvare questa richiesta di tesseramento?</p>
-                </div>
-                <div className="modal-footer">
-                  <button type="button" className="btn btn-success" data-dismiss="modal" onClick={this.approvaRichiesta}>Conferma</button>
-                  <button type="button" className="btn btn-secondary" data-dismiss="modal">Annulla</button>
-                </div>
-              </div>
+                    }
+                  />
+                ))
+              )}
             </div>
           </div>
-
-          <div className="modal" id="modalDeclina" role="dialog">
-            <div className="modal-dialog" role="document">
-              <div className="modal-content">
-                <div className="modal-body">
-                  <p>Sei sicuro di voler declinare questa richiesta di tesseramento?</p>
-                </div>
-                <div className="modal-footer">
-                  <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={this.declinaRichiesta}>Conferma</button>
-                  <button type="button" className="btn btn-secondary" data-dismiss="modal">Annulla</button>
-                </div>
+          <Footer {...this.props} />
+        </div>
+        <div className="modal" id="modalValida" role="dialog">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-body">
+                <p>
+                  Sei sicuro di voler approvare questa richiesta di
+                  tesseramento?
+                </p>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-success"
+                  data-dismiss="modal"
+                  onClick={this.approvaRichiesta}
+                >
+                  Conferma
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Annulla
+                </button>
               </div>
             </div>
           </div>
         </div>
+
+        <div className="modal" id="modalDeclina" role="dialog">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-body">
+                <p>
+                  Sei sicuro di voler declinare questa richiesta di
+                  tesseramento?
+                </p>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  data-dismiss="modal"
+                  onClick={this.declinaRichiesta}
+                >
+                  Conferma
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Annulla
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }

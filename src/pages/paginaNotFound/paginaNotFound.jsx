@@ -1,31 +1,26 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import animationData from './notFound.json'
-import Lottie from 'react-lottie';
+import React from "react";
+import { Link } from "react-router-dom";
+import animationData from "./notFound.json";
+import Lottie from "react-lottie";
 
 export default function NotFound() {
-
   const defaultOptions = {
     loop: true,
     autoplay: true,
     animationData: animationData,
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
+      preserveAspectRatio: "xMidYMid slice",
+    },
   };
 
   return (
-
-
-    <div class="container h-100">
-      <div class="d-flex align-items-center justify-content-center" style={{"height" : "100vh"}}>
-
+    <div className="container h-100">
+      <div
+        className="d-flex align-items-center justify-content-center"
+        style={{ height: "100vh" }}
+      >
         <div className="container-fluid text-dark rounded col-sm-10 col-10 text-center bg-white my-4">
-          <Lottie
-            options={defaultOptions}
-            height={300}
-            width={300}
-          />
+          <Lottie options={defaultOptions} height={300} width={300} />
           <h3 className="mb-5 text-cyan">Pagina non esistente!</h3>
 
           <Link to={"/"} className={`nav-link`}>
@@ -38,12 +33,8 @@ export default function NotFound() {
               </button>
             </div>
           </Link>
-
         </div>
-
       </div>
     </div>
   );
-
 }
-

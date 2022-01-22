@@ -2,27 +2,22 @@ import React from "react";
 import Footer from "../../components/footer/footer";
 import ConnectedHeader from "../../components/header/header";
 import { Link } from "react-router-dom";
-import { Redirect } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 import AreaAmministratoreSvg from "../../areaAmministratore.svg";
-import { Row } from "react-bootstrap";
-import { Col } from "react-bootstrap";
 
 class AreaAmministratore extends React.Component {
   render() {
-    if (localStorage.getItem('isLogged') === 'true') {
-
-      let user = localStorage.getItem('currentUser')
+    if (localStorage.getItem("isLogged") === "true") {
+      let user = localStorage.getItem("currentUser");
       user = JSON.parse(user);
 
       if (!user.isAdmin) {
-        return <Redirect to="/home" />
+        return <Redirect to="/home" />;
       }
     }
     return (
       <div className="page">
-        <ConnectedHeader
-          {...this.props}
-        />
+        <ConnectedHeader {...this.props} />
         <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
           <h1 className="pt-4">Area Amministratore</h1>
           <Link to={"/addStructure"} className={`nav-link`}>
@@ -77,7 +72,12 @@ class AreaAmministratore extends React.Component {
           </Link>
         </div>
 
-          <img className="my-4 rounded mx-auto d-block" width="200" src={AreaAmministratoreSvg} />
+        <img
+          alt="Area amministratore"
+          className="my-4 rounded mx-auto d-block"
+          width="200"
+          src={AreaAmministratoreSvg}
+        />
 
         <Footer {...this.props} />
       </div>

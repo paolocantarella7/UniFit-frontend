@@ -1,252 +1,323 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 // REACT BOOTSTRAP COMPONENTS
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import { Row, Col } from "react-bootstrap";
-import DatePicker from "react-multi-date-picker"
-import moment from 'moment';
+import DatePicker from "react-multi-date-picker";
+import moment from "moment";
 
 const FormStruttura = (props) => {
-
-  const [form, setForm] = useState({})
-  const [errors, setErrors] = useState({})
+  const [form, setForm] = useState({});
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    console.log(props)
-  }, [])
+    console.log(props);
+  });
 
   const setField = (field, value) => {
     setForm({
       ...form,
-      [field]: value
-    })
+      [field]: value,
+    });
     // Check and see if errors exist, and remove them from the error object:
-    if (!!errors[field]) setErrors({
-      ...errors,
-      [field]: null
-    })
-  }
+    if (!!errors[field])
+      setErrors({
+        ...errors,
+        [field]: null,
+      });
+  };
 
   const convertDates = () => {
-    var datesToConvert = []
+    var datesToConvert = [];
 
     values.map((date) => {
+      const dateConverted = new Date(date.year, date.monthIndex, date.day);
+      console.log("data nel map", dateConverted);
 
-        const dateConverted = new Date(date.year, date.monthIndex, date.day);
-        console.log('data nel map' , dateConverted)
+      var d = moment(dateConverted).format("YYYY-MM-DD");
 
-        var d = moment(dateConverted).format('YYYY-MM-DD')
+      datesToConvert.push(d);
+      return null;
+    });
 
-        datesToConvert.push(d)
-    })
+    setField("giorniChiusura", datesToConvert);
+  };
 
-    setField('giorniChiusura', datesToConvert);
-}
+  const [values, setValues] = useState([]);
 
-  const [values, setValues] = useState([])
-
-  const handleSubmit = e => {
-    e.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault();
     // get our new errors
-    const newErrors = findFormErrors()
+    const newErrors = findFormErrors();
     // Conditional logic:
     if (Object.keys(newErrors).length > 0) {
       // We got errors!
-      setErrors(newErrors)
+      setErrors(newErrors);
     } else {
+      props.onSubmit(form);
 
-      props.onSubmit(form)
-
-      alert('Struttura salvata')
+      alert("Struttura salvata");
     }
-  }
+  };
 
   const findFormErrors = () => {
-    const { nome, prezzoPerFascia, durataFascia, dataInizio, capacitaPerFascia, oraIM, oraFM, oraIP, oraFP } = form
+    const {
+      nome,
+      prezzoPerFascia,
+      durataFascia,
+      dataInizio,
+      capacitaPerFascia,
+      oraIM,
+      oraFM,
+      oraIP,
+      oraFP,
+    } = form;
 
     // date today
-    var today = new Date()
-    var date = today.getFullYear() + '-' + (String(today.getMonth() + 1).padStart(2, '0')) + '-' + (String(today.getDate()).padStart(2, '0'))
+    var today = new Date();
+    var date =
+      today.getFullYear() +
+      "-" +
+      String(today.getMonth() + 1).padStart(2, "0") +
+      "-" +
+      String(today.getDate()).padStart(2, "0");
 
-    const newErrors = {}
+    const newErrors = {};
     // name errors
-    if (!nome || nome === '') newErrors.nome = 'nome struttura non può essere vuoto!'
-    else if (nome.length > 35) newErrors.nome = 'nome struttura troppo lungo'
+    if (!nome || nome === "")
+      newErrors.nome = "nome struttura non può essere vuoto!";
+    else if (nome.length > 35) newErrors.nome = "nome struttura troppo lungo";
     // price  errors
-    if (!prezzoPerFascia || prezzoPerFascia === '') newErrors.prezzoPerFascia = 'prezzo vuoto!'
-    else if (prezzoPerFascia <= 0 || prezzoPerFascia > 1000) newErrors.prezzoPerFascia = 'prezzo non valido'
+    if (!prezzoPerFascia || prezzoPerFascia === "")
+      newErrors.prezzoPerFascia = "prezzo vuoto!";
+    else if (prezzoPerFascia <= 0 || prezzoPerFascia > 1000)
+      newErrors.prezzoPerFascia = "prezzo non valido";
     // duration slot errors
-    if (!durataFascia || durataFascia === '') newErrors.durataFascia = 'durata fascia vuota!'
+    if (!durataFascia || durataFascia === "")
+      newErrors.durataFascia = "durata fascia vuota!";
     // start date errors
-    if (!dataInizio || dataInizio === '') newErrors.dataInizio = 'data vuota!'
-    else if (dataInizio < date) newErrors.dataInizio = 'data passata non valida'
+    if (!dataInizio || dataInizio === "") newErrors.dataInizio = "data vuota!";
+    else if (dataInizio < date)
+      newErrors.dataInizio = "data passata non valida";
     // capacity errors
-    if (!capacitaPerFascia || capacitaPerFascia === '') newErrors.capacitaPerFascia = 'capacità vuota!'
-    else if (capacitaPerFascia <= 0 || capacitaPerFascia > 100) newErrors.prezzoPerFascia = 'capaci`ta non valida'
+    if (!capacitaPerFascia || capacitaPerFascia === "")
+      newErrors.capacitaPerFascia = "capacità vuota!";
+    else if (capacitaPerFascia <= 0 || capacitaPerFascia > 100)
+      newErrors.prezzoPerFascia = "capaci`ta non valida";
     // start morning errors
-    if (!oraIM || oraIM === '') newErrors.oraIM = 'ora inizio mattina vuota!'
+    if (!oraIM || oraIM === "") newErrors.oraIM = "ora inizio mattina vuota!";
     // end morning errors
-    if (!oraFM || oraFM === '') newErrors.oraFM = 'ora fine mattina vuota!'
-    else if (oraFM >= oraIP) newErrors.oraFM = 'ora non valida'
+    if (!oraFM || oraFM === "") newErrors.oraFM = "ora fine mattina vuota!";
+    else if (oraFM >= oraIP) newErrors.oraFM = "ora non valida";
     // start evening errors
-    if (!oraIP || oraIP === '') newErrors.oraIP = 'ora inizio pomeriggio vuota!'
-    else if (oraIP >= oraFP) newErrors.oraIP = 'ora non valida'
+    if (!oraIP || oraIP === "")
+      newErrors.oraIP = "ora inizio pomeriggio vuota!";
+    else if (oraIP >= oraFP) newErrors.oraIP = "ora non valida";
     // end evening errors
-    if (!oraFP || oraFP === '') newErrors.oraFP = 'ora fine pomeriggio vuota!'
+    if (!oraFP || oraFP === "") newErrors.oraFP = "ora fine pomeriggio vuota!";
 
-    return newErrors
-  }
+    return newErrors;
+  };
 
   return (
     <>
       <Form>
         <Row className="mb-1">
-          <Form.Group as={Col} md="6" className="mx-auto" >
-            <Form.Label className='font-weight-bold'>Nome</Form.Label>
+          <Form.Group as={Col} md="6" className="mx-auto">
+            <Form.Label className="font-weight-bold">Nome</Form.Label>
             <Form.Control
               type="text"
               placeholder="Inserisci nome"
-              onChange={e => setField('nome', e.target.value)}
+              onChange={(e) => setField("nome", e.target.value)}
               isInvalid={!!errors.nome}
             />
-            <Form.Control.Feedback type='invalid'> {errors.nome} </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              {" "}
+              {errors.nome}{" "}
+            </Form.Control.Feedback>
           </Form.Group>
         </Row>
 
         <Row className="mb-2 my-4">
-          <Form.Group as={Col} md="5" className="mx-auto" >
-            <Form.Label className='font-weight-bold'>Prezzo per fascia</Form.Label>
+          <Form.Group as={Col} md="5" className="mx-auto">
+            <Form.Label className="font-weight-bold">
+              Prezzo per fascia
+            </Form.Label>
             <Form.Control
               type="number"
               placeholder="Inserisci prezzo"
-              onChange={e => setField('prezzoPerFascia', e.target.value)}
+              onChange={(e) => setField("prezzoPerFascia", e.target.value)}
               isInvalid={!!errors.prezzoPerFascia}
             />
-            <Form.Control.Feedback type='invalid'> {errors.prezzoPerFascia} </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              {" "}
+              {errors.prezzoPerFascia}{" "}
+            </Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group as={Col} md="5" className="mx-auto">
-            <Form.Label className='font-weight-bold'>Durata Fascia</Form.Label>
+            <Form.Label className="font-weight-bold">Durata Fascia</Form.Label>
             <Form.Control
-              as='select'
-              onChange={e => setField('durataFascia', e.target.value)}
+              as="select"
+              onChange={(e) => setField("durataFascia", e.target.value)}
               isInvalid={!!errors.durataFascia}
             >
-              <option value='disabled' >Seleziona una durata</option>
-              <option value='1'>1</option>
-              <option value='2'>2</option>
-              <option value='3'>3</option>
-              <option value='4'>4</option>
+              <option value="disabled">Seleziona una durata</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
             </Form.Control>
-            <Form.Control.Feedback type='invalid'>{errors.durataFascia}</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              {errors.durataFascia}
+            </Form.Control.Feedback>
           </Form.Group>
         </Row>
 
         <Row className="mb-2 my-4">
-          <Form.Group as={Col} md="5" className="mx-auto" >
-            <Form.Label className='font-weight-bold'>Data inizio</Form.Label>
+          <Form.Group as={Col} md="5" className="mx-auto">
+            <Form.Label className="font-weight-bold">Data inizio</Form.Label>
             <Form.Control
               type="date"
               placeholder="Data inizio disponibilità"
-              onChange={e => setField('dataInizio', e.target.value)}
+              onChange={(e) => setField("dataInizio", e.target.value)}
               isInvalid={!!errors.dataInizio}
             />
-            <Form.Control.Feedback type='invalid'> {errors.dataInizio} </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              {" "}
+              {errors.dataInizio}{" "}
+            </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group as={Col} md="5" className="mx-auto" >
-            <Form.Label className='font-weight-bold'>Capacità per fascia</Form.Label>
+          <Form.Group as={Col} md="5" className="mx-auto">
+            <Form.Label className="font-weight-bold">
+              Capacità per fascia
+            </Form.Label>
             <Form.Control
               type="number"
               placeholder="Inserisci capacità per fascia"
-              onChange={e => setField('capacitaPerFascia', e.target.value)}
+              onChange={(e) => setField("capacitaPerFascia", e.target.value)}
               isInvalid={!!errors.capacitaPerFascia}
             />
-            <Form.Control.Feedback type='invalid'> {errors.capacitaPerFascia} </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              {" "}
+              {errors.capacitaPerFascia}{" "}
+            </Form.Control.Feedback>
           </Form.Group>
         </Row>
 
-
-
-        <h4 className='mt-4'>Orario mattina</h4>
+        <h4 className="mt-4">Orario mattina</h4>
         <Row className="mb-2">
-          <Form.Group as={Col} md="5" className="mx-auto" >
+          <Form.Group as={Col} md="5" className="mx-auto">
             <Form.Label>Dalle</Form.Label>
             <Form.Control
               type="time"
               placeholder=""
-              onChange={e => setField('oraIM', e.target.value)}
+              onChange={(e) => setField("oraIM", e.target.value)}
               isInvalid={!!errors.oraIM}
             />
-            <Form.Control.Feedback type='invalid'> {errors.oraIM} </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              {" "}
+              {errors.oraIM}{" "}
+            </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group as={Col} md="5" className="mx-auto" >
+          <Form.Group as={Col} md="5" className="mx-auto">
             <Form.Label>Alle</Form.Label>
             <Form.Control
               type="time"
               placeholder=""
-              onChange={e => setField('oraFM', e.target.value)}
+              onChange={(e) => setField("oraFM", e.target.value)}
               isInvalid={!!errors.oraFM}
             />
-            <Form.Control.Feedback type='invalid'> {errors.oraFM} </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              {" "}
+              {errors.oraFM}{" "}
+            </Form.Control.Feedback>
           </Form.Group>
         </Row>
 
-        <h4 className='mt-4'>Orario pomeriggio</h4>
+        <h4 className="mt-4">Orario pomeriggio</h4>
         <Row className="mb-2">
-          <Form.Group as={Col} md="5" className="mx-auto" >
+          <Form.Group as={Col} md="5" className="mx-auto">
             <Form.Label>Dalle</Form.Label>
             <Form.Control
               type="time"
               placeholder=""
-              onChange={e => setField('oraIP', e.target.value)}
+              onChange={(e) => setField("oraIP", e.target.value)}
               isInvalid={!!errors.oraIP}
             />
-            <Form.Control.Feedback type='invalid'> {errors.oraIP} </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              {" "}
+              {errors.oraIP}{" "}
+            </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group as={Col} md="5" className="mx-auto" >
+          <Form.Group as={Col} md="5" className="mx-auto">
             <Form.Label>Alle</Form.Label>
             <Form.Control
               type="time"
               placeholder=""
-              onChange={e => setField('oraFP', e.target.value)}
+              onChange={(e) => setField("oraFP", e.target.value)}
               isInvalid={!!errors.oraFP}
             />
-          < Form.Control.Feedback type='invalid'> {errors.oraFP} </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              {" "}
+              {errors.oraFP}{" "}
+            </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group as={Col} md="5" className="mx-auto my-4 " >
-            <Button className="btn btn-outline-primary" data-toggle="modal" data-target="#modalDatePicker">Seleziona giorni di chiusura</Button>
+          <Form.Group as={Col} md="5" className="mx-auto my-4 ">
+            <Button
+              className="btn btn-outline-primary"
+              data-toggle="modal"
+              data-target="#modalDatePicker"
+            >
+              Seleziona giorni di chiusura
+            </Button>
           </Form.Group>
         </Row>
 
-        <Button type='submit' className="bg-cyan border col-6" onClick={handleSubmit}>Aggiungi</Button>
+        <Button
+          type="submit"
+          className="bg-cyan border col-6"
+          onClick={handleSubmit}
+        >
+          Aggiungi
+        </Button>
       </Form>
 
       <div className="modal" id="modalDatePicker" tabIndex="-1" role="dialog">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
-          <h5 className="modal-title my-2" id="exampleModalLabel">
-                    giorni di chiusura
-                  </h5>
+            <h5 className="modal-title my-2" id="exampleModalLabel">
+              giorni di chiusura
+            </h5>
             <div className="modal-body mx-auto">
-              <DatePicker
-                multiple
-                value={values}
-                onChange={setValues}
-              />
+              <DatePicker multiple value={values} onChange={setValues} />
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={() => convertDates()} >Salva</button>
-              <button type="button" className="btn btn-secondary" data-dismiss="modal">Annulla</button>
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-dismiss="modal"
+                onClick={() => convertDates()}
+              >
+                Salva
+              </button>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Annulla
+              </button>
             </div>
           </div>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default FormStruttura;
