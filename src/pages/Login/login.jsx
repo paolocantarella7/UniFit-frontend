@@ -1,11 +1,11 @@
-import React from 'react';
-import ConnectedHeader from '../../components/header/header';
-import Footer from '../../components/footer/footer'
-import { Redirect, Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import './login.scss';
-import Loading from '../../components/loading/loading';
-import Server from '../../config.json';
+import React from "react";
+import ConnectedHeader from "../../components/header/header";
+import Footer from "../../components/footer/footer";
+import { Redirect, Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import "./login.scss";
+import Loading from "../../components/loading/loading";
+import Server from "../../config.json";
 
 // Login page
 class Login extends React.Component {
@@ -17,82 +17,77 @@ class Login extends React.Component {
       errors: {},
       loading: false,
       user: {},
-    }
+    };
   }
   handleChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
-    this.setState({ [name]: value })
-  }
+    this.setState({ [name]: value });
+  };
   formSubmit = (e) => {
-    
     e.preventDefault();
     let errors = {};
-    if (!this.state.username)
-      errors.username = "Inserire l'email";
-    if (!this.state.pass)
-      errors.pass = "Inserire la password"
+    if (!this.state.username) errors.username = "Inserire l'email";
+    if (!this.state.pass) errors.pass = "Inserire la password";
 
     if (errors.username || errors.pass) {
-      this.setState({ errors })
+      this.setState({ errors });
       return;
     } else {
-      var data = new FormData()
+      var data = new FormData();
 
-      data.append('email', this.state.username)
-      data.append('password', this.state.pass)
+      data.append("email", this.state.username);
+      data.append("password", this.state.pass);
     }
-    this.setState({ loading: true })
+    this.setState({ loading: true });
 
-    var url = Server.API_URL + "user/login"
+    var url = Server.API_URL + "user/login";
     fetch(url, {
-      method: 'POST',
-      body: data
-    }).then(response =>  response.json()
-    ).then(responseJson => {
-      console.log(responseJson)
-      if (responseJson.code !== 200){
-        toast.error(responseJson.msg , {
-          autoClose: 8000,
-          className: "errorToast"
-      } )} else {
-        if (responseJson.utente.isAdmin === 1 ) {
-          localStorage.setItem('isLogged' , true)
-          localStorage.setItem('currentUser', JSON.stringify(responseJson.utente))
-          window.location.href =  Server.FRONT_URL +'adminArea'
-  
-  
-        } else {
-          localStorage.setItem('isLogged' , true)
-          localStorage.setItem('currentUser', JSON.stringify(responseJson.utente))
-          window.location.href = Server.FRONT_URL + 'home'
-  
-        }
-      }
-      this.setState({ loading: false })
-
-      
-
+      method: "POST",
+      body: data,
     })
-  }
-
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+        if (responseJson.code !== 200) {
+          toast.error(responseJson.msg, {
+            autoClose: 8000,
+            className: "errorToast",
+          });
+        } else {
+          if (responseJson.utente.isAdmin === 1) {
+            localStorage.setItem("isLogged", true);
+            localStorage.setItem(
+              "currentUser",
+              JSON.stringify(responseJson.utente)
+            );
+            window.location.href = Server.FRONT_URL + "adminArea";
+          } else {
+            localStorage.setItem("isLogged", true);
+            localStorage.setItem(
+              "currentUser",
+              JSON.stringify(responseJson.utente)
+            );
+            window.location.href = Server.FRONT_URL + "home";
+          }
+        }
+        this.setState({ loading: false });
+      });
+  };
 
   render() {
-    if (localStorage.getItem('isLogged') === 'true') {
-      
-      let user = localStorage.getItem('currentUser')
+    if (localStorage.getItem("isLogged") === "true") {
+      let user = localStorage.getItem("currentUser");
       user = JSON.parse(user);
 
       if (user.isAdmin) {
-        return <Redirect to="/adminArea" />
+        return <Redirect to="/adminArea" />;
       } else {
-        return <Redirect to="/home" />
+        return <Redirect to="/home" />;
       }
     } else {
       return (
         <div className="pb-4 page border border-danger ">
-
-      
           <ConnectedHeader />
 
           <div className="signup_right mx-auto pb-5 rounded">
@@ -112,16 +107,18 @@ class Login extends React.Component {
                     className="effect-8"
                     value={this.state.username}
                     onChange={this.handleChange}
-                    onBlur={this.validate} />
+                    onBlur={this.validate}
+                  />
                   <span className="focus-border">
                     <i></i>
                   </span>
                 </div>
                 <div className="error_div">
-                  {this.state.errors.username
-                    ? <p className="errmsg">{this.state.errors.username}</p>
-                    : ''
-                  }
+                  {this.state.errors.username ? (
+                    <p className="errmsg">{this.state.errors.username}</p>
+                  ) : (
+                    ""
+                  )}
                 </div>
 
                 <div className="change">
@@ -135,41 +132,44 @@ class Login extends React.Component {
                     onBlur={this.validate}
                     value={this.state.pass}
                     onChange={this.handleChange}
-                    className="effect-8" />
+                    className="effect-8"
+                  />
                   <span className="focus-border">
                     <i></i>
                   </span>
                 </div>
                 <div className="error_div">
-                  {this.state.errors.pass
-                    ? <p className="errmsg">{this.state.errors.pass}</p>
-                    : ''
-                  }
+                  {this.state.errors.pass ? (
+                    <p className="errmsg">{this.state.errors.pass}</p>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 <div className="pb-2">
                   <Link
                     to={`/recover`}
-                    className="nav-link login d-flex justify-content-start forget_pass_btn text-white">Password dimenticata?</Link>
+                    className="nav-link login d-flex justify-content-start forget_pass_btn text-white"
+                  >
+                    Password dimenticata?
+                  </Link>
                 </div>
                 <button className="login_btn">LOGIN</button>
               </form>
               <div className="final_error">
-                {this.state.errors.invalid
-                  ? <p className="errmsg">{this.state.errors.invalid}</p>
-                  : ''
-                }
+                {this.state.errors.invalid ? (
+                  <p className="errmsg">{this.state.errors.invalid}</p>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </div>
-          {
-            this.state.loading ? <Loading /> : ''
-          }
+          {this.state.loading ? <Loading /> : ""}
 
-          <Footer className="navbar fixed-bottom"/>
+          <Footer className="navbar fixed-bottom" />
         </div>
-      )
+      );
     }
-
   }
 }
 

@@ -38,13 +38,17 @@ class SignUp extends React.Component {
         errors.email = validEmailRegex.test(value) ? "" : "Email non valida";
         break;
       case "pass":
-        errors.pass = validPasswordRegex.test(value) ? "" : "La password deve essere almeno di 8 caratteri";
+        errors.pass = validPasswordRegex.test(value)
+          ? ""
+          : "La password deve essere almeno di 8 caratteri";
         break;
       case "name":
         errors.name = validNameRegex.test(value) ? "" : "Nome non valido";
         break;
       case "surname":
-        errors.surname = validSurnameRegex.test(value) ? "" : "Cognome non valido";
+        errors.surname = validSurnameRegex.test(value)
+          ? ""
+          : "Cognome non valido";
         break;
       default:
         break;
@@ -55,8 +59,7 @@ class SignUp extends React.Component {
   formSubmit = (e) => {
     e.preventDefault();
     let errors = {};
-    if (!validNameRegex.test(this.state.name))
-      errors.name = "Nome non valido";
+    if (!validNameRegex.test(this.state.name)) errors.name = "Nome non valido";
     if (!validSurnameRegex.test(this.state.surname))
       errors.surname = "Cognome non valido";
     if (!validEmailRegex.test(this.state.email))
@@ -66,46 +69,46 @@ class SignUp extends React.Component {
 
     if (errors.email || errors.pass || errors.name || errors.surname) {
       this.setState({ errors });
-      
-        if(errors.name !==  ""){
-        toast.error(errors.name , 
-          {
-            autoClose: 5000,
-            className: "errorToast"
-          })}
-      else if(errors.surname !== ""){
-        toast.error(errors.surname , 
-          {
-            autoClose: 5000,
-            className: "errorToast"
-          })}
-      else if(errors.pass !== ""){
-        toast.error(errors.pass , 
-          {
-            autoClose: 5000,
-            className: "errorToast"
-          })}
-      else if(errors.pass !== ""){
-        toast.error(errors.pass , 
-          {
-            autoClose: 5000,
-            className: "errorToast"
-          })} 
- 
-          console.log("Errori nel form",errors)
+
+      if (errors.name !== "") {
+        toast.error(errors.name, {
+          autoClose: 5000,
+          className: "errorToast",
+        });
+      } else if (errors.surname !== "") {
+        toast.error(errors.surname, {
+          autoClose: 5000,
+          className: "errorToast",
+        });
+      } else if (errors.pass !== "") {
+        toast.error(errors.pass, {
+          autoClose: 5000,
+          className: "errorToast",
+        });
+      } else if (errors.pass !== "") {
+        toast.error(errors.pass, {
+          autoClose: 5000,
+          className: "errorToast",
+        });
+      }
+
+      console.log("Errori nel form", errors);
       return;
     } else {
       this.props.history.push({
-        pathname: '/secondRegister',
-        state: { email: this.state.email, pass: this.state.pass, name: this.state.name, surname: this.state.surname }
-      })
-
+        pathname: "/secondRegister",
+        state: {
+          email: this.state.email,
+          pass: this.state.pass,
+          name: this.state.name,
+          surname: this.state.surname,
+        },
+      });
     }
   };
 
   render() {
     if (localStorage.getItem("isLogged") === "true") {
-
       let user = localStorage.getItem("currentUser");
       user = JSON.parse(user);
 
@@ -247,19 +250,19 @@ class SignUp extends React.Component {
                   </div>
 
                   <div className="row py-3 px-3">
-                    <button className="btn bg-white text-cyan border col-12 rounded">Avanti</button>
+                    <button className="btn bg-white text-cyan border col-12 rounded">
+                      Avanti
+                    </button>
                   </div>
-
                 </form>
 
                 <div className="final_error">
                   {this.state.errors.invalid ? (
                     <p className="errmsg">{this.state.errors.invalid}</p>
                   ) : (
-                    ''
+                    ""
                   )}
                 </div>
-
               </div>
             </div>
           </div>
