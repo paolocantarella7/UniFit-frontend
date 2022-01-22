@@ -57,7 +57,7 @@ class VisualizzaPrenotazioni extends React.Component {
   }
 
   render() {
-    if (localStorage.getItem("isLogged") === false) {
+    if (localStorage.getItem("isLogged") === 'false') {
 
       return <Redirect to="/" />;
     }
