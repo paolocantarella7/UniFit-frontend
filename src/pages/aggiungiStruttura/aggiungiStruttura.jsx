@@ -14,7 +14,7 @@ class AggiungiStruttura extends React.Component {
   };
 
   salvaStruttura(form) {
-
+    console.log(form)
       var data = new FormData()
      
       data.append('nome', form.nome )
@@ -71,12 +71,12 @@ class AggiungiStruttura extends React.Component {
       }
     } 
     return (
-      <div>
+      <div className="page">
         <ConnectedHeader {...this.props}/>
 
 
         <div className="container-fluid text-dark rounded col-10 col-sm-10 col-lg-7 col-xl-6 text-center bg-white my-4 py-4">
-          <h1 className="pt-4">Aggiungi Struttura</h1>
+          <h1 className="pt-4 text-cyan mb-4">Aggiungi Struttura</h1>
 
           <FormStruttura
             onSubmit={(form) => this.salvaStruttura(form)}

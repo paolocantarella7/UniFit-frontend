@@ -109,7 +109,7 @@ const FormModifica = (props) => {
                 <Form>
                     <Row className="mb-1">
                         <Form.Group as={Col} md="6" className="mx-auto" >
-                            <Form.Label>Nome</Form.Label>
+                            <Form.Label className='font-weight-bold'>Nome</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="Inserisci nome"
@@ -123,7 +123,7 @@ const FormModifica = (props) => {
 
                     <Row className="mb-2 my-3">
                         <Form.Group as={Col} md="5" className="mx-auto" >
-                            <Form.Label>Prezzo per fascia</Form.Label>
+                            <Form.Label className='font-weight-bold'>Prezzo per fascia</Form.Label>
                             <Form.Control
                                 type="number"
                                 placeholder="Inserisci prezzo"
@@ -135,7 +135,7 @@ const FormModifica = (props) => {
                         </Form.Group>
 
                         <Form.Group as={Col} md="5" className="mx-auto">
-                            <Form.Label>Durata Fascia</Form.Label>
+                            <Form.Label className='font-weight-bold'>Durata Fascia</Form.Label>
                             <Form.Control
                                 as='select'
                                 value={form.durataPerFascia}
@@ -153,8 +153,8 @@ const FormModifica = (props) => {
                     </Row>
 
                     <Row className="mb-1 my-3">
-                        <Form.Group as={Col} md="6" className="mx-auto" >
-                            <Form.Label>Data inizio</Form.Label>
+                        <Form.Group as={Col} md="5" className="mx-auto" >
+                            <Form.Label className='font-weight-bold'>Data inizio</Form.Label>
                             <Form.Control
                                 type="date"
                                 placeholder="Data inizio disponibilità"
@@ -164,11 +164,9 @@ const FormModifica = (props) => {
                             />
                             <Form.Control.Feedback type='invalid'> {errors.dataInizioDisponibilita} </Form.Control.Feedback>
                         </Form.Group>
-                    </Row>
 
-                    <Row className="mb-1 my-3">
-                        <Form.Group as={Col} md="6" className="mx-auto" >
-                            <Form.Label>Capacità per fascia</Form.Label>
+                        <Form.Group as={Col} md="5" className="mx-auto" >
+                            <Form.Label className='font-weight-bold'>Capacità per fascia</Form.Label>
                             <Form.Control
                                 type="number"
                                 placeholder="Inserisci capacità per fascia"
@@ -179,6 +177,7 @@ const FormModifica = (props) => {
                             <Form.Control.Feedback type='invalid'> {errors.capacitaPerFascia} </Form.Control.Feedback>
                         </Form.Group>
                     </Row>
+
 
                     <h4 className='mt-3'>Orario mattina</h4>
                     <Row className="mb-2">
@@ -238,7 +237,7 @@ const FormModifica = (props) => {
                         </Form.Group>
                     </Row>
 
-                    <Button type='submit' onClick={handleSubmit}>Modifica</Button>
+                    <Button type='submit' className="bg-cyan border col-6" onClick={handleSubmit}>Modifica</Button>
                 </Form>
 
 

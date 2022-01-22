@@ -49,7 +49,7 @@ class VisualizzaUtentiRegistrati extends React.Component {
         return (
           this.state.loading ?
 
-            <>
+            <div className="page">
               <ConnectedHeader
                 {...this.props}
                 currentUser={new User("admin", "Luigi")}
@@ -60,22 +60,22 @@ class VisualizzaUtentiRegistrati extends React.Component {
               </div>
           
               <Footer {...this.props} />
-            </>
+            </div>
           :
-            <>
+            <div className="page">
               <ConnectedHeader
                 {...this.props}
                 currentUser={new User("admin", "Luigi")}
                 type= "admin"/>
               
               <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
-                <h1 className="pt-4 mb-4">Utenti Registrati</h1>
+                <h1 className="pt-4 mb-4 text-cyan">Utenti Registrati</h1>
 
                 <input
                         type="text"
                         name="searchText"
                         placeholder="Cerca utente..."
-                        className="effect-8 rounded col-xs-12 col-sm-6 mb-4"
+                        className="effect-8 rounded col-xs-12 col-sm-6 mb-4 p-2"
                         style={{ border: '2px solid #00c1fc' }}
                         value={this.state.searchText}
                         onChange={this.handleChange} />
@@ -103,7 +103,7 @@ class VisualizzaUtentiRegistrati extends React.Component {
 
               </div>
               <Footer {...this.props} />
-            </>
+            </div>
         );
       }
 }

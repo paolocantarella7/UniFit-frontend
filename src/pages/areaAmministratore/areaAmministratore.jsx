@@ -3,20 +3,23 @@ import Footer from "../../components/footer/footer";
 import ConnectedHeader from "../../components/header/header";
 import { Link } from "react-router-dom";
 import { Redirect } from 'react-router-dom';
+import AreaAmministratoreSvg from "../../areaAmministratore.svg";
+import { Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 
 class AreaAmministratore extends React.Component {
   render() {
     if (localStorage.getItem('isLogged') === 'true') {
-      
+
       let user = localStorage.getItem('currentUser')
       user = JSON.parse(user);
 
       if (!user.isAdmin) {
         return <Redirect to="/home" />
       }
-    } 
+    }
     return (
-      <div>
+      <div className="page">
         <ConnectedHeader
           {...this.props}
         />
@@ -58,7 +61,7 @@ class AreaAmministratore extends React.Component {
                 type="button"
                 className="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
               >
-                Visualizza richieste di tesseramento 
+                Visualizza richieste di tesseramento
               </button>
             </div>
           </Link>
@@ -66,13 +69,15 @@ class AreaAmministratore extends React.Component {
             <div className="row py-3 px-3">
               <button
                 type="button"
-                className="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
+                className="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8 mb-4"
               >
                 Modifica password
               </button>
             </div>
           </Link>
         </div>
+
+          <img className="my-4 rounded mx-auto d-block" width="200" src={AreaAmministratoreSvg} />
 
         <Footer {...this.props} />
       </div>

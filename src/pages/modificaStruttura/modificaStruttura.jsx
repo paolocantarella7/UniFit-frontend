@@ -125,11 +125,11 @@ class ModificaStruttura extends React.Component {
     }
     return (
       <>
-        <div>
+        <div className="page">
           <ConnectedHeader {...this.props} />
 
           <div className="container-fluid text-dark rounded col-10 col-sm-10 col-lg-7 col-xl-6 text-center bg-white my-4 py-4">
-            <h1 className="pt-4">Modifica Struttura</h1>
+            <h1 className="pt-4 text-cyan mb-4">Modifica Struttura</h1>
 
             {!this.state.loading && <FormModifica
               //date={this.state.array}

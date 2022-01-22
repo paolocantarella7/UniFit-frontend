@@ -102,7 +102,7 @@ const FormStruttura = (props) => {
       <Form>
         <Row className="mb-1">
           <Form.Group as={Col} md="6" className="mx-auto" >
-            <Form.Label>Nome</Form.Label>
+            <Form.Label className='font-weight-bold'>Nome</Form.Label>
             <Form.Control
               type="text"
               placeholder="Inserisci nome"
@@ -113,9 +113,9 @@ const FormStruttura = (props) => {
           </Form.Group>
         </Row>
 
-        <Row className="mb-2 my-3">
+        <Row className="mb-2 my-4">
           <Form.Group as={Col} md="5" className="mx-auto" >
-            <Form.Label>Prezzo per fascia</Form.Label>
+            <Form.Label className='font-weight-bold'>Prezzo per fascia</Form.Label>
             <Form.Control
               type="number"
               placeholder="Inserisci prezzo"
@@ -126,7 +126,7 @@ const FormStruttura = (props) => {
           </Form.Group>
 
           <Form.Group as={Col} md="5" className="mx-auto">
-            <Form.Label>Durata Fascia</Form.Label>
+            <Form.Label className='font-weight-bold'>Durata Fascia</Form.Label>
             <Form.Control
               as='select'
               onChange={e => setField('durataFascia', e.target.value)}
@@ -142,9 +142,9 @@ const FormStruttura = (props) => {
           </Form.Group>
         </Row>
 
-        <Row className="mb-1 my-3">
-          <Form.Group as={Col} md="6" className="mx-auto" >
-            <Form.Label>Data inizio</Form.Label>
+        <Row className="mb-2 my-4">
+          <Form.Group as={Col} md="5" className="mx-auto" >
+            <Form.Label className='font-weight-bold'>Data inizio</Form.Label>
             <Form.Control
               type="date"
               placeholder="Data inizio disponibilità"
@@ -153,11 +153,9 @@ const FormStruttura = (props) => {
             />
             <Form.Control.Feedback type='invalid'> {errors.dataInizio} </Form.Control.Feedback>
           </Form.Group>
-        </Row>
 
-        <Row className="mb-1 my-3">
-          <Form.Group as={Col} md="6" className="mx-auto" >
-            <Form.Label>Capacità per fascia</Form.Label>
+          <Form.Group as={Col} md="5" className="mx-auto" >
+            <Form.Label className='font-weight-bold'>Capacità per fascia</Form.Label>
             <Form.Control
               type="number"
               placeholder="Inserisci capacità per fascia"
@@ -168,7 +166,9 @@ const FormStruttura = (props) => {
           </Form.Group>
         </Row>
 
-        <h4 className='mt-3'>Orario mattina</h4>
+
+
+        <h4 className='mt-4'>Orario mattina</h4>
         <Row className="mb-2">
           <Form.Group as={Col} md="5" className="mx-auto" >
             <Form.Label>Dalle</Form.Label>
@@ -193,7 +193,7 @@ const FormStruttura = (props) => {
           </Form.Group>
         </Row>
 
-        <h4 className='mt-3'>Orario pomeriggio</h4>
+        <h4 className='mt-4'>Orario pomeriggio</h4>
         <Row className="mb-2">
           <Form.Group as={Col} md="5" className="mx-auto" >
             <Form.Label>Dalle</Form.Label>
@@ -222,7 +222,7 @@ const FormStruttura = (props) => {
           </Form.Group>
         </Row>
 
-        <Button type='submit' onClick={handleSubmit}>Aggiungi</Button>
+        <Button type='submit' className="bg-cyan border col-6" onClick={handleSubmit}>Aggiungi</Button>
       </Form>
 
       <div className="modal" id="modalDatePicker" tabIndex="-1" role="dialog">

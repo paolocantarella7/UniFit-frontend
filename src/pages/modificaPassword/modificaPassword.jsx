@@ -92,12 +92,12 @@ class ModificaPassword extends React.Component {
   
   render() {
     return (
-      <div>
+      <div className="page">
         <ConnectedHeader {...this.props} />
         <form className="container-fluid text-dark rounded col-10 col-md-6 text-center bg-white my-4 py-4">
-          <h1 className="pt-4">Modifica password</h1>
+          <h1 className="pt-4 text-cyan">Modifica password</h1>
 
-          <div class="form-group py-2">
+          <div class="form-group py-2 col-8 mx-auto">
             <input
               name="password"
               type="password"
@@ -109,7 +109,7 @@ class ModificaPassword extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <div class="form-group py-2">
+          <div class="form-group py-2 col-8 mx-auto">
             <input
               name="confirmPassword"
               type="password"
