@@ -1,7 +1,6 @@
 import React from "react";
 import ConnectedHeader from "../../components/header/header";
 import Footer from "../../components/footer/footer";
-import { User } from "../../models/User";
 import CardUtente from "../../components/cardUtente/cardUtente";
 import Server from "../../config.json";
 import { Redirect } from 'react-router-dom';
@@ -50,10 +49,7 @@ class VisualizzaUtentiRegistrati extends React.Component {
           this.state.loading ?
 
             <div className="page">
-              <ConnectedHeader
-                {...this.props}
-                currentUser={new User("admin", "Luigi")}
-                type= "admin"/>
+              <ConnectedHeader {...this.props}/>
           
               <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
                 <h1 className="pt-4">Caricamento Utenti</h1>
@@ -63,10 +59,7 @@ class VisualizzaUtentiRegistrati extends React.Component {
             </div>
           :
             <div className="page">
-              <ConnectedHeader
-                {...this.props}
-                currentUser={new User("admin", "Luigi")}
-                type= "admin"/>
+              <ConnectedHeader {...this.props}/>
               
               <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
                 <h1 className="pt-4 mb-4 text-cyan">Utenti Registrati</h1>
