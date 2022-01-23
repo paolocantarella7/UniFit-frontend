@@ -25,6 +25,10 @@ class Login extends React.Component {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
+<<<<<<< HEAD
+=======
+
+>>>>>>> PRZ
   formSubmit = (e) => {
     e.preventDefault();
     let errors = {};
@@ -49,6 +53,7 @@ class Login extends React.Component {
     })
       .then((response) => response.json())
       .then((responseJson) => {
+<<<<<<< HEAD
         console.log(responseJson);
         if (responseJson.code !== 200) {
           toast.error(responseJson.msg, {
@@ -73,6 +78,38 @@ class Login extends React.Component {
           }
         }
         this.setState({ loading: false });
+=======
+        console.log(responseJson.utente);
+
+        this.setState({ loading: false });
+
+        if (responseJson.utente.isAdmin === 1) {
+          localStorage.setItem("isLogged", true);
+          localStorage.setItem(
+            "currentUser",
+            JSON.stringify(responseJson.utente)
+          );
+          window.location.href = Server.FRONT_URL + "adminArea";
+        } else {
+          localStorage.setItem("isLogged", true);
+          localStorage.setItem(
+            "currentUser",
+            JSON.stringify(responseJson.utente)
+          );
+          window.location.href = Server.FRONT_URL + "home";
+        }
+      })
+      .catch((error) => {
+        this.setState({ loading: false });
+        let errors = {
+          invalid: "email o password non corretti",
+        };
+        toast.error("email o password non corretti", {
+          autoClose: 3000,
+          className: "errorToast",
+        });
+        this.setState({ errors });
+>>>>>>> PRZ
       });
   };
 
@@ -149,7 +186,11 @@ class Login extends React.Component {
                 <div className="pb-2">
                   <Link
                     to={`/recover`}
+<<<<<<< HEAD
                     className="nav-link login d-flex justify-content-start forget_pass_btn text-white"
+=======
+                    className="nav-link login d-flex justify-content-start forget_pass_btn"
+>>>>>>> PRZ
                   >
                     Password dimenticata?
                   </Link>
@@ -166,8 +207,12 @@ class Login extends React.Component {
             </div>
           </div>
           {this.state.loading ? <Loading /> : ""}
+<<<<<<< HEAD
 
           <Footer className="navbar fixed-bottom" />
+=======
+          <Footer />
+>>>>>>> PRZ
         </div>
       );
     }

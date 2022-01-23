@@ -7,6 +7,8 @@ import EffettuaPrenotazione from './pages/effettuaPrenotazione/effettuaPrenotazi
 import EffettuaTesseramento from './pages/effettuaTesseramento/effettuaTesseramento';
 import VisualizzaPrenotazioni from './pages/miePrenotazioni/miePrenotazioni';
 import Pagamento from './pages/pagamento/pagamento';
+import ModificaPrenotazione from './pages/modificaPrenotazione/modificaPrenotazione';
+import PagamentoEffettuato from './pages/pagamentoEffettuato/pagamentoEffettuato';
 //import pagine Utente
 import Login from "./pages/Login/login";
 import SignUp from "./pages/SignUp/signup";
@@ -16,7 +18,7 @@ import Recover from "./pages/recovery/recover";
 import Recover2 from "./pages/recovery/recover2";
 import HomePage from "./pages/HomePage/homepage";
 import AreaPersonaleUtente from "./pages/areaPersonaleUtente/areaPersonaleUtente";
-import InformazioniPersonaliUtente from "./pages/informazioniPersonaliUtente/informazioniPersonaliUtente";
+/* import InformazioniPersonaliUtente from "./pages/informazioniPersonaliUtente/informazioniPersonaliUtente";
 import ModificaPassword from "./pages/modificaPassword/modificaPassword";
 import CancellaAccount from "./pages/cancellaAccount/cancellaAccount";
 
@@ -29,11 +31,12 @@ import DettagliStruttura from './pages/dettagliStruttura/dettagliStruttura';
 import ListaPrenotazioniStruttura from './pages/listaPrenotazioniStruttura/listaPrenotazioniStruttura';
 import ModificaStruttura from './pages/modificaStruttura/modificaStruttura';
 import VisualizzaUtentiRegistrati from './pages/visualizzaUtentiRegistrati/visualizzaUtentiRegistrati';
-import VisualizzaRichiesteDiTesseramento from './pages/visualizzaRichiesteDiTesseramento/visualizzaRichiesteDiTesseramento';
+import VisualizzaRichiesteDiTesseramento from './pages/visualizzaRichiesteDiTesseramento/visualizzaRichiesteDiTesseramento'; 
 //Not found page
 import NotFound from './pages/paginaNotFound/paginaNotFound';
 
 import './App.css';
+import TesseramentoEffettuato from './pages/richiestaTesseramentoInoltrata/richiestaTesseramentoInoltrata';
 
 require("dotenv").config({ path: "../.env" });
 toast.configure();
@@ -65,6 +68,9 @@ function App() {
         <Route exact path="/makeReservation" component={EffettuaPrenotazione} />
         <Route exact path="/makeMembership" component={EffettuaTesseramento} />
         <Route exact path="/makePayment" component={Pagamento} />
+        <Route exact path="/paymentDone" component={PagamentoEffettuato} />
+        <Route exact path="/doneMembership" component={TesseramentoEffettuato} />
+        
         <Route component={NotFound} />
 
       </Switch>

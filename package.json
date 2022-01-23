@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-icons/all-files": "^4.1.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
@@ -22,7 +23,7 @@
     "react-custom-scrollbars": "^4.2.1",
     "react-datepicker": "^4.6.0",
     "react-dom": "^16.12.0",
-    "react-lottie": "^1.2.3",
+    "react-icons": "^4.3.1",
     "react-material-ui-form-validator": "^2.0.9",
     "react-multi-date-picker": "^3.3.0",
     "react-rating": "^2.0.4",

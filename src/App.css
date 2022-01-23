@@ -10,6 +10,21 @@
   height: 100vh;
 }
 
+.dropdown-menu{
+  height: auto;
+}
+
+input[type=date], input[type=month]{
+  padding: 10px;
+  border: 2px solid #00c1fc;
+}
+
+#dropdown-basic-button{
+  background-color: #00c1fc;
+  border: none;
+  width: 200px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

@@ -15,7 +15,7 @@ class AreaAmministratore extends React.Component {
       user = JSON.parse(user);
 
       if (!user.isAdmin) {
-        return <Redirect to="/home" />
+        return <Redirect to="/home" />;
       }
     }
     return (

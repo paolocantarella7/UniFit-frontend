@@ -5,12 +5,16 @@ import "./homepage.scss";
 import ConnectedHeader from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import "./homepage.scss";
+<<<<<<< HEAD
 import WorkingOutSvg from "../../working_out.svg";
 import BookingSvg from "../../booking.svg";
 import AreaUtenteSvg from "../../areaUtente.svg";
 import TesseramentoSvg from "../../tesseramento.svg";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
+=======
+
+>>>>>>> PRZ
 // Homepage
 class HomePage extends React.Component {
   constructor() {
@@ -23,7 +27,11 @@ class HomePage extends React.Component {
     user = JSON.parse(user);
 
     return (
+<<<<<<< HEAD
       <div className="page">
+=======
+      <div>
+>>>>>>> PRZ
         <ConnectedHeader {...this.props} />
         <div className="container-fluid text-dark rounded col-sm-10 col-10 text-center bg-white my-4">
           <img
