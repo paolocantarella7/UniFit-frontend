@@ -149,14 +149,17 @@ class ModificaPrenotazione extends React.Component {
             autoClose: 8000,
             className: "success",
           });
-        } else {
-          responseJson.error.map((error) => {
-            toast.error(error.msg, {
-              autoClose: 8000,
-              className: "error",
-            });
-            return null;
+        } else if (responseJson.code === 400) {
+          toast.error(responseJson.msg, {
+            autoClose: 8000,
+            className: "error",
           });
+          return null;
+        } else {
+          toast.error("Connessione al server non riuscita!", {
+            autoClose: 5000,
+            className: 'errorToast',
+          })
         }
       })
       .catch((error) => console.log(error));
