@@ -115,6 +115,7 @@ class EffettuaPrenotazione extends React.Component {
               autoClose: 5000,
               className: 'errorToast',
             })
+            return null;
           })
           this.setState({ loading: false });
         } else {
