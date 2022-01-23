@@ -31,7 +31,7 @@ class DettagliStruttura extends React.Component {
 
         responseJson.struttura.giorniChiusura = tempDate
 
-        this.setState({giorniChiusura: tempDate})
+        this.setState({ giorniChiusura: tempDate })
 
 
         this.setState({ structure: responseJson.struttura }, () => {
@@ -54,7 +54,7 @@ class DettagliStruttura extends React.Component {
     return (
 
       <div className="page">
-        <ConnectedHeader {...this.props}/>
+        <ConnectedHeader {...this.props} />
 
         <div className="w-75 bg-white mx-auto pb-5 my-5 rounded">
           <div className="row">
@@ -99,16 +99,17 @@ class DettagliStruttura extends React.Component {
             </div>
           </div>
 
-          <div className="row mx-auto mb-4">
-            <div className="col-3 text-center mx-auto">
-              <h4 className="text-cyan">Giorni di Chiusura</h4>
+          {this.state.giorniChiusura.length != 0 &&
+            <div className="row mx-auto mb-4">
+              <div className="col-3 text-center mx-auto">
+                <h4 className="text-cyan">Giorni di Chiusura</h4>
 
-            {this.state.giorniChiusura.map(obj =>(
-               <p className="mx-auto text-dark h4">{obj}</p>
-            ))}
-
+                {this.state.giorniChiusura.map((obj) => (
+                  <p className="mx-auto text-dark h4">{obj}</p>
+                ))}
+              </div>
             </div>
-          </div>
+          }
 
           <Link to={`/showReservation/${this.state.structure.idStruttura}`} className={`nav-link`}>
             <div className="row py-3 px-3">
