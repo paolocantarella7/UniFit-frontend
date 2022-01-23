@@ -14,7 +14,7 @@ const FormModifica = (props) => {
 
   useEffect(() => {
     setFormState();
-  }, []);
+  });
 
   const setFormState = () => {
     setForm(props.struttura);
@@ -46,6 +46,7 @@ const FormModifica = (props) => {
       var d = moment(dateConverted).format("YYYY-MM-DD");
 
       datesToConvert.push(d);
+      return null;
     });
 
     setField("giorniChiusura", datesToConvert);
