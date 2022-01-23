@@ -4,6 +4,8 @@ import Footer from "../../components/footer/footer";
 import { Redirect } from "react-router-dom";
 import Server from "../../config.json";
 import CardPrenotazioneUtente from "../../components/cardPrenotazioneUtente/cardPrenotazioneUtente";
+import { toast } from "react-toastify";
+import { error } from "jquery";
 
 //  View Reservation page
 class VisualizzaPrenotazioni extends React.Component {
@@ -56,6 +58,11 @@ class VisualizzaPrenotazioni extends React.Component {
           this.prenotazioniGet();
 
           window.location.reload(false);
+        } else if (responseJson.code === 400){
+          toast.error(responseJson.msg , {
+            autoClose : 5000,
+            className: "errorToast"
+          }) 
         }
       });
   };
