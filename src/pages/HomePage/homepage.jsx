@@ -42,7 +42,7 @@ class HomePage extends React.Component {
             <Card className="mx-auto border-0 py-4" style={{ width: "18rem" }}>
               <Card.Img variant="top" src={BookingSvg} />
               <Card.Body>
-                <Link to={"/prenota"} className={`nav-link`}>
+                <Link to={"/makeReservation"} className={`nav-link`}>
                   <div className="row py-3 px-3">
                     <button
                       type="button"

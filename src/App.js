@@ -18,10 +18,9 @@ import Recover from "./pages/recovery/recover";
 import Recover2 from "./pages/recovery/recover2";
 import HomePage from "./pages/HomePage/homepage";
 import AreaPersonaleUtente from "./pages/areaPersonaleUtente/areaPersonaleUtente";
-/* import InformazioniPersonaliUtente from "./pages/informazioniPersonaliUtente/informazioniPersonaliUtente";
+import InformazioniPersonaliUtente from "./pages/informazioniPersonaliUtente/informazioniPersonaliUtente";
 import ModificaPassword from "./pages/modificaPassword/modificaPassword";
 import CancellaAccount from "./pages/cancellaAccount/cancellaAccount";
-
 
 //import admin area
 import AreaAmministratore from './pages/areaAmministratore/areaAmministratore';
@@ -70,7 +69,9 @@ function App() {
         <Route exact path="/makePayment" component={Pagamento} />
         <Route exact path="/paymentDone" component={PagamentoEffettuato} />
         <Route exact path="/doneMembership" component={TesseramentoEffettuato} />
-        
+        <Route exact path="/viewReservations" component={VisualizzaPrenotazioni} />
+        <Route exact path="/editReservation/:id" component={ModificaPrenotazione} />
+
         <Route component={NotFound} />
 
       </Switch>
