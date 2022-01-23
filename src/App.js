@@ -59,7 +59,6 @@ function App() {
         <Route exact path="/editPassword" component={ModificaPassword} />
         <Route exact path="/deleteAccount" component={CancellaAccount}/>
 
-        <Route exact path="/showMembershipRequests" component={VisualizzaRichiesteDiTesseramento} />
         <Route exact path="/makeReservation" component={EffettuaPrenotazione} />
         <Route exact path="/makeMembership" component={EffettuaTesseramento} />
         <Route exact path="/makePayment" component={Pagamento} />
@@ -75,6 +74,7 @@ function App() {
         <Route exact path="/showReservation/:id" component={ListaPrenotazioniStruttura} />
         <Route exact path="/editStructure/:id" component={ModificaStruttura} />
         <Route exact path="/showUsers" component={VisualizzaUtentiRegistrati} />
+        <Route exact path="/showMembershipRequests" component={VisualizzaRichiesteDiTesseramento} />
 
         <Route component={NotFound} />
 
