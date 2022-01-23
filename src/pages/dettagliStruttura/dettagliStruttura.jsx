@@ -114,7 +114,8 @@ class DettagliStruttura extends React.Component {
             </div>
           </div>
 
-          <div className="row mx-auto mb-4">
+          {this.state.giorniChiusura.length != 0 && 
+            <div className="row mx-auto mb-4">
             <div className="col-3 text-center mx-auto">
               <h4 className="text-cyan">Giorni di Chiusura</h4>
 
@@ -123,6 +124,7 @@ class DettagliStruttura extends React.Component {
               ))}
             </div>
           </div>
+          }
 
           <Link
             to={`/showReservation/${this.state.structure.idStruttura}`}

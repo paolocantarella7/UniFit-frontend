@@ -70,14 +70,16 @@ class AreaAmministratore extends React.Component {
               </button>
             </div>
           </Link>
-        </div>
 
-        <img
+          <img
           alt="Area amministratore"
-          className="my-4 rounded mx-auto d-block"
-          width="200"
+          className="pt-3 pb-4 img-fluid mx-auto"
+          width="180"
           src={AreaAmministratoreSvg}
         />
+        </div>
+
+        
 
         <Footer {...this.props} />
       </div>
