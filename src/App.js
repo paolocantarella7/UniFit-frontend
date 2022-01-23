@@ -31,7 +31,7 @@ import VisualizzaRichiesteDiTesseramento from './pages/visualizzaRichiesteDiTess
 import NotFound from './pages/paginaNotFound/paginaNotFound';
 
 import './App.css';
-import TesseramentoEffettuato from './pages/tesseramentoEffettuato/tesseramentoEffettuato';
+import TesseramentoEffettuato from './pages/richiestaTesseramentoInoltrata/richiestaTesseramentoInoltrata';
 
 
 
