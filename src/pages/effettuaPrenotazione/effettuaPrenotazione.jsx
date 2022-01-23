@@ -68,10 +68,10 @@ class EffettuaPrenotazione extends React.Component {
   goToPayment = () => {
     let errors = {};
     if (this.state.selectedStructureId === "")
-      errors.selectedStructureId = "Inserisci una struttura";
+      errors.selectedStructureId = "Seleziona una struttura";
     if (this.state.selectedFascia === "")
-      errors.selectedFascia = "Inserisci una fascia";
-    if (this.state.date === "") errors.data = "Inserisci una data";
+      errors.selectedFascia = "Seleziona una fascia";
+    if (this.state.date === "") errors.data = "Seleziona una data";
     if (errors.data || errors.selectedFascia || errors.selectedStructureId) {
       this.setState({ errors });
       return;
@@ -79,14 +79,18 @@ class EffettuaPrenotazione extends React.Component {
 
     this.setState({ loading: true })
 
+    let user = localStorage.getItem("currentUser");
+    user = JSON.parse(user);
+
     var data = new FormData();
 
-    data.append('idStruttura' , this.state.selectedStructureId )
-    data.append('fascia' , this.state.selectedFascia)
+    data.append('idStruttura', this.state.selectedStructureId)
+    data.append('fascia', this.state.selectedFascia)
     data.append('dataPrenotazione', this.state.date)
-  
+    data.append('idUtente', user.idUtente)
+
     var url = Server.API_URL + "prenotazione/checkPosti";
-  
+
     fetch(url, {
       method: "POST",
       body: data,
@@ -106,9 +110,11 @@ class EffettuaPrenotazione extends React.Component {
             },
           });
         } else if (responseJson.code === 400) {
-          toast.error(responseJson.msg, {
-            autoClose: 5000,
-            className: 'errorToast',
+          responseJson.error.map(err => {
+            toast.error(err.msg, {
+              autoClose: 5000,
+              className: 'errorToast',
+            })
           })
           this.setState({ loading: false });
         } else {
@@ -197,7 +203,7 @@ class EffettuaPrenotazione extends React.Component {
                 <div className="row">
                   <div className="error_div mx-auto">
                     {this.state.errors.selectedStructureId ? (
-                      <p className="errmsg">
+                      <p className="errmsg text-danger font-weight-bold">
                         {this.state.errors.selectedStructureId}
                       </p>
                     ) : (
@@ -236,7 +242,7 @@ class EffettuaPrenotazione extends React.Component {
                     <div className="row">
                       <div className="error_div mx-auto">
                         {this.state.errors.selectedFascia ? (
-                          <p className="errmsg">
+                          <p className="errmsg font-weight-bold text-danger">
                             {this.state.errors.selectedFascia}
                           </p>
                         ) : (
@@ -256,7 +262,7 @@ class EffettuaPrenotazione extends React.Component {
                 <div className="row">
                   <div className="error_div mx-auto">
                     {this.state.errors.data ? (
-                      <p className="errmsg">{this.state.errors.data}</p>
+                      <p className="errmsg text-danger font-weight-bold">{this.state.errors.data}</p>
                     ) : (
                       ""
                     )}
@@ -270,7 +276,7 @@ class EffettuaPrenotazione extends React.Component {
                     className="my-3 col-4 mx-auto bg-cyan border"
                     onClick={this.goToPayment}
                   >
-                    Paga ora
+                    Procedi al pagamento
                   </Button>
                 </div>
               </Form>

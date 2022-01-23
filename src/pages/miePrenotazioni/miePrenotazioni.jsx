@@ -82,7 +82,7 @@ class VisualizzaPrenotazioni extends React.Component {
             <div className="page">
               <ConnectedHeader {...this.props} />
               <div className="container-fluid text-dark rounded col-sm-10 col-10 text-center bg-white my-4">
-                <h3 className="py-4 text-cyan">Visualizza prenotazioni</h3>
+                <h1 className="py-4 text-cyan">Le mie prenotazioni</h1>
                 {this.state.prenotazioni.map((prenotazione) => (
                   <CardPrenotazioneUtente
                     key={prenotazione.idPrenotazione}

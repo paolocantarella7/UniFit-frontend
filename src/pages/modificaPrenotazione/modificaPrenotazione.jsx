@@ -200,17 +200,11 @@ class ModificaPrenotazione extends React.Component {
           <div className="page">
             <ConnectedHeader {...this.props} />
             <div className="container-fluid text-dark rounded col-sm-10 col-10 text-center bg-white my-4 py-2">
-              <h3 className="py-4 text-cyan">Modifica prenotazione</h3>
+              <h1 className="py-4 text-cyan">Modifica prenotazione</h1>
               <Form>
                 <div className="row my-4 mx-4">
-                  <div className="col-6">
-                    <Card>
-                      <Card.Body>
-                        <Card.Text>
+                  <div className="col-6 mx-auto h2 font-weight-bold">
                           {this.state.selectedStructureName}
-                        </Card.Text>
-                      </Card.Body>
-                    </Card>
                   </div>
                 </div>
                 <div className="row">
@@ -226,18 +220,13 @@ class ModificaPrenotazione extends React.Component {
                 </div>
 
                 <>
+               
                   <div className="row my-4 mx-4">
-                    <div className="col-6">
-                      <Card>
-                        <Card.Body>
-                          <Card.Text>{this.state.selectedFascia}</Card.Text>
-                        </Card.Body>
-                      </Card>
-                    </div>
-                    <div className="col-6">
+                    <div className="col-8 mx-auto">
+                 
                       <DropdownButton
                         id="dropdown-basic-button"
-                        title="Seleziona fascia"
+                        title="Seleziona nuova fascia"
                         onSelect={this.onFasciaSelect}
                       >
                         {this.state.fasce.map((fascia) => (
@@ -247,7 +236,22 @@ class ModificaPrenotazione extends React.Component {
                         ))}
                       </DropdownButton>
                     </div>
+
                   </div>
+
+                  <div className="row my-2 mx-4">
+                    <div className="col-6 mx-auto">
+                      <Card className="border-0 h2">
+                        <Card.Body >
+                          <Card.Text>{this.state.selectedFascia}</Card.Text>
+                        </Card.Body>
+                      </Card>
+                    </div>
+                  </div>
+
+               
+
+                  
                   <div className="row">
                     <div className="error_div mx-auto">
                       {this.state.errors.selectedFascia ? (
@@ -261,30 +265,13 @@ class ModificaPrenotazione extends React.Component {
                   </div>
                 </>
 
-                <div className="row my-4 mx-4">
-                  <div className="col-6">
-                    <Card>
-                      <Card.Body>
-                        <Card.Text>{this.state.date}</Card.Text>
-                      </Card.Body>
-                    </Card>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="error_div mx-auto">
-                    {this.state.errors.data ? (
-                      <p className="errmsg">{this.state.errors.data}</p>
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                </div>
+            
 
                 <div className="row">
                   <Button
                     variant="primary"
                     size="lg"
-                    className="my-3 col-8 mx-auto"
+                    className="my-4 col-6 col-sm-4 mx-auto bg-cyan border"
                     onClick={this.edit}
                   >
                     Salva

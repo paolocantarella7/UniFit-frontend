@@ -280,7 +280,7 @@ export default class Pagamento extends React.Component {
                     onClick={this.formSubmit}
                     variant="primary"
                     size="lg"
-                    className="my-3 mx-4 mx-auto"
+                    className="my-3 mx-4 mx-auto bg-cyan border"
                   >
                     Paga ora 2€
                   </Button>

@@ -2,6 +2,10 @@ import moment from "moment";
 import React from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { BsClock } from 'react-icons/bs'
+import { BsCalendar3 } from 'react-icons/bs'
+
+
 
 class CardPrenotazioneUtente extends React.Component {
   state = {
@@ -15,16 +19,27 @@ class CardPrenotazioneUtente extends React.Component {
     if (moment(oggi).isBefore(dataPrenotazione) === true) {
       return (
         <Card
-          className="h-100 w-100 d-inline-block "
+          className="h-100 w-100 d-inline-block border-0"
           id={this.props.prenotazione.idPrenotazione}
           style={{ margin: "10px 0px" }}
         >
           <Card.Body>
             <div className="row justify-content-between">
               <div className="d-flex align-items-start mx-auto">
-                <Card.Title className="text-dark align-self-center">
-                  {this.props.prenotazione.strutturaPrenotata.nome}{" "}
-                  {this.props.prenotazione.dataPrenotazione}
+                <Card.Title className=" align-self-center">
+                  <div className="text-center">
+                    <div className="h4 row py-2 text-cyan font-weight-bold text-center">
+                      {this.props.prenotazione.strutturaPrenotata.nome}
+                    </div>
+
+                    <div className="row pb-2 font-weight-light text-center">
+                    <BsCalendar3 className="mr-2"/>{this.props.prenotazione.dataPrenotazione}
+                    </div>
+
+                    <div className="row font-weight-light text-center">
+                    <BsClock className="mr-2"/> {this.props.prenotazione.oraInizio} / {this.props.prenotazione.oraFine}
+                    </div>
+                  </div>
                 </Card.Title>
               </div>
               <div className="col-md-4 ">
@@ -55,6 +70,7 @@ class CardPrenotazioneUtente extends React.Component {
               </div>
             </div>
           </Card.Body>
+          <hr />
         </Card>
       );
     } else {
@@ -67,13 +83,24 @@ class CardPrenotazioneUtente extends React.Component {
           <Card.Body>
             <div className="row justify-content-between">
               <div className="d-flex align-items-start mx-auto">
-                <Card.Title className="text-dark align-self-center">
-                  {this.props.prenotazione.strutturaPrenotata.nome}{" "}
-                  {this.props.prenotazione.dataPrenotazione}
+                <Card.Title className="align-self-center">
+                <div className="text-center">
+                    <div className="h4 row py-2 text-cyan font-weight-bold text-center">
+                      {this.props.prenotazione.strutturaPrenotata.nome}
+                    </div>
+
+                    <div className="row pb-2 font-weight-light text-center text-danger">
+                    <BsCalendar3 className="mr-2"/>{this.props.prenotazione.dataPrenotazione}
+                    </div>
+
+                    <div className="row font-weight-light text-center text-danger">
+                    <BsClock className="mr-2"/> {this.props.prenotazione.oraInizio} / {this.props.prenotazione.oraFine}
+                    </div>
+                  </div>
                 </Card.Title>
               </div>
               <div className="col-md-4 ">
-                <p> SCADUTA</p>
+                <p>SCADUTA</p>
               </div>
             </div>
           </Card.Body>
