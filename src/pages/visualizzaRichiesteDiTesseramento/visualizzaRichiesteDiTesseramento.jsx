@@ -54,7 +54,7 @@ class VisualizzaRichiesteDiTesseramento extends React.Component {
   }
 
   declinaRichiesta = () => {
-    console.log(this.state.selectedRequest)
+  
     var url = Server.API_URL + "admin/reqtess/validatesseramento"
 
     fetch(url, {
@@ -70,7 +70,6 @@ class VisualizzaRichiesteDiTesseramento extends React.Component {
       })
     }).then(response => response.json())
       .then(responseJson => {
-        console.log(responseJson)
         if (responseJson.code === '200') {
           this.getReq();
         }
@@ -79,7 +78,6 @@ class VisualizzaRichiesteDiTesseramento extends React.Component {
   }
 
   render() {
-    console.log(this.state.requests)
     if (localStorage.getItem('isLogged') === 'true') {
 
       let user = localStorage.getItem('currentUser')
