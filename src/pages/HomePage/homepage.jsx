@@ -67,7 +67,7 @@ class HomePage extends React.Component {
                   src={TesseramentoSvg}
                 />
                 <Card.Body>
-                  <Link to={"/tesseramento"} className={`nav-link`}>
+                  <Link to={"/makeMembership"} className={`nav-link`}>
                     <div className="row py-3 px-3">
                       <button
                         type="button"
