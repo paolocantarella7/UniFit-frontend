@@ -74,28 +74,26 @@ const FormModifica = (props) => {
 
         const newErrors = {}
         // name errors
-        if (!nome || nome === '') newErrors.nome = 'nome struttura non può essere vuoto!'
-        else if (nome.length > 35) newErrors.nome = 'nome struttura troppo lungo'
+        if (!nome || nome === '') newErrors.nome = 'Nome vuoto!'
+        else if (nome.length > 35) newErrors.nome = 'Nome troppo lungo'
         // price  errors
-        if (!prezzoPerFascia || prezzoPerFascia === '') newErrors.prezzoPerFascia = 'prezzo vuoto!'
-        else if (prezzoPerFascia <= 0 || prezzoPerFascia > 1000) newErrors.prezzoPerFascia = 'prezzo non valido'
+        if (!prezzoPerFascia || prezzoPerFascia === '') newErrors.prezzoPerFascia = 'Prezzo vuoto!'
+        else if (prezzoPerFascia <= 0 ) newErrors.prezzoPerFascia = 'Prezzo non valido'
         // duration slot errors
-        if (!durataPerFascia || durataPerFascia === '') newErrors.durataPerFascia = 'durata fascia vuota!'
+        if (!durataPerFascia || durataPerFascia === '') newErrors.durataPerFascia = 'Durata vuota!'
         // start date errors
-        if (!dataInizioDisponibilita || dataInizioDisponibilita === '') newErrors.dataInizioDisponibilita = 'data vuota!'
+        if (!dataInizioDisponibilita || dataInizioDisponibilita === '') newErrors.dataInizioDisponibilita = 'Data vuota!'
         // capacity errors
-        if (!capacitaPerFascia || capacitaPerFascia === '') newErrors.capacitaPerFascia = 'capacità vuota!'
-        else if (capacitaPerFascia <= 0 || capacitaPerFascia > 100) newErrors.prezzoPerFascia = 'capaci`ta non valida'
+        if (!capacitaPerFascia || capacitaPerFascia === '') newErrors.capacitaPerFascia = 'Capacità vuota!'
+        else if (capacitaPerFascia <= 0 || capacitaPerFascia > 100) newErrors.prezzoPerFascia = 'Capacità non valida'
         // start morning errors
-        if (!oraInizioMattina || oraInizioMattina === '') newErrors.oraInizioMattina = 'ora inizio mattina vuota!'
+        if (!oraInizioMattina || oraInizioMattina === '') newErrors.oraInizioMattina = 'Ora vuota!'
         // end morning errors
-        if (!oraFineMattina || oraFineMattina === '') newErrors.oraFineMattina = 'ora fine mattina vuota!'
-        else if (oraFineMattina >= oraInizioPomeriggio) newErrors.oraFineMattina = 'ora non valida'
+        if (!oraFineMattina || oraFineMattina === '') newErrors.oraFineMattina = 'Ora vuota!'
         // start evening errors
-        if (!oraInizioPomeriggio || oraInizioPomeriggio === '') newErrors.oraInizioPomeriggio = 'ora inizio pomeriggio vuota!'
-        else if (oraInizioPomeriggio >= oraFinePomeriggio) newErrors.oraInizioPomeriggio = 'ora non valida'
+        if (!oraInizioPomeriggio || oraInizioPomeriggio === '') newErrors.oraInizioPomeriggio = 'Ora vuota!'
         // end evening errors
-        if (!oraFinePomeriggio || oraFinePomeriggio === '') newErrors.oraFinePomeriggio = 'ora fine pomeriggio vuota!'
+        if (!oraFinePomeriggio || oraFinePomeriggio === '') newErrors.oraFinePomeriggio = 'Ora vuota!'
 
         return newErrors
     }

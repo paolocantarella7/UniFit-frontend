@@ -12,7 +12,8 @@ const FormStruttura = (props) => {
   const [errors, setErrors] = useState({})
 
   useEffect(() => {
-    console.log(props)
+    var arrayEmpty = []
+    setField('giorniChiusura', arrayEmpty );
   }, [])
 
   const setField = (field, value) => {
@@ -70,29 +71,27 @@ const FormStruttura = (props) => {
 
     const newErrors = {}
     // name errors
-    if (!nome || nome === '') newErrors.nome = 'nome struttura non può essere vuoto!'
-    else if (nome.length > 35) newErrors.nome = 'nome struttura troppo lungo'
+    if (!nome || nome === '') newErrors.nome = 'Nome vuoto!'
+    else if (nome.length > 35) newErrors.nome = 'Nome troppo lungo'
     // price  errors
-    if (!prezzoPerFascia || prezzoPerFascia === '') newErrors.prezzoPerFascia = 'prezzo vuoto!'
-    else if (prezzoPerFascia <= 0 || prezzoPerFascia > 1000) newErrors.prezzoPerFascia = 'prezzo non valido'
+    if (!prezzoPerFascia || prezzoPerFascia === '') newErrors.prezzoPerFascia = 'Prezzo vuoto!'
+    else if (prezzoPerFascia <= 0 ) newErrors.prezzoPerFascia = 'Prezzo non valido!'
     // duration slot errors
-    if (!durataFascia || durataFascia === '') newErrors.durataFascia = 'durata fascia vuota!'
+    if (!durataFascia || durataFascia === '') newErrors.durataFascia = 'Durata vuota!'
     // start date errors
-    if (!dataInizio || dataInizio === '') newErrors.dataInizio = 'data vuota!'
-    else if (dataInizio < date) newErrors.dataInizio = 'data passata non valida'
+    if (!dataInizio || dataInizio === '') newErrors.dataInizio = 'Data vuota!'
+    else if (dataInizio < date) newErrors.dataInizio = 'Data non valida (Passato)!'
     // capacity errors
-    if (!capacitaPerFascia || capacitaPerFascia === '') newErrors.capacitaPerFascia = 'capacità vuota!'
-    else if (capacitaPerFascia <= 0 || capacitaPerFascia > 100) newErrors.prezzoPerFascia = 'capaci`ta non valida'
+    if (!capacitaPerFascia || capacitaPerFascia === '') newErrors.capacitaPerFascia = 'Capacità vuota!'
+    else if (capacitaPerFascia <= 0 ) newErrors.prezzoPerFascia = 'Capacità non valida'
     // start morning errors
-    if (!oraIM || oraIM === '') newErrors.oraIM = 'ora inizio mattina vuota!'
+    if (!oraIM || oraIM === '') newErrors.oraIM = 'Ora vuota!'
     // end morning errors
-    if (!oraFM || oraFM === '') newErrors.oraFM = 'ora fine mattina vuota!'
-    else if (oraFM >= oraIP) newErrors.oraFM = 'ora non valida'
+    if (!oraFM || oraFM === '') newErrors.oraFM = 'Ora vuota!'
     // start evening errors
-    if (!oraIP || oraIP === '') newErrors.oraIP = 'ora inizio pomeriggio vuota!'
-    else if (oraIP >= oraFP) newErrors.oraIP = 'ora non valida'
+    if (!oraIP || oraIP === '') newErrors.oraIP = 'Ora vuota!'
     // end evening errors
-    if (!oraFP || oraFP === '') newErrors.oraFP = 'ora fine pomeriggio vuota!'
+    if (!oraFP || oraFP === '') newErrors.oraFP = 'Ora vuota!'
 
     return newErrors
   }

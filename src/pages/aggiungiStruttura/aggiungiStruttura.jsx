@@ -14,7 +14,6 @@ class AggiungiStruttura extends React.Component {
   };
 
   salvaStruttura(form) {
-    console.log(form)
       var data = new FormData()
      
       data.append('nome', form.nome )
@@ -29,7 +28,6 @@ class AggiungiStruttura extends React.Component {
       
     if (form.giorniChiusura.length === 0) {
       data.append('dateChiusura', JSON.stringify({ dateChiusura: [] }))
-      console.log("PAGE senza date")
     }
     else {
       data.append('dateChiusura', JSON.stringify({ dateChiusura: form.giorniChiusura }))
