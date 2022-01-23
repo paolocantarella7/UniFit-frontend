@@ -5,7 +5,6 @@ import { Redirect } from "react-router-dom";
 import Server from "../../config.json";
 import CardPrenotazioneUtente from "../../components/cardPrenotazioneUtente/cardPrenotazioneUtente";
 import { toast } from "react-toastify";
-import { error } from "jquery";
 
 //  View Reservation page
 class VisualizzaPrenotazioni extends React.Component {

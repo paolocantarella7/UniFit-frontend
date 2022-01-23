@@ -127,16 +127,19 @@ class EffettuaPrenotazione extends React.Component {
   };
 
   onStructureSelect = (e) => {
-    this.state.selectedStructureId = e;
-    this.state.selectedFascia = "";
-    this.strutturaGetNome();
-    this.setState({});
-    this.fasceGet();
+    this.setState({
+      selectedStructureId: e,
+      selectedFascia: ""
+    }, () => {
+      this.strutturaGetNome();
+      this.fasceGet();
+    });
   };
 
   onFasciaSelect = (e) => {
-    this.state.selectedFascia = e;
-    this.setState({});
+    this.setState({
+      selectedFascia: e
+    });
   };
 
   strutturaGetNome() {
@@ -147,6 +150,7 @@ class EffettuaPrenotazione extends React.Component {
         this.setState({ selectedStructureName: strutturaSelected.nome },
           () => this.setState({ loading: false }))
       }
+      return null;
     })
   }
 

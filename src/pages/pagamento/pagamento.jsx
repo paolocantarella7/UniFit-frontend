@@ -130,6 +130,7 @@ export default class Pagamento extends React.Component {
                   autoClose: 8000,
                   className: "errorToast",
                 });
+                return null;
               })
               
             }
