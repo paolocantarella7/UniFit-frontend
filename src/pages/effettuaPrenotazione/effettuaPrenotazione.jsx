@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import ConnectedHeader from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import { Redirect } from "react-router-dom";
@@ -76,16 +76,49 @@ class EffettuaPrenotazione extends React.Component {
       this.setState({ errors });
       return;
     }
-     // controllo se una facia e`piena 
-    this.props.history.push({
-      pathname: "/makePayment",
-      state: {
-        selectedStructureId: this.state.selectedStructureId,
-        selectedFascia: this.state.selectedFascia,
-        date: this.state.date,
-        prenotazione: true,
-      },
-    });
+
+    this.setState({ loading: true })
+
+    var data = new FormData();
+
+    data.append('idStruttura' , this.state.selectedStructureId )
+    data.append('fascia' , this.state.selectedFascia)
+    data.append('dataPrenotazione', this.state.date)
+  
+    var url = Server.API_URL + "prenotazione/checkPosti";
+  
+    fetch(url, {
+      method: "POST",
+      body: data,
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson)
+
+        if (responseJson.code === 200) {
+          this.props.history.push({
+            pathname: "/makePayment",
+            state: {
+              selectedStructureId: this.state.selectedStructureId,
+              selectedFascia: this.state.selectedFascia,
+              date: this.state.date,
+              prenotazione: true,
+            },
+          });
+        } else if (responseJson.code === 400) {
+          toast.error(responseJson.msg, {
+            autoClose: 5000,
+            className: 'errorToast',
+          })
+          this.setState({ loading: false });
+        } else {
+          toast.error("Connessione al server non riuscita!", {
+            autoClose: 5000,
+            className: 'errorToast',
+          })
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   handleChange = (event) => {
@@ -118,7 +151,7 @@ class EffettuaPrenotazione extends React.Component {
   }
 
   render() {
-    if (localStorage.getItem("isLogged") === 'false') {
+    if (localStorage.getItem("isLogged") === "false") {
       return <Redirect to="/" />;
     }
     else {
@@ -135,7 +168,7 @@ class EffettuaPrenotazione extends React.Component {
               <h1 className="py-4 text-cyan">Nuova prenotazione</h1>
               <Form>
                 <div className="my-4 mx-4">
-                <div className="col-6 mx-auto">
+                  <div className="col-6 mx-auto">
                     {this.state.structures.size === 0 ? (
                       ""
                     ) : (
@@ -159,7 +192,7 @@ class EffettuaPrenotazione extends React.Component {
                       </Card.Body>
                     </Card>
                   </div>
-                  
+
                 </div>
                 <div className="row">
                   <div className="error_div mx-auto">
@@ -178,7 +211,7 @@ class EffettuaPrenotazione extends React.Component {
                 ) : (
                   <>
                     <div className="my-4 mx-4">
-                    <div className="col-6 mx-auto">
+                      <div className="col-6 mx-auto">
                         <DropdownButton
                           id="dropdown-basic-button"
                           title="Seleziona fascia"
@@ -198,7 +231,7 @@ class EffettuaPrenotazione extends React.Component {
                           </Card.Body>
                         </Card>
                       </div>
-                      
+
                     </div>
                     <div className="row">
                       <div className="error_div mx-auto">
@@ -241,15 +274,15 @@ class EffettuaPrenotazione extends React.Component {
                   </Button>
                 </div>
               </Form>
-              
+
             </div>
 
             <img
-                className="my-5 d-block mx-auto"
-                alt="Pagamento effettuato"
-                width="200"
-                src={NuovaPrenotazioneSvg}
-              />
+              className="my-5 d-block mx-auto"
+              alt="Pagamento effettuato"
+              width="200"
+              src={NuovaPrenotazioneSvg}
+            />
             <Footer {...this.props} />
           </div>
         );
