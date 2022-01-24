@@ -50,12 +50,12 @@ class Login extends React.Component {
       .then((response) => response.json())
       .then((responseJson) => {
         console.log(responseJson);
-        if (responseJson.code !== 200) {
-          toast.error(responseJson.msg, {
+        if (responseJson.code ===  400) {
+          toast.error("Email o password non corretti", {
             autoClose: 8000,
             className: "errorToast",
           });
-        } else {
+        } else if (responseJson.code === 200 ) {
           if (responseJson.utente.isAdmin === 1) {
             localStorage.setItem("isLogged", true);
             localStorage.setItem(
