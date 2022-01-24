@@ -1,2 +1,2 @@
-const validEmailRegex = new RegExp(/[a-zA-Z0-9\._-]+[@][a-zA-Z0-9\._-]+[.][a-zA-Z]{2,6}/);
+const validEmailRegex = RegExp(/^(([^<>()[].,;:\s@"]+(.[^<>()[].,;:\s@"]+)*)|(".+"))@(([^<>()[].,;:\s@"]+.)+[^<>()[].,;:\s@"]{2,})$/i);
 export default  validEmailRegex;

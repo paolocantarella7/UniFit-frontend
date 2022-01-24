@@ -109,7 +109,7 @@ class VisualizzaRichiesteDiTesseramento extends React.Component {
               <div className='col'>
                 {(this.state.requests.length === 0) ? (
                   <div className="mb-4">
-                    <img className="my-5" width="200" src={NessunaRichiestaSvg} />
+                    <img alt="Nessuna richiesta di tesseramento" className="my-5" width="200" src={NessunaRichiestaSvg} />
                     <p className="pb-4">Non ci sono richieste</p>
                   </div>
                 ) : (
