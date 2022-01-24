@@ -99,7 +99,7 @@ class VisualizzaRichiesteDiTesseramento extends React.Component {
           <Footer {...this.props} />
         </div>
         :
-        <div className="page">
+        <div className="page-small">
           <div>
             <ConnectedHeader {...this.props} />
 
