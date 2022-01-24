@@ -125,8 +125,16 @@ class SignUp2 extends React.Component {
   };
 
   render() {
-    if (this.props.currentUser) return <Redirect to="/" />;
-    else {
+    if (localStorage.getItem("isLogged") === "true") {
+      let user = localStorage.getItem("currentUser");
+      user = JSON.parse(user);
+
+      if (user.isAdmin) {
+        return <Redirect to="/adminArea" />;
+      } else {
+        return <Redirect to="/home" />;
+      }
+    } else {
       return (
         <div className="page">
           <ConnectedHeader {...this.props} />
