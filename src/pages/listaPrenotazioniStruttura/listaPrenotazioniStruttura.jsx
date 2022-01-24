@@ -58,7 +58,7 @@ class ListaPrenotazioniStruttura extends React.Component {
           <Footer {...this.props} />
         </div>
         :
-        <div className="page-small">
+        <div className="page">
           <ConnectedHeader {...this.props} />
           <div className="container-fluid text-dark rounded col-xs-12 col-sm-8 text-center bg-white my-4">
             <h1 className="pt-4 text-cyan mb-4">{`Prenotazioni di ${this.state.structure.nome}`}</h1>
