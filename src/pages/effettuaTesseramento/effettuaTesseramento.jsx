@@ -56,6 +56,8 @@ class EffettuaTesseramento extends React.Component {
 
       if (user.isAdmin === 1) {
         return <Redirect to="/adminArea" />;
+      } else if (user.isTesserato) {
+        return <Redirect to="/home" />;
       } else {
         return (
           <div className="page">
