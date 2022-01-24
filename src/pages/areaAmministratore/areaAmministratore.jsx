@@ -4,8 +4,7 @@ import ConnectedHeader from "../../components/header/header";
 import { Link } from "react-router-dom";
 import { Redirect } from 'react-router-dom';
 import AreaAmministratoreSvg from "../../areaAmministratore.svg";
-import { Row } from "react-bootstrap";
-import { Col } from "react-bootstrap";
+
 
 class AreaAmministratore extends React.Component {
   render() {

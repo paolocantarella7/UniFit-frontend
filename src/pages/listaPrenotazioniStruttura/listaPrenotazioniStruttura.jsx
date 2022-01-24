@@ -49,7 +49,7 @@ class ListaPrenotazioniStruttura extends React.Component {
       this.state.loading ?
 
         <div className="page">
-          <ConnectedHeader {...this.props}/>
+          <ConnectedHeader {...this.props} />
 
           <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
             <h1 className="pt-4">Caricamento prenotazioni</h1>
@@ -64,11 +64,10 @@ class ListaPrenotazioniStruttura extends React.Component {
             <h1 className="pt-4 text-cyan mb-4">{`Prenotazioni di ${this.state.structure.nome}`}</h1>
 
             <div className='col pb-4'>
-              {(this.state.reservation.length == 0) ? (
-
+              {(this.state.reservation.length === 0) ? (
 
                 <div className="mb-4">
-                  <img className="my-5" width="200" src={NessunaPrenotazioneSvg} />
+                  <img className="my-5" width="200" src={NessunaPrenotazioneSvg} alt="Nessuna Prenotazione" />
                   <p className="pb-4">Non ci sono prenotazioni</p>
                 </div>
               ) : (

@@ -74,7 +74,7 @@ class VisualizzaUtentiRegistrati extends React.Component {
                         onChange={this.handleChange} />
                 
                 <div className='col'>
-                  {(this.state.users.length == 0) ? (
+                  {(this.state.users.length === 0) ? (
                     <p>Non ci sono utenti!</p>
                   ):(
                    
