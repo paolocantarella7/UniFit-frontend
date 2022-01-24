@@ -12,9 +12,10 @@ const FormStruttura = (props) => {
   const [errors, setErrors] = useState({})
 
   useEffect(() => {
+    
     var arrayEmpty = []
     setField('giorniChiusura', arrayEmpty );
-  })
+  }, [])
 
   const setField = (field, value) => {
     setForm({

@@ -15,7 +15,7 @@ const FormModifica = (props) => {
 
     useEffect(() => {
         setFormState()
-    })
+    }, [])
 
     const setFormState = () => {
 

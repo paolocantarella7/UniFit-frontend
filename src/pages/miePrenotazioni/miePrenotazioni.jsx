@@ -39,15 +39,12 @@ class VisualizzaPrenotazioni extends React.Component {
 
   handleDelete = () => {
     this.setState({ loading: true });
-
     let user = localStorage.getItem("currentUser");
     user = JSON.parse(user);
 
     var data = new FormData();
     data.append("idPrenotazione", this.state.idToDelete);
     data.append("idUtente", user.idUtente);
-
-    this.setState({ loading: true });
 
     var url = Server.API_URL + `prenotazione/cancellaPrenotazione`;
     fetch(url, {
@@ -56,6 +53,7 @@ class VisualizzaPrenotazioni extends React.Component {
     })
       .then((response) => response.json())
       .then((responseJson) => {
+        console.log(responseJson)
         if (responseJson.code === 200) {
           this.prenotazioniGet();
 
