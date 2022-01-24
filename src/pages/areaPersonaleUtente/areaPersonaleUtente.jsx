@@ -25,7 +25,7 @@ class AreaPersonaleUtente extends React.Component {
                 <div className="row py-3 px-3">
                   <button
                     type="button"
-                    class="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
+                    className="btn btn-primary btn-lg mx-auto bg-cyan border col-xs-12 col-md-8"
                   >
                     Le mie prenotazioni
                   </button>
