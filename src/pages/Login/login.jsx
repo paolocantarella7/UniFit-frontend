@@ -88,7 +88,7 @@ class Login extends React.Component {
       }
     } else {
       return (
-        <div className="pb-4 page  ">
+        <div className="pb-4 page-small ">
           <ConnectedHeader />
 
           <div className="signup_right mx-auto pb-5 rounded">
