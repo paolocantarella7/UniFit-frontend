@@ -188,7 +188,7 @@ class SignUp2 extends React.Component {
                       name="indirizzo"
                       placeholder="Indirizzo"
                       className="effect-8"
-                      maxLength="30"
+                      maxLength="40"
                       value={this.state.indirizzo}
                       onChange={this.handleChange}
                       onBlur={this.validate}

@@ -138,7 +138,7 @@ class SignUp extends React.Component {
                       name="name"
                       placeholder="Nome"
                       className="effect-8"
-                      maxLength="15"
+                      maxLength="30"
                       value={this.state.name}
                       onChange={this.handleChange}
                       onBlur={this.validate}
@@ -149,7 +149,7 @@ class SignUp extends React.Component {
                   </div>
                   <div className="error_div">
                     {this.state.errors.name ? (
-                      <p className="errmsg">{this.state.errors.name}</p>
+                      <p className="errmsg ">{this.state.errors.name}</p>
                     ) : (
                         ""
                       )}
@@ -164,7 +164,7 @@ class SignUp extends React.Component {
                       name="surname"
                       placeholder="Cognome"
                       className="effect-8"
-                      maxLength="15"
+                      maxLength="30"
                       value={this.state.surname}
                       onChange={this.handleChange}
                       onBlur={this.validate}
@@ -190,6 +190,7 @@ class SignUp extends React.Component {
                       name="email"
                       placeholder="Email"
                       className="effect-8"
+                      maxLength="40"
                       onBlur={this.validate}
                       value={this.state.email}
                       onChange={this.handleChange}

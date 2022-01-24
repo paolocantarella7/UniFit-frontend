@@ -36,6 +36,7 @@ class ModificaPrenotazione extends React.Component {
     fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
+        console.log(responseJson)
         this.setState(
           {
             selectedStructureId: responseJson.dettagli.struttura,
@@ -150,10 +151,12 @@ class ModificaPrenotazione extends React.Component {
             className: "success",
           });
         } else if (responseJson.code === 400) {
-          toast.error(responseJson.msg, {
-            autoClose: 8000,
-            className: "error",
-          });
+          responseJson.error.map(error => {
+            toast.error(error.msg, {
+              autoClose: 8000,
+              className: "error",
+            });
+          })
           return null;
         } else {
           toast.error("Connessione al server non riuscita!", {
@@ -204,7 +207,7 @@ class ModificaPrenotazione extends React.Component {
               <Form>
                 <div className="row my-4 mx-4">
                   <div className="col-6 mx-auto h2 font-weight-bold">
-                          {this.state.selectedStructureName}
+                    {this.state.selectedStructureName}
                   </div>
                 </div>
                 <div className="row">
@@ -220,10 +223,10 @@ class ModificaPrenotazione extends React.Component {
                 </div>
 
                 <>
-               
+
                   <div className="row my-4 mx-4">
                     <div className="col-8 mx-auto">
-                 
+
                       <DropdownButton
                         id="dropdown-basic-button"
                         title="Seleziona nuova fascia"
@@ -249,9 +252,9 @@ class ModificaPrenotazione extends React.Component {
                     </div>
                   </div>
 
-               
 
-                  
+
+
                   <div className="row">
                     <div className="error_div mx-auto">
                       {this.state.errors.selectedFascia ? (
@@ -265,7 +268,7 @@ class ModificaPrenotazione extends React.Component {
                   </div>
                 </>
 
-            
+
 
                 <div className="row">
                   <Button
