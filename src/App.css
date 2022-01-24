@@ -6,6 +6,11 @@
   background-color: #00c1fc;
 }
 
+
+.errmsg{
+  font-weight: bold;
+}
+
 .page{
   height: 100vh;
 }
@@ -14,9 +19,15 @@
   height: auto;
 }
 
-input[type=date], input[type=month]{
+input[type=date] {
   padding: 10px;
   border: 2px solid #00c1fc;
+}
+
+input[type=month]{
+  padding: 4px;
+  border: 1px solid #bbbbbb85;
+  border-radius: 4px;
 }
 
 #dropdown-basic-button{

@@ -55,8 +55,8 @@ class ConnectedHeader extends React.Component {
                     Area amministratore
                   </Link>
                 </li>
-                <button className="btn nav-link logout" onClick={this.logout}>
-                  Logout
+                <button className="btn nav-link logout text-white" onClick={this.logout}>
+                  <p className="text-white">Logout</p>
                 </button>
               </ul>
             </div>
@@ -89,15 +89,15 @@ class ConnectedHeader extends React.Component {
 
                 {user.isTesserato === 0 &&
                   <li className="nav-item">
-                  <Link
-                    to={`/makeMembership`}
-                    className={`${this.checkActive("/makeMembership")} nav-link`}
-                  >
-                    Tesseramento
-                  </Link>
-                </li>
+                    <Link
+                      to={`/makeMembership`}
+                      className={`${this.checkActive("/makeMembership")} nav-link`}
+                    >
+                      Tesseramento
+                    </Link>
+                  </li>
                 }
-                
+
                 <li className="nav-item">
                   <Link
                     to={`/userArea`}

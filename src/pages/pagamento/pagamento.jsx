@@ -178,9 +178,9 @@ export default class Pagamento extends React.Component {
         return (
           <div className="pb-4 page">
             <ConnectedHeader {...this.props} />
-            <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4 px-4 py-4">
+            <div className="container-fluid text-dark rounded w-100 col-sm-10 text-center bg-white my-4 px-4 py-4">
               <h1 className="py-4 text-cyan text-center">Pagamento</h1>
-              <div id="PaymentForm" className="row">
+              <div id="PaymentForm">
                 <div className="col my-4">
                   <Cards
                     cvc={this.state.cvc}
@@ -190,13 +190,13 @@ export default class Pagamento extends React.Component {
                     number={this.state.number}
                   />
                 </div>
-                <div className="col-7 mx-auto">
-                  <form className="mb-4 ">
+                <div className="col-8 col-sm-6 mx-auto">
+                  <form className="mb-4">
                     <input
                       type="tel"
                       name="number"
                       onBlur={this.validate}
-                      className="form-control mb-2 "
+                      className="form-control mb-2"
                       placeholder="Numero della carta"
                       onChange={this.handleInputChange}
                       onFocus={this.handleInputFocus}
@@ -224,8 +224,8 @@ export default class Pagamento extends React.Component {
                         ""
                       )}
                     </div>
-                    <div>
-                      <div>
+                    <div className="row mx-auto">
+                      <div className="mx-auto">
                         <input
                           type="month"
                           name="expiry"
@@ -239,12 +239,12 @@ export default class Pagamento extends React.Component {
                           )}
                         </div>
                       </div>
-                      <div className="col-8 mx-auto">
+                      <div className="col-8 col-sm-6 mx-auto">
                         <input
                           type="number"
                           name="cvc"
                           onBlur={this.validate}
-                          className="form-control my-2"
+                          className="form-control"
                           placeholder="CVC"
                           onChange={this.handleInputChange}
                           onFocus={this.handleInputFocus}
@@ -283,7 +283,8 @@ export default class Pagamento extends React.Component {
                     size="lg"
                     className="my-3 mx-4 mx-auto bg-cyan border"
                   >
-                    Paga ora 2€
+                    Paga ora {this.props.location.state.prezzoPerFascia}€
+      
                   </Button>
                 </div>
               )}

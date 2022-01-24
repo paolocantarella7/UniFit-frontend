@@ -16,11 +16,11 @@ class EffettuaPrenotazione extends React.Component {
       selectedFascia: "",
       fasce: [],
       date: "",
-      slot: "",
       loading: true,
       selectedStructureId: "",
       selectedStructureName: "",
       errors: {},
+      prezzoPerFascia: ""
     };
   }
 
@@ -106,6 +106,7 @@ class EffettuaPrenotazione extends React.Component {
               selectedStructureId: this.state.selectedStructureId,
               selectedFascia: this.state.selectedFascia,
               date: this.state.date,
+              prezzoPerFascia: this.state.prezzoPerFascia,
               prenotazione: true,
             },
           });
@@ -154,7 +155,7 @@ class EffettuaPrenotazione extends React.Component {
 
     this.state.structures.map(strutturaSelected => {
       if (strutturaSelected.idStruttura === Number(this.state.selectedStructureId)) {
-        this.setState({ selectedStructureName: strutturaSelected.nome },
+        this.setState({ selectedStructureName: strutturaSelected.nome, prezzoPerFascia: strutturaSelected.prezzoPerFascia},
           () => this.setState({ loading: false }))
       }
       return null;
@@ -175,11 +176,11 @@ class EffettuaPrenotazione extends React.Component {
         return (
           <div className="page">
             <ConnectedHeader {...this.props} />
-            <div className="container-fluid text-dark rounded col-sm-10 col-10 text-center bg-white my-4 py-2">
+            <div className="container-fluid text-dark rounded text-center col-10 bg-white my-4 py-2">
               <h1 className="py-4 text-cyan">Nuova prenotazione</h1>
               <Form>
                 <div className="my-4 mx-4">
-                  <div className="col-6 mx-auto">
+                  <div className="mx-auto">
                     {this.state.structures.size === 0 ? (
                       ""
                     ) : (
@@ -196,7 +197,7 @@ class EffettuaPrenotazione extends React.Component {
                       </DropdownButton>
                     )}
                   </div>
-                  <div className="col-6 mx-auto">
+                  <div className="col mx-auto">
                     <Card className="border border-0">
                       <Card.Body>
                         <Card.Text className="h2">{this.state.selectedStructureName}</Card.Text>
@@ -222,7 +223,7 @@ class EffettuaPrenotazione extends React.Component {
                 ) : (
                   <>
                     <div className="my-4 mx-4">
-                      <div className="col-6 mx-auto">
+                      <div className="mx-auto">
                         <DropdownButton
                           id="dropdown-basic-button"
                           title="Seleziona fascia"
@@ -235,7 +236,7 @@ class EffettuaPrenotazione extends React.Component {
                           ))}
                         </DropdownButton>
                       </div>
-                      <div className="col-6 mx-auto">
+                      <div className="mx-auto">
                         <Card className="border border-0">
                           <Card.Body>
                             <Card.Text className="h2">{this.state.selectedFascia}</Card.Text>
@@ -278,7 +279,7 @@ class EffettuaPrenotazione extends React.Component {
                   <Button
                     variant="primary"
                     size="lg"
-                    className="my-3 col-4 mx-auto bg-cyan border"
+                    className="my-3 col-8 mx-auto bg-cyan border"
                     onClick={this.goToPayment}
                   >
                     Procedi al pagamento

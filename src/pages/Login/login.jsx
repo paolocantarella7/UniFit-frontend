@@ -116,7 +116,7 @@ class Login extends React.Component {
                 </div>
                 <div className="error_div">
                   {this.state.errors.username ? (
-                    <p className="errmsg">{this.state.errors.username}</p>
+                    <p className="errmsg font-weight-bold">{this.state.errors.username}</p>
                   ) : (
                     ""
                   )}
@@ -141,7 +141,7 @@ class Login extends React.Component {
                 </div>
                 <div className="error_div">
                   {this.state.errors.pass ? (
-                    <p className="errmsg">{this.state.errors.pass}</p>
+                    <p className="errmsg font-weight-bold">{this.state.errors.pass}</p>
                   ) : (
                     ""
                   )}

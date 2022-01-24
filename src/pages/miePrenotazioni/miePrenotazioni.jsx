@@ -5,6 +5,9 @@ import { Redirect } from "react-router-dom";
 import Server from "../../config.json";
 import CardPrenotazioneUtente from "../../components/cardPrenotazioneUtente/cardPrenotazioneUtente";
 import { toast } from "react-toastify";
+import NessunaPrenotazioneSvg from "../../nessunaPrenotazione.svg";
+import { Link } from "react-router-dom";
+
 
 //  View Reservation page
 class VisualizzaPrenotazioni extends React.Component {
@@ -82,6 +85,23 @@ class VisualizzaPrenotazioni extends React.Component {
               <ConnectedHeader {...this.props} />
               <div className="container-fluid text-dark rounded col-sm-10 col-10 text-center bg-white my-4">
                 <h1 className="py-4 text-cyan">Le mie prenotazioni</h1>
+                {this.state.prenotazioni.length === 0 &&
+                   <div className="mb-4">
+                   <img className="my-5" width="200" src={NessunaPrenotazioneSvg} alt="Nessuna Prenotazione" />
+                   <p className="pb-4">Non ci sono prenotazioni</p>
+
+                   <Link to={`/makeReservation`} className={`nav-link`}>
+            <div className="row py-3 px-3">
+              <button
+                type="button"
+                className="btn btn-primary btn-lg mx-auto bg-cyan border col-10 col-sm-7 col-md-5 mb-2">
+                Prenota una struttura
+              </button>
+            </div>
+          </Link>
+                 </div>
+                }
+
                 {this.state.prenotazioni.map((prenotazione) => (
                   <CardPrenotazioneUtente
                     key={prenotazione.idPrenotazione}

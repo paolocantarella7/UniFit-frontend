@@ -206,7 +206,7 @@ class ModificaPrenotazione extends React.Component {
               <h1 className="py-4 text-cyan">Modifica prenotazione</h1>
               <Form>
                 <div className="row my-4 mx-4">
-                  <div className="col-6 mx-auto h2 font-weight-bold">
+                  <div className="col-8 mx-auto h2 font-weight-bold">
                     {this.state.selectedStructureName}
                   </div>
                 </div>
@@ -224,7 +224,7 @@ class ModificaPrenotazione extends React.Component {
 
                 <>
 
-                  <div className="row my-4 mx-4">
+                  <div className="row my-4">
                     <div className="col-8 mx-auto">
 
                       <DropdownButton
@@ -243,7 +243,7 @@ class ModificaPrenotazione extends React.Component {
                   </div>
 
                   <div className="row my-2 mx-4">
-                    <div className="col-6 mx-auto">
+                    <div className="col-10 mx-auto">
                       <Card className="border-0 h2">
                         <Card.Body >
                           <Card.Text>{this.state.selectedFascia}</Card.Text>
