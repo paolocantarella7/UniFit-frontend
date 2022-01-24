@@ -12,9 +12,9 @@ const FormStruttura = (props) => {
   const [errors, setErrors] = useState({})
 
   useEffect(() => {
-    
+
     var arrayEmpty = []
-    setField('giorniChiusura', arrayEmpty );
+    setField('giorniChiusura', arrayEmpty);
   }, [])
 
   const setField = (field, value) => {
@@ -34,17 +34,17 @@ const FormStruttura = (props) => {
 
     values.map((date) => {
 
-        const dateConverted = new Date(date.year, date.monthIndex, date.day);
-        console.log('data nel map' , dateConverted)
+      const dateConverted = new Date(date.year, date.monthIndex, date.day);
+      console.log('data nel map', dateConverted)
 
-        var d = moment(dateConverted).format('YYYY-MM-DD')
+      var d = moment(dateConverted).format('YYYY-MM-DD')
 
-        datesToConvert.push(d)
-        return null;
+      datesToConvert.push(d)
+      return null;
     })
 
     setField('giorniChiusura', datesToConvert);
-}
+  }
 
   const [values, setValues] = useState([])
 
@@ -57,10 +57,7 @@ const FormStruttura = (props) => {
       // We got errors!
       setErrors(newErrors)
     } else {
-
       props.onSubmit(form)
-
-      alert('Struttura salvata')
     }
   }
 
@@ -77,7 +74,7 @@ const FormStruttura = (props) => {
     else if (nome.length > 35) newErrors.nome = 'Nome troppo lungo'
     // price  errors
     if (!prezzoPerFascia || prezzoPerFascia === '') newErrors.prezzoPerFascia = 'Prezzo vuoto!'
-    else if (prezzoPerFascia <= 0 ) newErrors.prezzoPerFascia = 'Prezzo non valido!'
+    else if (prezzoPerFascia <= 0) newErrors.prezzoPerFascia = 'Prezzo non valido!'
     // duration slot errors
     if (!durataFascia || durataFascia === '') newErrors.durataFascia = 'Durata vuota!'
     // start date errors
@@ -85,7 +82,7 @@ const FormStruttura = (props) => {
     else if (dataInizio < date) newErrors.dataInizio = 'Data non valida (Passato)!'
     // capacity errors
     if (!capacitaPerFascia || capacitaPerFascia === '') newErrors.capacitaPerFascia = 'Capacità vuota!'
-    else if (capacitaPerFascia <= 0 ) newErrors.prezzoPerFascia = 'Capacità non valida'
+    else if (capacitaPerFascia <= 0) newErrors.prezzoPerFascia = 'Capacità non valida'
     // start morning errors
     if (!oraIM || oraIM === '') newErrors.oraIM = 'Ora vuota!'
     // end morning errors
@@ -215,7 +212,7 @@ const FormStruttura = (props) => {
               onChange={e => setField('oraFP', e.target.value)}
               isInvalid={!!errors.oraFP}
             />
-          < Form.Control.Feedback type='invalid'> {errors.oraFP} </Form.Control.Feedback>
+            < Form.Control.Feedback type='invalid'> {errors.oraFP} </Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group as={Col} md="5" className="mx-auto my-4 " >
@@ -229,9 +226,9 @@ const FormStruttura = (props) => {
       <div className="modal" id="modalDatePicker" tabIndex="-1" role="dialog">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
-          <h5 className="modal-title my-2" id="exampleModalLabel">
-                    giorni di chiusura
-                  </h5>
+            <h5 className="modal-title my-2" id="exampleModalLabel">
+              giorni di chiusura
+            </h5>
             <div className="modal-body mx-auto">
               <DatePicker
                 multiple
