@@ -66,7 +66,9 @@ class ConnectedHeader extends React.Component {
         <div className="container-fluid header">
           <nav className="navbar navbar-expand-md navbar-light headerMenus">
             <Link to="/" className="navbar-brand">
+
               <img src="/img/logo.png" width={"60 px"} alt="" />
+  
             </Link>
             <button
               type="button"
@@ -118,6 +120,7 @@ class ConnectedHeader extends React.Component {
       <div className="container-fluid header">
         <nav className="navbar navbar-expand-md navbar-light headerMenus">
           <img src="/img/logo.png" width={"60 px"} alt="" />
+          
           <button
             type="button"
             className="navbar-toggler"
@@ -126,6 +129,7 @@ class ConnectedHeader extends React.Component {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
+          
           <div id="navbarCollapse" className="collapse navbar-collapse">
             <ul className="nav navbar-nav ml-auto navItems">
               <li className="nav-item">

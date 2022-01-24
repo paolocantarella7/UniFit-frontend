@@ -6,8 +6,11 @@ import WorkingOutSvg from "../../working_out.svg";
 import BookingSvg from "../../booking.svg";
 import AreaUtenteSvg from "../../areaUtente.svg";
 import TesseramentoSvg from "../../tesseramento.svg";
-import { Link , Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Card from "react-bootstrap/Card";
+import { FcApproval } from "react-icons/fc";
+import { FcCancel } from "react-icons/fc";
+
 // Homepage
 class HomePage extends React.Component {
   constructor() {
@@ -29,6 +32,17 @@ class HomePage extends React.Component {
           <div className="page">
             <ConnectedHeader {...this.props} />
             <div className="container-fluid text-dark rounded col-sm-10 col-10 text-center bg-white my-4">
+
+
+              <h2 className="py-4 text-cyan">Bentornato su UniFit, {user.nome}!</h2>
+              {user.isTesserato === 1 && (
+                <h3 className="text-secondary"> Utente Tesserato <FcApproval /> </h3>
+              )}
+
+              {user.isTesserato === 0 && (
+                <h3 className="text-secondary"> Utente Non Tesserato <FcCancel /> </h3>
+              )}
+
               <img
                 className="pt-5 img-fluid"
                 width={180}
@@ -36,10 +50,7 @@ class HomePage extends React.Component {
                 alt="React Logo"
               />
 
-              <h2 className="py-4 text-cyan">Bentornato su UniFit, {user.nome}!</h2>
-              {user.isTesserato === 1 && (
-                <h4 className="text-secondary">Utente Tesserato</h4>
-              )}
+              <h4 className="font-italic text-secondary mt-4">"Be safe, be fit"</h4>
 
               <div className="row py-5 align-bottom align-items-end">
                 <Card className="mx-auto border-0 py-4" style={{ width: "18rem" }}>

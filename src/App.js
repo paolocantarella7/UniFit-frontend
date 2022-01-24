@@ -38,6 +38,8 @@ import VisualizzaRichiesteDiTesseramento from './pages/visualizzaRichiesteDiTess
 //Not found page
 import NotFound from './pages/paginaNotFound/paginaNotFound';
 
+
+
 import './App.css';
 
 
@@ -46,7 +48,7 @@ toast.configure();
 function App() {
   return (
     <div className="App">
-      <Switch>
+<Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/secondRegister" component={SignUp2} />

@@ -6,6 +6,13 @@
   background-color: #00c1fc;
 }
 
+.switch-wrapper {
+  position: relative;
+}
+
+.switch-wrapper > div {
+  position: absolute;
+}
 
 .errmsg{
   font-weight: bold;
