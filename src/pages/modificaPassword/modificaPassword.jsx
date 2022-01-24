@@ -30,11 +30,16 @@ class ModificaPassword extends React.Component {
   formSubmit = (e) => {
     e.preventDefault();
     let errors = {};
+    
     if (!this.state.password) errors.password = "Inserire la nuova password";
     if (!this.state.confirmPassword)
       errors.confirmPassword = "Inserire la conferma della password";
     if (errors.password || errors.confirmPassword) {
       this.setState({ errors });
+      toast.error("Inserisci tutti i campi", {
+        autoClose: 8000,
+        className: "success",
+      });
       return;
     } else {
       var data = new FormData();
@@ -86,7 +91,7 @@ class ModificaPassword extends React.Component {
           <form className="container-fluid text-dark rounded col-10 col-md-6 text-center bg-white my-4 py-4">
             <h1 className="pt-4 text-cyan">Modifica password</h1>
 
-            <div class="form-group py-2 col-8 mx-auto">
+            <div class="form-group py-2 col-10 col-sm-8 mx-auto">
               <input
                 name="password"
                 type="password"
@@ -98,7 +103,7 @@ class ModificaPassword extends React.Component {
                 onChange={this.handleChange}
               />
             </div>
-            <div class="form-group py-2 col-8 mx-auto">
+            <div class="form-group py-2 col-10 col-sm-8  mx-auto">
               <input
                 name="confirmPassword"
                 type="password"
