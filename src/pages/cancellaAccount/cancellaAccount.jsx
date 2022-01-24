@@ -56,7 +56,7 @@ class CancellaAccount extends React.Component {
         return <Redirect to="/adminArea" />;
       } else {
         return (
-          <div className="page">
+          <div className="page-small">
             <ConnectedHeader {...this.props} />
             <div className="container-fluid text-dark rounded w-75 text-center bg-white my-4">
               <img className="pt-5 img-fluid" width={180} src={CancellaAccountSvg} alt="React Logo" />

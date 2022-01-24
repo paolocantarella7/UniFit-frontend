@@ -82,7 +82,7 @@ class Recover extends React.Component {
       }
     } else {
       return (
-        <div className="pb-4 page">
+        <div className="pb-4 page-small">
           <ConnectedHeader />
           <div className="signup_right mx-auto pb-5 my-5 rounded">
             <div className="right_top">

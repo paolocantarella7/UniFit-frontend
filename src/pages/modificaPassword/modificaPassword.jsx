@@ -86,7 +86,7 @@ class ModificaPassword extends React.Component {
       return <Redirect to="/" />;
     } else {
       return (
-        <div className="page">
+        <div className="page-small">
           <ConnectedHeader {...this.props} />
           <form className="container-fluid text-dark rounded col-10 col-md-6 text-center bg-white my-4 py-4">
             <h1 className="pt-4 text-cyan">Modifica password</h1>

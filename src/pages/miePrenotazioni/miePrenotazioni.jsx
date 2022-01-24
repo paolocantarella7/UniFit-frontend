@@ -84,7 +84,7 @@ class VisualizzaPrenotazioni extends React.Component {
       } else {
         return (
           <>
-            <div className="page">
+            <div className="page-small">
               <ConnectedHeader {...this.props} />
               <div className="container-fluid text-dark rounded col-sm-10 col-10 text-center bg-white my-4">
                 <h1 className="py-4 text-cyan">Le mie prenotazioni</h1>
