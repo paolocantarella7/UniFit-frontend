@@ -97,7 +97,7 @@ class Recover extends React.Component {
                   <input
                     type="text"
                     name="username"
-                    placeholder="email"
+                    placeholder="Email"
                     className="effect-8"
                     value={this.state.username}
                     onChange={this.handleChange}
