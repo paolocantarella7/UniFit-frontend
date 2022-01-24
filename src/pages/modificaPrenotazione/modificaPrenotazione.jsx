@@ -156,6 +156,7 @@ class ModificaPrenotazione extends React.Component {
               autoClose: 8000,
               className: "error",
             });
+            return null;
           })
           return null;
         } else {

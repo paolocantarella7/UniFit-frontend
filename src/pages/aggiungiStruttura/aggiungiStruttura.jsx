@@ -47,6 +47,7 @@ class AggiungiStruttura extends React.Component {
               autoClose: 8000,
               className: "errorToast"
             })
+            return null;
           } )} else if (responseJson.code === 201){
             toast.success("Struttura aggiunta con successo" ,{
               autoClose: 5000,

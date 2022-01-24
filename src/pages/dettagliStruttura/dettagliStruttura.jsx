@@ -27,6 +27,7 @@ class DettagliStruttura extends React.Component {
 
         responseJson.struttura.giorniChiusura.map(obj => {
           tempDate.push(obj.dataChiusura)
+          return null;
         })
 
         responseJson.struttura.giorniChiusura = tempDate
