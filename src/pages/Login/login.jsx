@@ -62,14 +62,14 @@ class Login extends React.Component {
               "currentUser",
               JSON.stringify(responseJson.utente)
             );
-            window.location.href = Server.FRONT_URL + "adminArea";
+            window.location.href = Server.FRONT_URL;
           } else {
             localStorage.setItem("isLogged", true);
             localStorage.setItem(
               "currentUser",
               JSON.stringify(responseJson.utente)
             );
-            window.location.href = Server.FRONT_URL + "home";
+            window.location.href = Server.FRONT_URL;
           }
         }
         this.setState({ loading: false });

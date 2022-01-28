@@ -65,7 +65,6 @@ const FormModifica = (props) => {
             setErrors(newErrors)
         } else {
             props.onSubmit(form)
-            alert('Struttura salvata')
         }
     }
 
@@ -79,14 +78,14 @@ const FormModifica = (props) => {
         else if (nome.length > 35) newErrors.nome = 'Nome troppo lungo'
         // price  errors
         if (!prezzoPerFascia || prezzoPerFascia === '') newErrors.prezzoPerFascia = 'Prezzo vuoto!'
-        else if (prezzoPerFascia <= 0 ) newErrors.prezzoPerFascia = 'Prezzo non valido'
+        else if (prezzoPerFascia <= 0) newErrors.prezzoPerFascia = 'Prezzo non valido'
         // duration slot errors
         if (!durataPerFascia || durataPerFascia === '') newErrors.durataPerFascia = 'Durata vuota!'
         // start date errors
         if (!dataInizioDisponibilita || dataInizioDisponibilita === '') newErrors.dataInizioDisponibilita = 'Data vuota!'
         // capacity errors
         if (!capacitaPerFascia || capacitaPerFascia === '') newErrors.capacitaPerFascia = 'Capacità vuota!'
-        else if (capacitaPerFascia <= 0 || capacitaPerFascia > 100) newErrors.prezzoPerFascia = 'Capacità non valida'
+        else if (capacitaPerFascia <= 0 || capacitaPerFascia > 100) newErrors.capacitaPerFascia = 'Capacità non valida'
         // start morning errors
         if (!oraInizioMattina || oraInizioMattina === '') newErrors.oraInizioMattina = 'Ora vuota!'
         // end morning errors

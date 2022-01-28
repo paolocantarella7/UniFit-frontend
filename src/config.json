@@ -1,4 +1,4 @@
 {
-    "API_URL":"http://localhost:5000/",
-    "FRONT_URL":"http://localhost:3000/"
+    "API_URL":"http://ec2-3-91-202-151.compute-1.amazonaws.com:5000/",
+    "FRONT_URL":"http://ec2-44-202-26-53.compute-1.amazonaws.com"
 }
